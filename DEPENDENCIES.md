@@ -2,9 +2,10 @@
 
 The OpenSSL toolkit stays under a dual license, i.e. both the conditions of the OpenSSL License and the original SSLeay license apply to the toolkit. See below for the actual license texts. Actually both licenses are BSD-style Open Source licenses. In case of any license issues related to OpenSSL please contact openssl-core@openssl.org.
 
+```
   OpenSSL License
   ---------------
-
+  
 /* ====================================================================
  * Copyright (c) 1998-2016 The OpenSSL Project.  All rights reserved.
  *
@@ -118,3 +119,4 @@ The OpenSSL toolkit stays under a dual license, i.e. both the conditions of the 
  * copied and put under another distribution licence
  * [including the GNU Public Licence.]
  */
+ ```
