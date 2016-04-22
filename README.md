@@ -1,0 +1,1 @@
+A TLS based security library built to interact with sdl_ios and provide TLS certificate authentication and encryption / decryption.
