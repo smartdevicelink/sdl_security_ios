@@ -5,7 +5,7 @@ SDL Security is a TLS based security library built to interact with sdl_ios and 
 ### When is this useful?
 This library can be used to allow TLS authentication on a specific RPC service, for example the RPC or Video service. 
 
-### How do I use this?
+### How do I use it?
 This library is primarily for automotive OEMs to base their own proprietary library on. The OEM may change the URL to retrieve a certificate, and may want to provide additional protection to this library. Otherwise, it will likely be quite easy for an attacker to take the certificate and defeat the TLS protection.
 
 The OEM must also rename this library and classes for reasons seen below.
