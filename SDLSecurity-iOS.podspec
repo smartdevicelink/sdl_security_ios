@@ -31,6 +31,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/smartdevicelink/sdl_security_ios.git", :tag => "0.0.1" }
 
-  s.dependency "SmartDeviceLink-iOS", :git => 'https://github.com/smartdevicelink/sdl_ios', :branch => 'feature/external_security_support'
+  # This dependency is not yet available
+  s.dependency "SmartDeviceLink-iOS", "~> 4.2"
 
 end
