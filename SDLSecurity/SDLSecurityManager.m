@@ -88,6 +88,10 @@ NS_ASSUME_NONNULL_BEGIN
     return [_privateSecurity decryptData:data withError:error];
 }
 
++ (NSSet<NSString *> *)availableMakes {
+    return [NSSet setWithArray:@[@"Example"]];
+}
+
 @end
 
 NS_ASSUME_NONNULL_END
