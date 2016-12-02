@@ -27,7 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @property (assign, nonatomic) SDLTLSState state;
-@property (copy, nonatomic) NSString *appId;
 
 @end
 
@@ -46,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)initializeWithAppId:(NSString *)appId completionHandler:(void (^)(NSError * _Nullable))completionHandler {
-    self.appId = appId;
+    _appId = appId;
     
     // If it's already initialized, return
     if (self.state != SDLTLSStateUninitialized) {
