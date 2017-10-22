@@ -10,7 +10,6 @@
 
 #import "SDLPrivateSecurityConstants.h"
 #import "SDLSecurityConstants.h"
-#import "SDLURLSession.h"
 
 
 @interface _SDLCertificateManager ()
@@ -95,16 +94,15 @@
         completionHandler(NO, jsonEncodeError);
         return;
     }
-    
-    // Assuming we have a valid request to send, send a POST request with the app id json data
-    [[SDLURLSession defaultSession] uploadWithURLRequest:request data:appIdData completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+
+    [[NSURLSession sharedSession] uploadTaskWithRequest:request fromData:appIdData completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         // If the certificate server didn't send us any data back
         if (data == nil) {
             NSLog(@"Security server responded with an error. Response: %@, Error: %@", response, error);
             completionHandler(NO, error);
             return;
         }
-        
+
         // Try to decode the server data
         NSError *jsonDecodeError = nil;
         NSDictionary *jsonDecodedDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonDecodeError];
@@ -112,7 +110,7 @@
             completionHandler(NO, jsonDecodeError);
             return;
         }
-        
+
         // The cert is base 64 encoded. Decode it
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -121,9 +119,9 @@
         if (base64Decoded == nil) {
             completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:nil]);
         }
-        
+
         // TODO: Encrypt?
-        
+
         // TODO: Weakself
         // We have the cert data, store it as a file in the correct path
         NSError *writeFileError = nil;
@@ -133,7 +131,7 @@
             completionHandler(NO, error);
             return;
         }
-        
+
         // Everything succeeded, the new cert exists at the file path
         completionHandler(YES, nil);
     }];
