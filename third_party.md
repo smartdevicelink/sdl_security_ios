@@ -1,8 +1,8 @@
-### SDL Security iOS
+### SDL SECURITY iOS
 
 Copyright (C) 2018      SmartDeviceLink Consortium, Inc.
 
-####LICENSE 
+#### License
 
 Copyright (c) 2017, SmartDeviceLink Consortium, Inc.
 All rights reserved.
@@ -18,7 +18,7 @@ modification, are permitted provided that the following conditions are met:
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-####THIRD PARTY LICENSES 
+#### Third Party Licenses
 
 Both the source and binary distributions of this software contain
 some third party software. All the third party software included
@@ -31,8 +31,10 @@ The third party software included and used by this project is:
 
 * Copyright (c) 1998-2016 The OpenSSL Project.  All rights reserved.
 * Licensed under OpenSSL License.
-* See https://github.com/openssl/openssl/tree OpenSSL_1_0_2f.
-* cpp-base64.
+* See https://github.com/openssl/openssl/treeOpenSSL_1_0_2f.
+
+**cpp-base64.**
+
 * Copyright © 2004-2017 by René Nyffenegger
 * Licensed under zlib License.
 * See https://github.com/ReneNyffenegger/cpp-base64.
