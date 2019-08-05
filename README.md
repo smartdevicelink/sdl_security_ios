@@ -10,6 +10,4 @@ This library is primarily for automotive OEMs to base their own proprietary libr
 
 The OEM must also rename this library and classes for reasons seen below.
 
-Currently requires the use of a special branch on the [SDL Library for iOS](https://github.com/smartdevicelink/sdl_ios/pull/348). Eventually this will be pulled into master.
-
 To use this library, the developer will pass the name of the class into the SDLProxy method `- (void)addSecurityManager:(Class)securityManagerClass forMakes:(NSArray<NSString *> *)vehicleMakes;`. They then also pass in the name of the Vehicle Makes that library is used for, for example, a Ford library may be used for `["Ford", "Lincoln"]`. This must match what is passed through the `register app interface` RPC response.
