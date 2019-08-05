@@ -7,14 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D35C9EB1C80B45600C5B3C8 /* SDLURLRequestTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D35C9E91C80B45600C5B3C8 /* SDLURLRequestTask.h */; };
-		5D35C9EC1C80B45600C5B3C8 /* SDLURLRequestTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D35C9E91C80B45600C5B3C8 /* SDLURLRequestTask.h */; };
-		5D35C9ED1C80B45600C5B3C8 /* SDLURLRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C9EA1C80B45600C5B3C8 /* SDLURLRequestTask.m */; };
-		5D35C9EE1C80B45600C5B3C8 /* SDLURLRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C9EA1C80B45600C5B3C8 /* SDLURLRequestTask.m */; };
-		5D35C9F11C80B4AB00C5B3C8 /* SDLURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D35C9EF1C80B4AB00C5B3C8 /* SDLURLSession.h */; };
-		5D35C9F21C80B4AB00C5B3C8 /* SDLURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D35C9EF1C80B4AB00C5B3C8 /* SDLURLSession.h */; };
-		5D35C9F31C80B4AB00C5B3C8 /* SDLURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C9F01C80B4AB00C5B3C8 /* SDLURLSession.m */; };
-		5D35C9F41C80B4AB00C5B3C8 /* SDLURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C9F01C80B4AB00C5B3C8 /* SDLURLSession.m */; };
 		5D40CA811C511C7200E6F987 /* SDLSecurity.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D40CA801C511C7200E6F987 /* SDLSecurity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D40CA881C511C7200E6F987 /* SDLSecurity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40CA7D1C511C7200E6F987 /* SDLSecurity.framework */; };
 		5D40CA991C51215200E6F987 /* SDLSecurityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D40CA971C51215200E6F987 /* SDLSecurityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,13 +39,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5D1A58431C7612BB0005202B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5D40CA741C511C7200E6F987 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5D1A583A1C76124A0005202B;
-			remoteInfo = SDLSecurityTestData;
-		};
 		5D40CA891C511C7200E6F987 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5D40CA741C511C7200E6F987 /* Project object */;
@@ -76,12 +61,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5D1A583B1C76124A0005202B /* SDLSecurityTestData.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SDLSecurityTestData.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D1A583D1C76124A0005202B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D35C9E91C80B45600C5B3C8 /* SDLURLRequestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLURLRequestTask.h; sourceTree = "<group>"; };
-		5D35C9EA1C80B45600C5B3C8 /* SDLURLRequestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLURLRequestTask.m; sourceTree = "<group>"; };
-		5D35C9EF1C80B4AB00C5B3C8 /* SDLURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLURLSession.h; sourceTree = "<group>"; };
-		5D35C9F01C80B4AB00C5B3C8 /* SDLURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLURLSession.m; sourceTree = "<group>"; };
 		5D40CA7D1C511C7200E6F987 /* SDLSecurity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDLSecurity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D40CA801C511C7200E6F987 /* SDLSecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLSecurity.h; sourceTree = "<group>"; };
 		5D40CA821C511C7200E6F987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,13 +85,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5D1A58381C76124A0005202B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5D40CA791C511C7200E6F987 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,21 +113,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5D1A583C1C76124A0005202B /* SDLSecurityTestData */ = {
-			isa = PBXGroup;
-			children = (
-				5D1A583D1C76124A0005202B /* Info.plist */,
-			);
-			path = SDLSecurityTestData;
-			sourceTree = "<group>";
-		};
 		5D40CA731C511C7200E6F987 = {
 			isa = PBXGroup;
 			children = (
 				5DF916ED1C5A6C01009C7B55 /* Libraries */,
 				5D40CA7F1C511C7200E6F987 /* SDLSecurity */,
 				5D40CA8B1C511C7200E6F987 /* SDLSecurityTests */,
-				5D1A583C1C76124A0005202B /* SDLSecurityTestData */,
 				5D40CA7E1C511C7200E6F987 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -166,7 +129,6 @@
 				5D40CA7D1C511C7200E6F987 /* SDLSecurity.framework */,
 				5D40CA871C511C7200E6F987 /* SDLSecurityTests.xctest */,
 				5DF916F21C5A6C2B009C7B55 /* libSDLSecurityStatic.a */,
-				5D1A583B1C76124A0005202B /* SDLSecurityTestData.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,17 +153,6 @@
 			path = SDLSecurityTests;
 			sourceTree = "<group>";
 		};
-		5D5E27841C848A0100495F0B /* URL Requests */ = {
-			isa = PBXGroup;
-			children = (
-				5D35C9E91C80B45600C5B3C8 /* SDLURLRequestTask.h */,
-				5D35C9EA1C80B45600C5B3C8 /* SDLURLRequestTask.m */,
-				5D35C9EF1C80B4AB00C5B3C8 /* SDLURLSession.h */,
-				5D35C9F01C80B4AB00C5B3C8 /* SDLURLSession.m */,
-			);
-			name = "URL Requests";
-			sourceTree = "<group>";
-		};
 		5DC412F21C6242590062E6F9 /* Public */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,7 +175,6 @@
 				5DF917081C5A6F1C009C7B55 /* _SDLTLSEngine.m */,
 				5D5E27851C848A1900495F0B /* _SDLCertificateManager.h */,
 				5D5E27861C848A1900495F0B /* _SDLCertificateManager.m */,
-				5D5E27841C848A0100495F0B /* URL Requests */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -250,10 +200,8 @@
 				5DF917091C5A6F1C009C7B55 /* _SDLTLSEngine.h in Headers */,
 				5D40CA811C511C7200E6F987 /* SDLSecurity.h in Headers */,
 				5D84682D1C86256D00592787 /* SDLPrivateSecurityConstants.h in Headers */,
-				5D35C9F11C80B4AB00C5B3C8 /* SDLURLSession.h in Headers */,
 				5DC412F41C62426F0062E6F9 /* SDLSecurityType.h in Headers */,
 				5D5E27871C848A1900495F0B /* _SDLCertificateManager.h in Headers */,
-				5D35C9EB1C80B45600C5B3C8 /* SDLURLRequestTask.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,35 +210,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DF04F361C629116001B9986 /* SDLSecurityType.h in Headers */,
-				5D35C9F21C80B4AB00C5B3C8 /* SDLURLSession.h in Headers */,
 				5D84682E1C86256D00592787 /* SDLPrivateSecurityConstants.h in Headers */,
 				5DF9170A1C5A6F1C009C7B55 /* _SDLTLSEngine.h in Headers */,
 				5DF917131C5AA368009C7B55 /* SDLSecurityConstants.h in Headers */,
 				5DF916FF1C5A6C94009C7B55 /* SDLSecurityManager.h in Headers */,
-				5D35C9EC1C80B45600C5B3C8 /* SDLURLRequestTask.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		5D1A583A1C76124A0005202B /* SDLSecurityTestData */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5D1A583E1C76124A0005202B /* Build configuration list for PBXNativeTarget "SDLSecurityTestData" */;
-			buildPhases = (
-				5D1A58371C76124A0005202B /* Sources */,
-				5D1A58381C76124A0005202B /* Frameworks */,
-				5D1A58391C76124A0005202B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SDLSecurityTestData;
-			productName = SDLSecurityTestData;
-			productReference = 5D1A583B1C76124A0005202B /* SDLSecurityTestData.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
 		5D40CA7C1C511C7200E6F987 /* SDLSecurity */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5D40CA911C511C7200E6F987 /* Build configuration list for PBXNativeTarget "SDLSecurity" */;
@@ -340,7 +269,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5D1A58441C7612BB0005202B /* PBXTargetDependency */,
 			);
 			name = SDLSecurityStatic;
 			productName = SDLSecurityStatic;
@@ -353,12 +281,9 @@
 		5D40CA741C511C7200E6F987 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = livio;
 				TargetAttributes = {
-					5D1A583A1C76124A0005202B = {
-						CreatedOnToolsVersion = 7.2.1;
-					};
 					5D40CA7C1C511C7200E6F987 = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -385,19 +310,11 @@
 				5D40CA7C1C511C7200E6F987 /* SDLSecurity */,
 				5D40CA861C511C7200E6F987 /* SDLSecurityTests */,
 				5DF916F11C5A6C2B009C7B55 /* SDLSecurityStatic */,
-				5D1A583A1C76124A0005202B /* SDLSecurityTestData */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5D1A58391C76124A0005202B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5D40CA7B1C511C7200E6F987 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -432,23 +349,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5D1A58371C76124A0005202B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5D40CA781C511C7200E6F987 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D35C9ED1C80B45600C5B3C8 /* SDLURLRequestTask.m in Sources */,
 				5D5E27881C848A1900495F0B /* _SDLCertificateManager.m in Sources */,
 				5D40CA9A1C51215200E6F987 /* SDLSecurityManager.m in Sources */,
 				5DF9170B1C5A6F1C009C7B55 /* _SDLTLSEngine.m in Sources */,
 				5DF917141C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */,
-				5D35C9F31C80B4AB00C5B3C8 /* SDLURLSession.m in Sources */,
 				5D84682F1C86256D00592787 /* SDLPrivateSecurityConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,12 +374,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D35C9EE1C80B45600C5B3C8 /* SDLURLRequestTask.m in Sources */,
 				5D5E27891C848A1D00495F0B /* _SDLCertificateManager.m in Sources */,
 				5DF916FB1C5A6C69009C7B55 /* SDLSecurityManager.m in Sources */,
 				5DF9170C1C5A6F1C009C7B55 /* _SDLTLSEngine.m in Sources */,
 				5DF917151C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */,
-				5D35C9F41C80B4AB00C5B3C8 /* SDLURLSession.m in Sources */,
 				5D8468301C86256D00592787 /* SDLPrivateSecurityConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,11 +385,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5D1A58441C7612BB0005202B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5D1A583A1C76124A0005202B /* SDLSecurityTestData */;
-			targetProxy = 5D1A58431C7612BB0005202B /* PBXContainerItemProxy */;
-		};
 		5D40CA8A1C511C7200E6F987 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5D40CA7C1C511C7200E6F987 /* SDLSecurity */;
@@ -492,38 +393,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		5D1A583F1C76124A0005202B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SDLSecurityTestData/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.livio.SDLSecurityTestData;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		5D1A58401C76124A0005202B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SDLSecurityTestData/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.livio.SDLSecurityTestData;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
 		5D40CA8F1C511C7200E6F987 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -532,13 +401,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -561,7 +438,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -579,13 +456,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -602,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -615,6 +500,7 @@
 		5D40CA921C511C7200E6F987 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -637,6 +523,7 @@
 		5D40CA931C511C7200E6F987 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -692,7 +579,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Libs",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -707,7 +594,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Libs",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -717,15 +604,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5D1A583E1C76124A0005202B /* Build configuration list for PBXNativeTarget "SDLSecurityTestData" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5D1A583F1C76124A0005202B /* Debug */,
-				5D1A58401C76124A0005202B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		5D40CA771C511C7200E6F987 /* Build configuration list for PBXProject "SDLSecurity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
