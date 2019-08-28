@@ -59,7 +59,12 @@ static const int SDLTLSReadBufferSize = 4096;
     _state = SDLTLSEngineStateDisconnected;
     _appId = appId;
     _certificateManager = [[_SDLCertificateManager alloc] initWithCertificateServerURL:[NSURL URLWithString:CertQAURL]];
-    
+
+    SSL_load_error_strings();
+    ERR_load_BIO_strings();
+    OpenSSL_add_all_algorithms();
+    SSL_library_init();
+
     return self;
 }
 
@@ -70,46 +75,36 @@ static const int SDLTLSReadBufferSize = 4096;
 - (void)initializeTLSWithCompletionHandler:(void (^)(BOOL success, NSError * _Nullable))completionHandler {
     NSData *certData = self.certificateManager.certificateData;
     
-    // We don't have an existing certificate
     if (certData.length == 0) {
         [self.certificateManager retrieveNewCertificateWithAppId:self.appId completionHandler:^(BOOL success, NSError * _Nullable networkError) {
             if (!success) {
-                completionHandler(NO, networkError);
-                return;
+                return completionHandler(NO, networkError);
             }
             
-            // Recurse back into this method to try again with the new certificate data
-            [self initializeTLSWithCompletionHandler:completionHandler];
+            // Certificate has been downloaded. Recurse back into this method to try again with the new certificate data.
+            return [self initializeTLSWithCompletionHandler:completionHandler];
         }];
-        
-        return;
-    }
-    
-    // We must have cert data at this point, so we're going to actually attempt to initialize the TLS engine now
-    NSError *tlsError = nil;
-    BOOL success = [self initializeTLSWithCertificateData:certData error:&tlsError];
-    
-    if (!success) {
-        // If the specific reason that TLS failed was that the existing cert is expired, retry getting a cert from the cert manager. If it was any other reason, return out.
-        if (tlsError.code == SDLTLSErrorCodeCertificateExpired) {
-            [self.certificateManager retrieveNewCertificateWithAppId:self.appId completionHandler:^(BOOL success, NSError * _Nullable networkError) {
-                if (!success) {
-                    completionHandler(NO, networkError);
-                    return;
-                }
-                
-                // Recurse back into this method to try again with the new certificate data
-                [self initializeTLSWithCompletionHandler:completionHandler];
-            }];
+    } else {
+        NSError *tlsError = nil;
+        BOOL success = [self initializeTLSWithCertificateData:certData error:&tlsError];
+
+        if (!success) {
+            if (tlsError.code == SDLTLSErrorCodeCertificateExpired) {
+                [self.certificateManager retrieveNewCertificateWithAppId:self.appId completionHandler:^(BOOL success, NSError * _Nullable networkError) {
+                    if (!success) {
+                        return completionHandler(NO, networkError);
+                    }
+
+                    // Certificate has been downloaded. Recurse back into this method to try again with the new certificate data.
+                    return [self initializeTLSWithCompletionHandler:completionHandler];
+                }];
+            } else {
+                return completionHandler(NO, tlsError);
+            }
         } else {
-            completionHandler(NO, tlsError);
+            return completionHandler(YES, nil);
         }
-        
-        return;
     }
-    
-    // We successfully initialized our TLS engine
-    completionHandler(YES, nil);
 }
 
 - (BOOL)initializeTLSWithCertificateData:(NSData *)data error:(NSError * _Nullable __autoreleasing *)error {
@@ -121,18 +116,17 @@ static const int SDLTLSReadBufferSize = 4096;
     BOOL success = NO;
     
     void *p12Buffer = (void *)data.bytes;
-    
+
     SSL_load_error_strings();
     ERR_load_BIO_strings();
     OpenSSL_add_all_algorithms();
     SSL_library_init();
-    
-    sslContext = SSL_CTX_new(TLSv1_2_server_method());
+
+    sslContext = SSL_CTX_new(DTLSv1_server_method());
     SSL_CTX_set_verify(sslContext, SSL_VERIFY_NONE, NULL);
     
     long options = SSL_OP_NO_SSLv2 | SSL_OP_NO_COMPRESSION | SSL_OP_SINGLE_DH_USE | SSL_OP_SINGLE_ECDH_USE;
     SSL_CTX_set_options(sslContext, options);
-    
     pbio = BIO_new_mem_buf(p12Buffer, (int)data.length);
     p12 = d2i_PKCS12_bio(pbio, NULL);
     if (p12 == NULL) {
@@ -140,7 +134,7 @@ static const int SDLTLSReadBufferSize = 4096;
         *error = [[self class] sdlsec_errorInitializationFailure];
         return NO;
     }
-    
+
     // TODO: Swap out the hardcoded password for however we're getting it
     success = PKCS12_parse(p12, SDLTLSCertPassword, &pkey, &certX509, NULL);
     if (certX509 == NULL || pkey == NULL) {
@@ -237,7 +231,9 @@ static const int SDLTLSReadBufferSize = 4096;
     CONF_modules_unload(1);
     ERR_remove_state(0);
     ERR_free_strings();
+
     EVP_cleanup();
+
     sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
     CRYPTO_cleanup_all_ex_data();
 }
@@ -281,7 +277,6 @@ void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS
         EVP_PKEY_free(pkey);
     }
 }
-
 
 #pragma mark - Certificate Validity
 
@@ -336,15 +331,15 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     }
     
     [self sdlsec_SSLWriteDataToServer:decryptedData withError:error];
-    if (error != nil) {
+    if (*error != nil) {
         return nil;
     }
     
     NSData *encryptedData = [self sdlsec_BIOReadDataFromServerWithError:error];
-    if (error != nil) {
+    if (*error != nil) {
         return nil;
     }
-    
+
     return encryptedData;
 }
 
@@ -355,12 +350,12 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     }
     
     [self sdlsec_BIOWriteDataToServer:encryptedData withError:error];
-    if (error != nil) {
+    if (*error != nil) {
         return nil;
     }
     
     NSData *data = [self sdlsec_SSLReadDataFromServerWithError:error];
-    if (error != nil) {
+    if (*error != nil) {
         return nil;
     }
     
@@ -401,12 +396,12 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     int length = (int)data.length;
     void *buffer = (void *)data.bytes;
     int retVal = SSL_write(sslConnection, buffer, length);
-    
+
     SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:retVal length:length isWrite:NO];
-    if ((error != SDLTLSErrorCodeNone) && (error != nil)) {
+    if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:nil];
     }
-    
+
     return retVal;
 }
 
@@ -416,13 +411,14 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     int length = SDLTLSReadBufferSize;
     void *buffer = malloc(SDLTLSReadBufferSize);
     int bufferLength = SSL_read(sslConnection, buffer, length);
+
     if (bufferLength > 0) {
         returnData = [NSData dataWithBytes:buffer length:bufferLength];
     }
     free(buffer);
     
     SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
-    if ((error != SDLTLSErrorCodeNone) && (error != nil)) {
+    if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:nil];
     }
     
@@ -435,32 +431,31 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
 - (int)sdlsec_BIOWriteDataToServer:(NSData *)data withError:(NSError * __autoreleasing*)error {
     int length = (int)data.length;
     void *buffer = (void *)data.bytes;
-    int retVal = BIO_write(writeBIO, buffer, length);
-    
+    int retVal = BIO_write(readBIO, buffer, length);
+
     SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:retVal length:length isWrite:NO];
-    if ((error != SDLTLSErrorCodeNone) && (error != nil)) {
+    if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:nil];
     }
-    
+
     return retVal;
 }
 
 - (nullable NSData *)sdlsec_BIOReadDataFromServerWithError:(NSError * __autoreleasing*)error {
-    NSData *returnData = nil;
-    
+    NSMutableData *returnData = [NSMutableData data];
     int length = SDLTLSReadBufferSize;
     void *buffer = malloc(SDLTLSReadBufferSize);
-    int bufferLength = BIO_read(readBIO, buffer, length);
-    if (bufferLength > 0) {
-        returnData = [NSData dataWithBytes:buffer length:bufferLength];
+    int bufferLength = 0;
+
+    while ((bufferLength = BIO_read(writeBIO, buffer, length)) >= 0) {
+        [returnData appendBytes:buffer length:bufferLength];
+
+        SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
+        if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
+            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:nil];
+        }
     }
-    free(buffer);
-    
-    SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
-    if ((error != SDLTLSErrorCodeNone) && (error != nil)) {
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:nil];
-    }
-    
+
     return returnData;
 }
 

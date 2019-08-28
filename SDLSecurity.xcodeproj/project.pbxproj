@@ -46,6 +46,13 @@
 			remoteGlobalIDString = 5D40CA7C1C511C7200E6F987;
 			remoteInfo = SDLSecurity;
 		};
+		884250A0230D9C4100F83FD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D40CA741C511C7200E6F987 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88425099230D9C0000F83FD7;
+			remoteInfo = Resources;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +89,8 @@
 		5DF9170D1C5A6F31009C7B55 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = openssl.framework; path = Libs/openssl.framework; sourceTree = "<group>"; };
 		5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLSecurityConstants.h; sourceTree = "<group>"; };
 		5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLSecurityConstants.m; sourceTree = "<group>"; };
+		8842509A230D9C0000F83FD7 /* Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8842509C230D9C0000F83FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +119,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		88425097230D9C0000F83FD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -119,6 +135,7 @@
 				5DF916ED1C5A6C01009C7B55 /* Libraries */,
 				5D40CA7F1C511C7200E6F987 /* SDLSecurity */,
 				5D40CA8B1C511C7200E6F987 /* SDLSecurityTests */,
+				8842509B230D9C0000F83FD7 /* Resources */,
 				5D40CA7E1C511C7200E6F987 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,6 +146,7 @@
 				5D40CA7D1C511C7200E6F987 /* SDLSecurity.framework */,
 				5D40CA871C511C7200E6F987 /* SDLSecurityTests.xctest */,
 				5DF916F21C5A6C2B009C7B55 /* libSDLSecurityStatic.a */,
+				8842509A230D9C0000F83FD7 /* Resources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +204,14 @@
 				5DF917051C5A6D26009C7B55 /* OpenSSLLicense.txt */,
 			);
 			name = Libraries;
+			sourceTree = "<group>";
+		};
+		8842509B230D9C0000F83FD7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8842509C230D9C0000F83FD7 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,11 +295,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				884250A1230D9C4100F83FD7 /* PBXTargetDependency */,
 			);
 			name = SDLSecurityStatic;
 			productName = SDLSecurityStatic;
 			productReference = 5DF916F21C5A6C2B009C7B55 /* libSDLSecurityStatic.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		88425099230D9C0000F83FD7 /* Resources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8842509D230D9C0000F83FD7 /* Build configuration list for PBXNativeTarget "Resources" */;
+			buildPhases = (
+				88425096230D9C0000F83FD7 /* Sources */,
+				88425097230D9C0000F83FD7 /* Frameworks */,
+				88425098230D9C0000F83FD7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Resources;
+			productName = Resources;
+			productReference = 8842509A230D9C0000F83FD7 /* Resources.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -286,12 +330,18 @@
 				TargetAttributes = {
 					5D40CA7C1C511C7200E6F987 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 1030;
 					};
 					5D40CA861C511C7200E6F987 = {
 						CreatedOnToolsVersion = 7.2;
 					};
 					5DF916F11C5A6C2B009C7B55 = {
 						CreatedOnToolsVersion = 7.2;
+					};
+					88425099230D9C0000F83FD7 = {
+						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = NCVC2MHU7M;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -300,6 +350,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 5D40CA731C511C7200E6F987;
@@ -310,6 +361,7 @@
 				5D40CA7C1C511C7200E6F987 /* SDLSecurity */,
 				5D40CA861C511C7200E6F987 /* SDLSecurityTests */,
 				5DF916F11C5A6C2B009C7B55 /* SDLSecurityStatic */,
+				88425099230D9C0000F83FD7 /* Resources */,
 			);
 		};
 /* End PBXProject section */
@@ -324,6 +376,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5D40CA851C511C7200E6F987 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88425098230D9C0000F83FD7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -382,6 +441,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		88425096230D9C0000F83FD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -389,6 +455,11 @@
 			isa = PBXTargetDependency;
 			target = 5D40CA7C1C511C7200E6F987 /* SDLSecurity */;
 			targetProxy = 5D40CA891C511C7200E6F987 /* PBXContainerItemProxy */;
+		};
+		884250A1230D9C4100F83FD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88425099230D9C0000F83FD7 /* Resources */;
+			targetProxy = 884250A0230D9C4100F83FD7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -500,6 +571,7 @@
 		5D40CA921C511C7200E6F987 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -517,12 +589,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdl.SDLSecurity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		5D40CA931C511C7200E6F987 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -540,6 +615,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdl.SDLSecurity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -601,6 +677,63 @@
 			};
 			name = Release;
 		};
+		8842509E230D9C0000F83FD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = NCVC2MHU7M;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.livio.Resources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8842509F230D9C0000F83FD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = NCVC2MHU7M;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.livio.Resources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -636,6 +769,15 @@
 			buildConfigurations = (
 				5DF916F91C5A6C2B009C7B55 /* Debug */,
 				5DF916FA1C5A6C2B009C7B55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8842509D230D9C0000F83FD7 /* Build configuration list for PBXNativeTarget "Resources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8842509E230D9C0000F83FD7 /* Debug */,
+				8842509F230D9C0000F83FD7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
