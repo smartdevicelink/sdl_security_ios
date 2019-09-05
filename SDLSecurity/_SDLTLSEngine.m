@@ -17,6 +17,7 @@
 #import "_SDLCertificateManager.h"
 #import "SDLPrivateSecurityConstants.h"
 #import "SDLSecurityConstants.h"
+#import "SDLSecurityLoggerMacros.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -73,11 +74,14 @@ static const int SDLTLSReadBufferSize = 4096;
 
 // http://stackoverflow.com/questions/6371775/how-to-load-a-pkcs12-file-in-openssl-programmatically
 - (void)initializeTLSWithCompletionHandler:(void (^)(BOOL success, NSError * _Nullable))completionHandler {
+    SDLSecurityLogD(@"Initializing TLS");
     NSData *certData = self.certificateManager.certificateData;
     
     if (certData.length == 0) {
+        SDLSecurityLogW(@"TLS certificate doesn't exist, retrieving new certificate");
         [self.certificateManager retrieveNewCertificateWithAppId:self.appId completionHandler:^(BOOL success, NSError * _Nullable networkError) {
             if (!success) {
+                SDLSecurityLogE(@"Failed to download certificate with error: %@", networkError);
                 return completionHandler(NO, networkError);
             }
             
@@ -85,13 +89,16 @@ static const int SDLTLSReadBufferSize = 4096;
             return [self initializeTLSWithCompletionHandler:completionHandler];
         }];
     } else {
+        SDLSecurityLogD(@"TLS certificate found");
         NSError *tlsError = nil;
         BOOL success = [self initializeTLSWithCertificateData:certData error:&tlsError];
 
         if (!success) {
             if (tlsError.code == SDLTLSErrorCodeCertificateExpired) {
+                SDLSecurityLogW(@"TLS certificate is expired, retrieving new certificate");
                 [self.certificateManager retrieveNewCertificateWithAppId:self.appId completionHandler:^(BOOL success, NSError * _Nullable networkError) {
                     if (!success) {
+                        SDLSecurityLogE(@"Failed to download certificate with error: %@", networkError);
                         return completionHandler(NO, networkError);
                     }
 
@@ -99,15 +106,19 @@ static const int SDLTLSReadBufferSize = 4096;
                     return [self initializeTLSWithCompletionHandler:completionHandler];
                 }];
             } else {
+                SDLSecurityLogE(@"TLS certificate initialization failed with unknown error: %@", tlsError);
                 return completionHandler(NO, tlsError);
             }
         } else {
+            SDLSecurityLogD(@"TLS certificate initialization succeeded");
             return completionHandler(YES, nil);
         }
     }
 }
 
 - (BOOL)initializeTLSWithCertificateData:(NSData *)data error:(NSError * _Nullable __autoreleasing *)error {
+    SDLSecurityLogD(@"Initializing and verifying TLS certificate");
+
     PKCS12 *p12 = NULL;
     EVP_PKEY *pkey = NULL;
     X509 *certX509 = NULL;
@@ -215,6 +226,7 @@ static const int SDLTLSReadBufferSize = 4096;
 }
 
 - (void)shutdownTLS {
+    SDLSecurityLogD(@"Shutting down TLS engine");
     if (self.state != SDLTLSEngineStateInitialized) {
         return;
     }
@@ -239,6 +251,7 @@ static const int SDLTLSReadBufferSize = 4096;
 }
 
 - (BOOL)sdlsec_TLSHandshake {
+    SDLSecurityLogD(@"Performing TLS handshake");
     if (sslConnection == NULL) {
         return NO;
     }
@@ -283,6 +296,7 @@ void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS
 // http://stackoverflow.com/questions/8850524/seccertificateref-how-to-get-the-certificate-information
 static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
 {
+    SDLSecurityLogD(@"Verifying certificate expiration date");
     NSDate *expiryDate = nil;
     
     if (certificateX509 != NULL) {
@@ -317,7 +331,8 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
             }
         }
     }
-    
+
+    SDLSecurityLogD(@"Certificate expiration date: %@", expiryDate);
     return expiryDate;
 }
 

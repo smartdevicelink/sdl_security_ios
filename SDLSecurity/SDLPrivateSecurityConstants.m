@@ -16,8 +16,3 @@ NSString *const VendorName = @"SDL"; // Change
 
 NSString *const SDLTLSIssuer = @"YourIssuer";
 const char *SDLTLSCertPassword = "CertPassword";
-
-
-@implementation SDLPrivateSecurityConstants
-
-@end
