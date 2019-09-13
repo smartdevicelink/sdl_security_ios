@@ -11,6 +11,8 @@
 		5D40CA881C511C7200E6F987 /* SDLSecurity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40CA7D1C511C7200E6F987 /* SDLSecurity.framework */; };
 		5D40CA991C51215200E6F987 /* SDLSecurityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D40CA971C51215200E6F987 /* SDLSecurityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D40CA9A1C51215200E6F987 /* SDLSecurityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40CA981C51215200E6F987 /* SDLSecurityManager.m */; };
+		5D4DC2E123214D00003A69B0 /* SDLSecurityLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D4DC2DF23214D00003A69B0 /* SDLSecurityLogger.h */; };
+		5D4DC2E223214D00003A69B0 /* SDLSecurityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4DC2E023214D00003A69B0 /* SDLSecurityLogger.m */; };
 		5D515C861C7B6912004BF348 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF9170D1C5A6F31009C7B55 /* openssl.framework */; };
 		5D5E27871C848A1900495F0B /* _SDLCertificateManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5E27851C848A1900495F0B /* _SDLCertificateManager.h */; };
 		5D5E27881C848A1900495F0B /* _SDLCertificateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5E27861C848A1900495F0B /* _SDLCertificateManager.m */; };
@@ -21,6 +23,8 @@
 		5D84682E1C86256D00592787 /* SDLPrivateSecurityConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D84682B1C86256D00592787 /* SDLPrivateSecurityConstants.h */; };
 		5D84682F1C86256D00592787 /* SDLPrivateSecurityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D84682C1C86256D00592787 /* SDLPrivateSecurityConstants.m */; };
 		5D8468301C86256D00592787 /* SDLPrivateSecurityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D84682C1C86256D00592787 /* SDLPrivateSecurityConstants.m */; };
+		5DAECE79232BF3890041A7E9 /* SDLSecurityLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D4DC2DF23214D00003A69B0 /* SDLSecurityLogger.h */; };
+		5DAECE7A232BF38C0041A7E9 /* SDLSecurityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4DC2E023214D00003A69B0 /* SDLSecurityLogger.m */; };
 		5DC412F41C62426F0062E6F9 /* SDLSecurityType.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DC412F31C62426F0062E6F9 /* SDLSecurityType.h */; };
 		5DF04F361C629116001B9986 /* SDLSecurityType.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DC412F31C62426F0062E6F9 /* SDLSecurityType.h */; };
 		5DF916FB1C5A6C69009C7B55 /* SDLSecurityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40CA981C51215200E6F987 /* SDLSecurityManager.m */; };
@@ -75,6 +79,9 @@
 		5D40CA8E1C511C7200E6F987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D40CA971C51215200E6F987 /* SDLSecurityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLSecurityManager.h; sourceTree = "<group>"; };
 		5D40CA981C51215200E6F987 /* SDLSecurityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLSecurityManager.m; sourceTree = "<group>"; };
+		5D4DC2DF23214D00003A69B0 /* SDLSecurityLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLSecurityLogger.h; sourceTree = "<group>"; };
+		5D4DC2E023214D00003A69B0 /* SDLSecurityLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLSecurityLogger.m; sourceTree = "<group>"; };
+		5D4DC2E323215AA8003A69B0 /* SDLSecurityLoggerMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLSecurityLoggerMacros.h; sourceTree = "<group>"; };
 		5D5E27851C848A1900495F0B /* _SDLCertificateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDLCertificateManager.h; sourceTree = "<group>"; };
 		5D5E27861C848A1900495F0B /* _SDLCertificateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDLCertificateManager.m; sourceTree = "<group>"; };
 		5D8415F81C7E2F75002DC330 /* SDLTLSEngineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLTLSEngineTests.m; sourceTree = "<group>"; };
@@ -171,6 +178,16 @@
 			path = SDLSecurityTests;
 			sourceTree = "<group>";
 		};
+		5D81600823214B9A001EAAB2 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				5D4DC2DF23214D00003A69B0 /* SDLSecurityLogger.h */,
+				5D4DC2E023214D00003A69B0 /* SDLSecurityLogger.m */,
+				5D4DC2E323215AA8003A69B0 /* SDLSecurityLoggerMacros.h */,
+			);
+			name = Logger;
+			sourceTree = "<group>";
+		};
 		5DC412F21C6242590062E6F9 /* Public */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +203,7 @@
 		5DC412F51C6250320062E6F9 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				5D81600823214B9A001EAAB2 /* Logger */,
 				5D84682B1C86256D00592787 /* SDLPrivateSecurityConstants.h */,
 				5D84682C1C86256D00592787 /* SDLPrivateSecurityConstants.m */,
 				5DC412F31C62426F0062E6F9 /* SDLSecurityType.h */,
@@ -225,6 +243,7 @@
 				5D40CA991C51215200E6F987 /* SDLSecurityManager.h in Headers */,
 				5DF917091C5A6F1C009C7B55 /* _SDLTLSEngine.h in Headers */,
 				5D40CA811C511C7200E6F987 /* SDLSecurity.h in Headers */,
+				5D4DC2E123214D00003A69B0 /* SDLSecurityLogger.h in Headers */,
 				5D84682D1C86256D00592787 /* SDLPrivateSecurityConstants.h in Headers */,
 				5DC412F41C62426F0062E6F9 /* SDLSecurityType.h in Headers */,
 				5D5E27871C848A1900495F0B /* _SDLCertificateManager.h in Headers */,
@@ -237,6 +256,7 @@
 			files = (
 				5DF04F361C629116001B9986 /* SDLSecurityType.h in Headers */,
 				5D84682E1C86256D00592787 /* SDLPrivateSecurityConstants.h in Headers */,
+				5DAECE79232BF3890041A7E9 /* SDLSecurityLogger.h in Headers */,
 				5DF9170A1C5A6F1C009C7B55 /* _SDLTLSEngine.h in Headers */,
 				5DF917131C5AA368009C7B55 /* SDLSecurityConstants.h in Headers */,
 				5DF916FF1C5A6C94009C7B55 /* SDLSecurityManager.h in Headers */,
@@ -325,7 +345,7 @@
 		5D40CA741C511C7200E6F987 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = livio;
 				TargetAttributes = {
 					5D40CA7C1C511C7200E6F987 = {
@@ -347,11 +367,11 @@
 			};
 			buildConfigurationList = 5D40CA771C511C7200E6F987 /* Build configuration list for PBXProject "SDLSecurity" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 5D40CA731C511C7200E6F987;
 			productRefGroup = 5D40CA7E1C511C7200E6F987 /* Products */;
@@ -417,6 +437,7 @@
 				5DF9170B1C5A6F1C009C7B55 /* _SDLTLSEngine.m in Sources */,
 				5DF917141C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */,
 				5D84682F1C86256D00592787 /* SDLPrivateSecurityConstants.m in Sources */,
+				5D4DC2E223214D00003A69B0 /* SDLSecurityLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +459,7 @@
 				5DF9170C1C5A6F1C009C7B55 /* _SDLTLSEngine.m in Sources */,
 				5DF917151C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */,
 				5D8468301C86256D00592787 /* SDLPrivateSecurityConstants.m in Sources */,
+				5DAECE7A232BF38C0041A7E9 /* SDLSecurityLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,12 +498,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -531,12 +555,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
