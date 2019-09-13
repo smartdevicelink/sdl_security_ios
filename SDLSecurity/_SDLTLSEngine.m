@@ -251,7 +251,6 @@ static const int SDLTLSReadBufferSize = 4096;
 }
 
 - (BOOL)sdlsec_TLSHandshake {
-    SDLSecurityLogD(@"Performing TLS handshake");
     if (sslConnection == NULL) {
         return NO;
     }
