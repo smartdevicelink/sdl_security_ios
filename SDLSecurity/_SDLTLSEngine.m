@@ -142,7 +142,7 @@ static const int SDLTLSReadBufferSize = 4096;
     p12 = d2i_PKCS12_bio(pbio, NULL);
     if (p12 == NULL) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [[self class] sdlsec_errorInitializationFailure];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"An unknown TLS initialization error occurred"}];
         return NO;
     }
 
@@ -150,7 +150,7 @@ static const int SDLTLSReadBufferSize = 4096;
     success = PKCS12_parse(p12, SDLTLSCertPassword, &pkey, &certX509, NULL);
     if (certX509 == NULL || pkey == NULL) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [[self class] sdlsec_errorInitializationFailure];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"TLS Password did not match"}];
         return NO;
     }
     
@@ -159,7 +159,7 @@ static const int SDLTLSReadBufferSize = 4096;
     NSDate *certExpiryDate = sdlsec_certificateGetExpiryDate(certX509);
     if ([[NSDate date] compare:certExpiryDate] != NSOrderedAscending) {
         sdlsec_cleanUpInitialization(certX509, NULL, p12, pbio, pkey);
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateExpired userInfo:nil];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateExpired userInfo:@{NSLocalizedDescriptionKey: @"Certificate Expired; TLS cannot be initialized"}];
         return NO;
     }
     
@@ -167,14 +167,14 @@ static const int SDLTLSReadBufferSize = 4096;
     NSString *certIssuer = [NSString stringWithUTF8String:X509_NAME_oneline(X509_get_issuer_name(certX509), NULL, 0)];
     if (![certIssuer isEqualToString:SDLTLSIssuer]) {
         sdlsec_cleanUpInitialization(certX509, NULL, p12, pbio, pkey);
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:nil];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: @"Certificate issuer does not match required issuer"}];
         return NO;
     }
     
     rsa = EVP_PKEY_get1_RSA(pkey);
     if (rsa == NULL) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [[self class] sdlsec_errorInitializationFailure];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Retrieving RSA token failed"}];
         return NO;
     }
     
@@ -182,35 +182,35 @@ static const int SDLTLSReadBufferSize = 4096;
     success = SSL_CTX_use_certificate(sslContext, certX509);
     if (!success) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [[self class] sdlsec_errorInitializationFailure];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Setting up SSL context failed"}];
         return NO;
     }
     
     success = SSL_CTX_use_RSAPrivateKey(sslContext, rsa);
     if (!success) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [[self class] sdlsec_errorInitializationFailure];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Setting up SSL context failed with the private key"}];
         return NO;
     }
     
     success = SSL_CTX_check_private_key(sslContext);
     if (!success) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [[self class] sdlsec_errorInitializationFailure];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"SSL Private key check failed"}];
         return NO;
     }
     
     success = SSL_CTX_set_cipher_list(sslContext, "ALL");
     if (!success) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [[self class] sdlsec_errorInitializationFailure];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Setting up SSL context cipher list failed"}];
         return NO;
     }
     
     sslConnection = SSL_new(sslContext);
     if (sslConnection == NULL) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [[self class] sdlsec_errorInitializationFailure];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Creating SSL connection object failed"}];
         return NO;
     }
     
@@ -340,7 +340,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
 
 - (nullable NSData *)encryptData:(NSData *)decryptedData withError:(NSError * _Nullable __autoreleasing *)error {
     if (![self sdlsec_TLSHandshake]) {
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNotInitialized userInfo:nil];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNotInitialized userInfo:@{NSLocalizedDescriptionKey: @"Cannot encrypt data because TLS is not initialized"}];
         return nil;
     }
     
@@ -359,7 +359,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
 
 - (nullable NSData *)decryptData:(NSData *)encryptedData withError:(NSError * _Nullable __autoreleasing * _Nullable)error {
     if (![self sdlsec_TLSHandshake]) {
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNotInitialized userInfo:nil];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNotInitialized userInfo:@{NSLocalizedDescriptionKey: @"Cannot decrypt data because TLS is not initialized"}];
         return nil;
     }
     
@@ -413,7 +413,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
 
     SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:retVal length:length isWrite:NO];
     if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:nil];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot write data to SSL server"}];
     }
 
     return retVal;
@@ -433,7 +433,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     
     SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
     if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:nil];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot read data from SSL server"}];
     }
     
     return returnData;
@@ -449,7 +449,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
 
     SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:retVal length:length isWrite:NO];
     if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:nil];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot BIO write data to server"}];
     }
 
     return retVal;
@@ -466,7 +466,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
 
         SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
         if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:nil];
+            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot BIO read data from server"}];
         }
     }
 
@@ -499,10 +499,6 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
             return SDLTLSErrorCodeGeneric;
         }
     }
-}
-
-+ (NSError *)sdlsec_errorInitializationFailure {
-    return [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:nil];
 }
 
 @end
