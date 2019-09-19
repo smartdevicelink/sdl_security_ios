@@ -11,7 +11,6 @@
 		5D40CA881C511C7200E6F987 /* SDLSecurity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40CA7D1C511C7200E6F987 /* SDLSecurity.framework */; };
 		5D40CA991C51215200E6F987 /* SDLSecurityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D40CA971C51215200E6F987 /* SDLSecurityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D40CA9A1C51215200E6F987 /* SDLSecurityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40CA981C51215200E6F987 /* SDLSecurityManager.m */; };
-		5D515C861C7B6912004BF348 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF9170D1C5A6F31009C7B55 /* openssl.framework */; };
 		5D5E27871C848A1900495F0B /* _SDLCertificateManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5E27851C848A1900495F0B /* _SDLCertificateManager.h */; };
 		5D5E27881C848A1900495F0B /* _SDLCertificateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5E27861C848A1900495F0B /* _SDLCertificateManager.m */; };
 		5D5E27891C848A1D00495F0B /* _SDLCertificateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5E27861C848A1900495F0B /* _SDLCertificateManager.m */; };
@@ -25,13 +24,10 @@
 		5DF04F361C629116001B9986 /* SDLSecurityType.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DC412F31C62426F0062E6F9 /* SDLSecurityType.h */; };
 		5DF916FB1C5A6C69009C7B55 /* SDLSecurityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40CA981C51215200E6F987 /* SDLSecurityManager.m */; };
 		5DF916FF1C5A6C94009C7B55 /* SDLSecurityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D40CA971C51215200E6F987 /* SDLSecurityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5DF917061C5A6D26009C7B55 /* OpenSSLLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DF917051C5A6D26009C7B55 /* OpenSSLLicense.txt */; };
 		5DF917091C5A6F1C009C7B55 /* _SDLTLSEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DF917071C5A6F1C009C7B55 /* _SDLTLSEngine.h */; };
 		5DF9170A1C5A6F1C009C7B55 /* _SDLTLSEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DF917071C5A6F1C009C7B55 /* _SDLTLSEngine.h */; };
 		5DF9170B1C5A6F1C009C7B55 /* _SDLTLSEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF917081C5A6F1C009C7B55 /* _SDLTLSEngine.m */; };
 		5DF9170C1C5A6F1C009C7B55 /* _SDLTLSEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF917081C5A6F1C009C7B55 /* _SDLTLSEngine.m */; };
-		5DF9170E1C5A6F31009C7B55 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF9170D1C5A6F31009C7B55 /* openssl.framework */; };
-		5DF9170F1C5A6F31009C7B55 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF9170D1C5A6F31009C7B55 /* openssl.framework */; };
 		5DF917121C5AA368009C7B55 /* SDLSecurityConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DF917131C5AA368009C7B55 /* SDLSecurityConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DF917141C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */; };
@@ -83,10 +79,8 @@
 		5D84682C1C86256D00592787 /* SDLPrivateSecurityConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLPrivateSecurityConstants.m; sourceTree = "<group>"; };
 		5DC412F31C62426F0062E6F9 /* SDLSecurityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLSecurityType.h; sourceTree = "<group>"; };
 		5DF916F21C5A6C2B009C7B55 /* libSDLSecurityStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDLSecurityStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5DF917051C5A6D26009C7B55 /* OpenSSLLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OpenSSLLicense.txt; path = Libs/OpenSSLLicense.txt; sourceTree = "<group>"; };
 		5DF917071C5A6F1C009C7B55 /* _SDLTLSEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDLTLSEngine.h; sourceTree = "<group>"; };
 		5DF917081C5A6F1C009C7B55 /* _SDLTLSEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDLTLSEngine.m; sourceTree = "<group>"; };
-		5DF9170D1C5A6F31009C7B55 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = openssl.framework; path = Libs/openssl.framework; sourceTree = "<group>"; };
 		5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLSecurityConstants.h; sourceTree = "<group>"; };
 		5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLSecurityConstants.m; sourceTree = "<group>"; };
 		8842509A230D9C0000F83FD7 /* Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,7 +92,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DF9170E1C5A6F31009C7B55 /* openssl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +100,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D40CA881C511C7200E6F987 /* SDLSecurity.framework in Frameworks */,
-				5D515C861C7B6912004BF348 /* openssl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +107,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DF9170F1C5A6F31009C7B55 /* openssl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +123,6 @@
 		5D40CA731C511C7200E6F987 = {
 			isa = PBXGroup;
 			children = (
-				5DF916ED1C5A6C01009C7B55 /* Libraries */,
 				5D40CA7F1C511C7200E6F987 /* SDLSecurity */,
 				5D40CA8B1C511C7200E6F987 /* SDLSecurityTests */,
 				8842509B230D9C0000F83FD7 /* Resources */,
@@ -195,15 +185,6 @@
 				5D5E27861C848A1900495F0B /* _SDLCertificateManager.m */,
 			);
 			name = Private;
-			sourceTree = "<group>";
-		};
-		5DF916ED1C5A6C01009C7B55 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				5DF9170D1C5A6F31009C7B55 /* openssl.framework */,
-				5DF917051C5A6D26009C7B55 /* OpenSSLLicense.txt */,
-			);
-			name = Libraries;
 			sourceTree = "<group>";
 		};
 		8842509B230D9C0000F83FD7 /* Resources */ = {
@@ -371,7 +352,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DF917061C5A6D26009C7B55 /* OpenSSLLicense.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,7 +633,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Libs",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
@@ -668,7 +647,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Libs",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
