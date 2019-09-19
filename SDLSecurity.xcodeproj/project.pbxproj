@@ -32,6 +32,8 @@
 		5DF917131C5AA368009C7B55 /* SDLSecurityConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DF917141C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */; };
 		5DF917151C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */; };
+		882039A62334279D00E10D1A /* missing_simulator_openssl_funcs.m in Sources */ = {isa = PBXBuildFile; fileRef = 882039A52334279D00E10D1A /* missing_simulator_openssl_funcs.m */; };
+		882039A7233427B300E10D1A /* missing_simulator_openssl_funcs.m in Sources */ = {isa = PBXBuildFile; fileRef = 882039A52334279D00E10D1A /* missing_simulator_openssl_funcs.m */; };
 		88EDC8C22333C6B600542B53 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 88EDC83C2333C6B600542B53 /* LICENSE */; };
 		88EDC8C32333C6B600542B53 /* tsan_assist.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC83F2333C6B600542B53 /* tsan_assist.h */; };
 		88EDC8C42333C6B600542B53 /* tsan_assist.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC83F2333C6B600542B53 /* tsan_assist.h */; };
@@ -341,6 +343,7 @@
 		5DF917081C5A6F1C009C7B55 /* _SDLTLSEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDLTLSEngine.m; sourceTree = "<group>"; };
 		5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLSecurityConstants.h; sourceTree = "<group>"; };
 		5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLSecurityConstants.m; sourceTree = "<group>"; };
+		882039A52334279D00E10D1A /* missing_simulator_openssl_funcs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = missing_simulator_openssl_funcs.m; sourceTree = "<group>"; };
 		8842509A230D9C0000F83FD7 /* Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8842509C230D9C0000F83FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88EDC83C2333C6B600542B53 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -602,6 +605,7 @@
 				88EDC83C2333C6B600542B53 /* LICENSE */,
 				88EDC83D2333C6B600542B53 /* include */,
 				88EDC8BF2333C6B600542B53 /* lib */,
+				882039A52334279D00E10D1A /* missing_simulator_openssl_funcs.m */,
 			);
 			path = OpenSSL;
 			sourceTree = "<group>";
@@ -1220,6 +1224,7 @@
 				5D40CA9A1C51215200E6F987 /* SDLSecurityManager.m in Sources */,
 				5DF9170B1C5A6F1C009C7B55 /* _SDLTLSEngine.m in Sources */,
 				5DF917141C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */,
+				882039A62334279D00E10D1A /* missing_simulator_openssl_funcs.m in Sources */,
 				5D84682F1C86256D00592787 /* SDLPrivateSecurityConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1241,6 +1246,7 @@
 				5DF916FB1C5A6C69009C7B55 /* SDLSecurityManager.m in Sources */,
 				5DF9170C1C5A6F1C009C7B55 /* _SDLTLSEngine.m in Sources */,
 				5DF917151C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */,
+				882039A7233427B300E10D1A /* missing_simulator_openssl_funcs.m in Sources */,
 				5D8468301C86256D00592787 /* SDLPrivateSecurityConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
