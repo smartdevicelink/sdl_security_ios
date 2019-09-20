@@ -142,7 +142,7 @@ static const int SDLTLSReadBufferSize = 4096;
     p12 = d2i_PKCS12_bio(pbio, NULL);
     if (p12 == NULL) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"An unknown TLS initialization error occurred"}];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"TLS certificate failed to load"}];
         return NO;
     }
 
@@ -150,7 +150,7 @@ static const int SDLTLSReadBufferSize = 4096;
     success = PKCS12_parse(p12, SDLTLSCertPassword, &pkey, &certX509, NULL);
     if (certX509 == NULL || pkey == NULL) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"TLS Password did not match"}];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"TLS password does not match"}];
         return NO;
     }
     
@@ -159,7 +159,7 @@ static const int SDLTLSReadBufferSize = 4096;
     NSDate *certExpiryDate = sdlsec_certificateGetExpiryDate(certX509);
     if ([[NSDate date] compare:certExpiryDate] != NSOrderedAscending) {
         sdlsec_cleanUpInitialization(certX509, NULL, p12, pbio, pkey);
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateExpired userInfo:@{NSLocalizedDescriptionKey: @"Certificate Expired; TLS cannot be initialized"}];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateExpired userInfo:@{NSLocalizedDescriptionKey: @"Certificate expired"}];
         return NO;
     }
     
