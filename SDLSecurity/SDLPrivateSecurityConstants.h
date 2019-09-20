@@ -16,8 +16,3 @@ extern NSString *const VendorName;
 
 extern NSString *const SDLTLSIssuer;
 extern const char *SDLTLSCertPassword;
-
-
-@interface SDLPrivateSecurityConstants : NSObject
-
-@end
