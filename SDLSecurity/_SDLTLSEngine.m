@@ -302,7 +302,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
         if (certificateExpiryASN1 != NULL) {
             ASN1_GENERALIZEDTIME *certificateExpiryASN1Generalized = ASN1_TIME_to_generalizedtime(certificateExpiryASN1, NULL);
             if (certificateExpiryASN1Generalized != NULL) {
-                unsigned char *certificateExpiryData = ASN1_STRING_data(certificateExpiryASN1Generalized);
+                const unsigned char *certificateExpiryData = ASN1_STRING_get0_data(certificateExpiryASN1Generalized);
                 
                 // ASN1 generalized times look like this: "20131114230046Z"
                 //                                format:  YYYYMMDDHHMMSS
