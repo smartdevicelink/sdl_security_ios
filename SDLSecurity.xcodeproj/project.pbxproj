@@ -36,266 +36,140 @@
 		5DF917131C5AA368009C7B55 /* SDLSecurityConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DF917141C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */; };
 		5DF917151C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */; };
+		8869EF1F233BF3CB002999C3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECFA23353AE600C1F4A3 /* libcrypto.a */; };
+		8869EF20233BF3CB002999C3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECF923353AE600C1F4A3 /* libssl.a */; };
 		8897ECFB23353AE600C1F4A3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECF923353AE600C1F4A3 /* libssl.a */; };
-		8897ECFC23353AE600C1F4A3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECF923353AE600C1F4A3 /* libssl.a */; };
 		8897ECFD23353AE600C1F4A3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECFA23353AE600C1F4A3 /* libcrypto.a */; };
-		8897ECFE23353AE600C1F4A3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECFA23353AE600C1F4A3 /* libcrypto.a */; };
 		8897ED0223353CED00C1F4A3 /* missing_openSSL_functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8897ED0123353CED00C1F4A3 /* missing_openSSL_functions.m */; };
 		8897ED0323353CED00C1F4A3 /* missing_openSSL_functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8897ED0123353CED00C1F4A3 /* missing_openSSL_functions.m */; };
 		88EDC8C22333C6B600542B53 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 88EDC83C2333C6B600542B53 /* LICENSE */; };
 		88EDC8C32333C6B600542B53 /* tsan_assist.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC83F2333C6B600542B53 /* tsan_assist.h */; };
-		88EDC8C42333C6B600542B53 /* tsan_assist.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC83F2333C6B600542B53 /* tsan_assist.h */; };
 		88EDC8C52333C6B600542B53 /* err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8402333C6B600542B53 /* err.h */; };
-		88EDC8C62333C6B600542B53 /* err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8402333C6B600542B53 /* err.h */; };
 		88EDC8C72333C6B600542B53 /* numbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8412333C6B600542B53 /* numbers.h */; };
-		88EDC8C82333C6B600542B53 /* numbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8412333C6B600542B53 /* numbers.h */; };
 		88EDC8C92333C6B600542B53 /* dsoerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8422333C6B600542B53 /* dsoerr.h */; };
-		88EDC8CA2333C6B600542B53 /* dsoerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8422333C6B600542B53 /* dsoerr.h */; };
 		88EDC8CB2333C6B600542B53 /* bio.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8432333C6B600542B53 /* bio.h */; };
-		88EDC8CC2333C6B600542B53 /* bio.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8432333C6B600542B53 /* bio.h */; };
 		88EDC8CD2333C6B600542B53 /* __DECC_INCLUDE_PROLOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8442333C6B600542B53 /* __DECC_INCLUDE_PROLOGUE.H */; };
-		88EDC8CE2333C6B600542B53 /* __DECC_INCLUDE_PROLOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8442333C6B600542B53 /* __DECC_INCLUDE_PROLOGUE.H */; };
 		88EDC8CF2333C6B600542B53 /* conf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8452333C6B600542B53 /* conf.h */; };
-		88EDC8D02333C6B600542B53 /* conf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8452333C6B600542B53 /* conf.h */; };
 		88EDC8D12333C6B600542B53 /* __DECC_INCLUDE_EPILOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8462333C6B600542B53 /* __DECC_INCLUDE_EPILOGUE.H */; };
-		88EDC8D22333C6B600542B53 /* __DECC_INCLUDE_EPILOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8462333C6B600542B53 /* __DECC_INCLUDE_EPILOGUE.H */; };
 		88EDC8D32333C6B600542B53 /* constant_time_locl.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8472333C6B600542B53 /* constant_time_locl.h */; };
-		88EDC8D42333C6B700542B53 /* constant_time_locl.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8472333C6B600542B53 /* constant_time_locl.h */; };
 		88EDC8D52333C6B700542B53 /* dane.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8482333C6B600542B53 /* dane.h */; };
-		88EDC8D62333C6B700542B53 /* dane.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8482333C6B600542B53 /* dane.h */; };
 		88EDC8D72333C6B700542B53 /* sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8492333C6B600542B53 /* sockets.h */; };
-		88EDC8D82333C6B700542B53 /* sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8492333C6B600542B53 /* sockets.h */; };
 		88EDC8D92333C6B700542B53 /* comp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84A2333C6B600542B53 /* comp.h */; };
-		88EDC8DA2333C6B700542B53 /* comp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84A2333C6B600542B53 /* comp.h */; };
 		88EDC8DB2333C6B700542B53 /* cryptlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84B2333C6B600542B53 /* cryptlib.h */; };
-		88EDC8DC2333C6B700542B53 /* cryptlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84B2333C6B600542B53 /* cryptlib.h */; };
 		88EDC8DD2333C6B700542B53 /* nelem.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84C2333C6B600542B53 /* nelem.h */; };
-		88EDC8DE2333C6B700542B53 /* nelem.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84C2333C6B600542B53 /* nelem.h */; };
 		88EDC8DF2333C6B700542B53 /* sslconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84D2333C6B600542B53 /* sslconf.h */; };
-		88EDC8E02333C6B700542B53 /* sslconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84D2333C6B600542B53 /* sslconf.h */; };
 		88EDC8E12333C6B700542B53 /* dso.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84E2333C6B600542B53 /* dso.h */; };
-		88EDC8E22333C6B700542B53 /* dso.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84E2333C6B600542B53 /* dso.h */; };
 		88EDC8E32333C6B700542B53 /* refcount.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84F2333C6B600542B53 /* refcount.h */; };
-		88EDC8E42333C6B700542B53 /* refcount.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC84F2333C6B600542B53 /* refcount.h */; };
 		88EDC8E52333C6B700542B53 /* o_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8502333C6B600542B53 /* o_dir.h */; };
-		88EDC8E62333C6B700542B53 /* o_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8502333C6B600542B53 /* o_dir.h */; };
 		88EDC8E72333C6B700542B53 /* thread_once.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8512333C6B600542B53 /* thread_once.h */; };
-		88EDC8E82333C6B700542B53 /* thread_once.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8512333C6B600542B53 /* thread_once.h */; };
 		88EDC8E92333C6B700542B53 /* o_str.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8522333C6B600542B53 /* o_str.h */; };
-		88EDC8EA2333C6B700542B53 /* o_str.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8522333C6B600542B53 /* o_str.h */; };
 		88EDC8EB2333C6B700542B53 /* pem2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8542333C6B600542B53 /* pem2.h */; };
-		88EDC8EC2333C6B700542B53 /* pem2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8542333C6B600542B53 /* pem2.h */; };
 		88EDC8ED2333C6B700542B53 /* kdf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8552333C6B600542B53 /* kdf.h */; };
-		88EDC8EE2333C6B700542B53 /* kdf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8552333C6B600542B53 /* kdf.h */; };
 		88EDC8EF2333C6B700542B53 /* pem.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8562333C6B600542B53 /* pem.h */; };
-		88EDC8F02333C6B700542B53 /* pem.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8562333C6B600542B53 /* pem.h */; };
 		88EDC8F12333C6B700542B53 /* asyncerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8572333C6B600542B53 /* asyncerr.h */; };
-		88EDC8F22333C6B700542B53 /* asyncerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8572333C6B600542B53 /* asyncerr.h */; };
 		88EDC8F32333C6B700542B53 /* md2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8582333C6B600542B53 /* md2.h */; };
-		88EDC8F42333C6B700542B53 /* md2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8582333C6B600542B53 /* md2.h */; };
 		88EDC8F52333C6B700542B53 /* ssl3.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8592333C6B600542B53 /* ssl3.h */; };
-		88EDC8F62333C6B700542B53 /* ssl3.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8592333C6B600542B53 /* ssl3.h */; };
 		88EDC8F72333C6B700542B53 /* ossl_typ.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85A2333C6B600542B53 /* ossl_typ.h */; };
-		88EDC8F82333C6B700542B53 /* ossl_typ.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85A2333C6B600542B53 /* ossl_typ.h */; };
 		88EDC8F92333C6B700542B53 /* dtls1.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85B2333C6B600542B53 /* dtls1.h */; };
-		88EDC8FA2333C6B700542B53 /* dtls1.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85B2333C6B600542B53 /* dtls1.h */; };
 		88EDC8FB2333C6B700542B53 /* err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85C2333C6B600542B53 /* err.h */; };
-		88EDC8FC2333C6B700542B53 /* err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85C2333C6B600542B53 /* err.h */; };
 		88EDC8FD2333C6B700542B53 /* bn.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85D2333C6B600542B53 /* bn.h */; };
-		88EDC8FE2333C6B700542B53 /* bn.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85D2333C6B600542B53 /* bn.h */; };
 		88EDC8FF2333C6B700542B53 /* blowfish.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85E2333C6B600542B53 /* blowfish.h */; };
-		88EDC9002333C6B700542B53 /* blowfish.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85E2333C6B600542B53 /* blowfish.h */; };
 		88EDC9012333C6B700542B53 /* cms.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85F2333C6B600542B53 /* cms.h */; };
-		88EDC9022333C6B700542B53 /* cms.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC85F2333C6B600542B53 /* cms.h */; };
 		88EDC9032333C6B700542B53 /* engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8602333C6B600542B53 /* engine.h */; };
-		88EDC9042333C6B700542B53 /* engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8602333C6B600542B53 /* engine.h */; };
 		88EDC9052333C6B700542B53 /* conf_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8612333C6B600542B53 /* conf_api.h */; };
-		88EDC9062333C6B700542B53 /* conf_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8612333C6B600542B53 /* conf_api.h */; };
 		88EDC9072333C6B700542B53 /* x509.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8622333C6B600542B53 /* x509.h */; };
-		88EDC9082333C6B700542B53 /* x509.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8622333C6B600542B53 /* x509.h */; };
 		88EDC9092333C6B700542B53 /* asn1_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8632333C6B600542B53 /* asn1_mac.h */; };
-		88EDC90A2333C6B700542B53 /* asn1_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8632333C6B600542B53 /* asn1_mac.h */; };
 		88EDC90B2333C6B700542B53 /* objectserr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8642333C6B600542B53 /* objectserr.h */; };
-		88EDC90C2333C6B700542B53 /* objectserr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8642333C6B600542B53 /* objectserr.h */; };
 		88EDC90D2333C6B700542B53 /* cmserr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8652333C6B600542B53 /* cmserr.h */; };
-		88EDC90E2333C6B700542B53 /* cmserr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8652333C6B600542B53 /* cmserr.h */; };
 		88EDC90F2333C6B700542B53 /* ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8662333C6B600542B53 /* ui.h */; };
-		88EDC9102333C6B700542B53 /* ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8662333C6B600542B53 /* ui.h */; };
 		88EDC9112333C6B700542B53 /* sha.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8672333C6B600542B53 /* sha.h */; };
-		88EDC9122333C6B700542B53 /* sha.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8672333C6B600542B53 /* sha.h */; };
 		88EDC9132333C6B700542B53 /* symhacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8682333C6B600542B53 /* symhacks.h */; };
-		88EDC9142333C6B700542B53 /* symhacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8682333C6B600542B53 /* symhacks.h */; };
 		88EDC9152333C6B700542B53 /* asn1.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8692333C6B600542B53 /* asn1.h */; };
-		88EDC9162333C6B700542B53 /* asn1.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8692333C6B600542B53 /* asn1.h */; };
 		88EDC9172333C6B700542B53 /* bioerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86A2333C6B600542B53 /* bioerr.h */; };
-		88EDC9182333C6B700542B53 /* bioerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86A2333C6B600542B53 /* bioerr.h */; };
 		88EDC9192333C6B700542B53 /* opensslconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86B2333C6B600542B53 /* opensslconf.h */; };
-		88EDC91A2333C6B700542B53 /* opensslconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86B2333C6B600542B53 /* opensslconf.h */; };
 		88EDC91B2333C6B700542B53 /* bio.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86C2333C6B600542B53 /* bio.h */; };
-		88EDC91C2333C6B700542B53 /* bio.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86C2333C6B600542B53 /* bio.h */; };
 		88EDC91D2333C6B700542B53 /* rc2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86D2333C6B600542B53 /* rc2.h */; };
-		88EDC91E2333C6B700542B53 /* rc2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86D2333C6B600542B53 /* rc2.h */; };
 		88EDC91F2333C6B700542B53 /* dh.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86E2333C6B600542B53 /* dh.h */; };
-		88EDC9202333C6B700542B53 /* dh.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86E2333C6B600542B53 /* dh.h */; };
 		88EDC9212333C6B700542B53 /* __DECC_INCLUDE_PROLOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86F2333C6B600542B53 /* __DECC_INCLUDE_PROLOGUE.H */; };
-		88EDC9222333C6B700542B53 /* __DECC_INCLUDE_PROLOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC86F2333C6B600542B53 /* __DECC_INCLUDE_PROLOGUE.H */; };
 		88EDC9232333C6B700542B53 /* x509v3.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8702333C6B600542B53 /* x509v3.h */; };
-		88EDC9242333C6B700542B53 /* x509v3.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8702333C6B600542B53 /* x509v3.h */; };
 		88EDC9252333C6B700542B53 /* conf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8712333C6B600542B53 /* conf.h */; };
-		88EDC9262333C6B700542B53 /* conf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8712333C6B600542B53 /* conf.h */; };
 		88EDC9272333C6B700542B53 /* rand_drbg.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8722333C6B600542B53 /* rand_drbg.h */; };
-		88EDC9282333C6B700542B53 /* rand_drbg.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8722333C6B600542B53 /* rand_drbg.h */; };
 		88EDC9292333C6B700542B53 /* __DECC_INCLUDE_EPILOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8732333C6B600542B53 /* __DECC_INCLUDE_EPILOGUE.H */; };
-		88EDC92A2333C6B700542B53 /* __DECC_INCLUDE_EPILOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8732333C6B600542B53 /* __DECC_INCLUDE_EPILOGUE.H */; };
 		88EDC92B2333C6B700542B53 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8742333C6B600542B53 /* md5.h */; };
-		88EDC92C2333C6B700542B53 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8742333C6B600542B53 /* md5.h */; };
 		88EDC92D2333C6B700542B53 /* pemerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8752333C6B600542B53 /* pemerr.h */; };
-		88EDC92E2333C6B700542B53 /* pemerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8752333C6B600542B53 /* pemerr.h */; };
 		88EDC92F2333C6B700542B53 /* x509_vfy.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8762333C6B600542B53 /* x509_vfy.h */; };
-		88EDC9302333C6B700542B53 /* x509_vfy.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8762333C6B600542B53 /* x509_vfy.h */; };
 		88EDC9312333C6B700542B53 /* txt_db.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8772333C6B600542B53 /* txt_db.h */; };
-		88EDC9322333C6B700542B53 /* txt_db.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8772333C6B600542B53 /* txt_db.h */; };
 		88EDC9332333C6B700542B53 /* comperr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8782333C6B600542B53 /* comperr.h */; };
-		88EDC9342333C6B700542B53 /* comperr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8782333C6B600542B53 /* comperr.h */; };
 		88EDC9352333C6B700542B53 /* cterr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8792333C6B600542B53 /* cterr.h */; };
-		88EDC9362333C6B700542B53 /* cterr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8792333C6B600542B53 /* cterr.h */; };
 		88EDC9372333C6B700542B53 /* safestack.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87A2333C6B600542B53 /* safestack.h */; };
-		88EDC9382333C6B700542B53 /* safestack.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87A2333C6B600542B53 /* safestack.h */; };
 		88EDC9392333C6B700542B53 /* ecdsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87B2333C6B600542B53 /* ecdsa.h */; };
-		88EDC93A2333C6B700542B53 /* ecdsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87B2333C6B600542B53 /* ecdsa.h */; };
 		88EDC93B2333C6B700542B53 /* sslerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87C2333C6B600542B53 /* sslerr.h */; };
-		88EDC93C2333C6B700542B53 /* sslerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87C2333C6B600542B53 /* sslerr.h */; };
 		88EDC93D2333C6B700542B53 /* rc5.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87D2333C6B600542B53 /* rc5.h */; };
-		88EDC93E2333C6B700542B53 /* rc5.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87D2333C6B600542B53 /* rc5.h */; };
 		88EDC93F2333C6B700542B53 /* uierr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87E2333C6B600542B53 /* uierr.h */; };
-		88EDC9402333C6B700542B53 /* uierr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87E2333C6B600542B53 /* uierr.h */; };
 		88EDC9412333C6B700542B53 /* x509v3err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87F2333C6B600542B53 /* x509v3err.h */; };
-		88EDC9422333C6B700542B53 /* x509v3err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC87F2333C6B600542B53 /* x509v3err.h */; };
 		88EDC9432333C6B700542B53 /* objects.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8802333C6B600542B53 /* objects.h */; };
-		88EDC9442333C6B700542B53 /* objects.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8802333C6B600542B53 /* objects.h */; };
 		88EDC9452333C6B700542B53 /* pkcs12.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8812333C6B600542B53 /* pkcs12.h */; };
-		88EDC9462333C6B700542B53 /* pkcs12.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8812333C6B600542B53 /* pkcs12.h */; };
 		88EDC9472333C6B700542B53 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8822333C6B600542B53 /* crypto.h */; };
-		88EDC9482333C6B700542B53 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8822333C6B600542B53 /* crypto.h */; };
 		88EDC9492333C6B700542B53 /* opensslv.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8832333C6B600542B53 /* opensslv.h */; };
-		88EDC94A2333C6B700542B53 /* opensslv.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8832333C6B600542B53 /* opensslv.h */; };
 		88EDC94B2333C6B700542B53 /* evperr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8842333C6B600542B53 /* evperr.h */; };
-		88EDC94C2333C6B700542B53 /* evperr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8842333C6B600542B53 /* evperr.h */; };
 		88EDC94D2333C6B700542B53 /* pkcs7.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8852333C6B600542B53 /* pkcs7.h */; };
-		88EDC94E2333C6B700542B53 /* pkcs7.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8852333C6B600542B53 /* pkcs7.h */; };
 		88EDC94F2333C6B700542B53 /* obj_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8862333C6B600542B53 /* obj_mac.h */; };
-		88EDC9502333C6B700542B53 /* obj_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8862333C6B600542B53 /* obj_mac.h */; };
 		88EDC9512333C6B700542B53 /* ct.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8872333C6B600542B53 /* ct.h */; };
-		88EDC9522333C6B700542B53 /* ct.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8872333C6B600542B53 /* ct.h */; };
 		88EDC9532333C6B700542B53 /* async.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8882333C6B600542B53 /* async.h */; };
-		88EDC9542333C6B700542B53 /* async.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8882333C6B600542B53 /* async.h */; };
 		88EDC9552333C6B700542B53 /* buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8892333C6B600542B53 /* buffer.h */; };
-		88EDC9562333C6B700542B53 /* buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8892333C6B600542B53 /* buffer.h */; };
 		88EDC9572333C6B700542B53 /* ssl.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88A2333C6B600542B53 /* ssl.h */; };
-		88EDC9582333C6B700542B53 /* ssl.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88A2333C6B600542B53 /* ssl.h */; };
 		88EDC9592333C6B700542B53 /* srp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88B2333C6B600542B53 /* srp.h */; };
-		88EDC95A2333C6B700542B53 /* srp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88B2333C6B600542B53 /* srp.h */; };
 		88EDC95B2333C6B700542B53 /* camellia.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88C2333C6B600542B53 /* camellia.h */; };
-		88EDC95C2333C6B700542B53 /* camellia.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88C2333C6B600542B53 /* camellia.h */; };
 		88EDC95D2333C6B700542B53 /* opensslconf.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 88EDC88D2333C6B600542B53 /* opensslconf.h.in */; };
 		88EDC95E2333C6B700542B53 /* dherr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88E2333C6B600542B53 /* dherr.h */; };
-		88EDC95F2333C6B700542B53 /* dherr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88E2333C6B600542B53 /* dherr.h */; };
 		88EDC9602333C6B700542B53 /* evp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88F2333C6B600542B53 /* evp.h */; };
-		88EDC9612333C6B700542B53 /* evp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC88F2333C6B600542B53 /* evp.h */; };
 		88EDC9622333C6B700542B53 /* e_os2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8902333C6B600542B53 /* e_os2.h */; };
-		88EDC9632333C6B700542B53 /* e_os2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8902333C6B600542B53 /* e_os2.h */; };
 		88EDC9642333C6B700542B53 /* md4.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8912333C6B600542B53 /* md4.h */; };
-		88EDC9652333C6B700542B53 /* md4.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8912333C6B600542B53 /* md4.h */; };
 		88EDC9662333C6B700542B53 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8922333C6B600542B53 /* hmac.h */; };
-		88EDC9672333C6B700542B53 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8922333C6B600542B53 /* hmac.h */; };
 		88EDC9682333C6B700542B53 /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8932333C6B600542B53 /* aes.h */; };
-		88EDC9692333C6B700542B53 /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8932333C6B600542B53 /* aes.h */; };
 		88EDC96A2333C6B700542B53 /* engineerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8942333C6B600542B53 /* engineerr.h */; };
-		88EDC96B2333C6B700542B53 /* engineerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8942333C6B600542B53 /* engineerr.h */; };
 		88EDC96C2333C6B700542B53 /* comp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8952333C6B600542B53 /* comp.h */; };
-		88EDC96D2333C6B700542B53 /* comp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8952333C6B600542B53 /* comp.h */; };
 		88EDC96E2333C6B700542B53 /* pkcs12err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8962333C6B600542B53 /* pkcs12err.h */; };
-		88EDC96F2333C6B700542B53 /* pkcs12err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8962333C6B600542B53 /* pkcs12err.h */; };
 		88EDC9702333C6B700542B53 /* cast.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8972333C6B600542B53 /* cast.h */; };
-		88EDC9712333C6B700542B53 /* cast.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8972333C6B600542B53 /* cast.h */; };
 		88EDC9722333C6B700542B53 /* rc4.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8982333C6B600542B53 /* rc4.h */; };
-		88EDC9732333C6B700542B53 /* rc4.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8982333C6B600542B53 /* rc4.h */; };
 		88EDC9742333C6B700542B53 /* stack.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8992333C6B600542B53 /* stack.h */; };
-		88EDC9752333C6B700542B53 /* stack.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8992333C6B600542B53 /* stack.h */; };
 		88EDC9762333C6B700542B53 /* des.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89A2333C6B600542B53 /* des.h */; };
-		88EDC9772333C6B700542B53 /* des.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89A2333C6B600542B53 /* des.h */; };
 		88EDC9782333C6B700542B53 /* ocsp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89B2333C6B600542B53 /* ocsp.h */; };
-		88EDC9792333C6B700542B53 /* ocsp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89B2333C6B600542B53 /* ocsp.h */; };
 		88EDC97A2333C6B700542B53 /* ec.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89C2333C6B600542B53 /* ec.h */; };
-		88EDC97B2333C6B700542B53 /* ec.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89C2333C6B600542B53 /* ec.h */; };
 		88EDC97C2333C6B700542B53 /* ecdh.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89D2333C6B600542B53 /* ecdh.h */; };
-		88EDC97D2333C6B700542B53 /* ecdh.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89D2333C6B600542B53 /* ecdh.h */; };
 		88EDC97E2333C6B700542B53 /* rand.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89E2333C6B600542B53 /* rand.h */; };
-		88EDC97F2333C6B700542B53 /* rand.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89E2333C6B600542B53 /* rand.h */; };
 		88EDC9802333C6B700542B53 /* ecerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89F2333C6B600542B53 /* ecerr.h */; };
-		88EDC9812333C6B700542B53 /* ecerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC89F2333C6B600542B53 /* ecerr.h */; };
 		88EDC9822333C6B700542B53 /* ts.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A02333C6B600542B53 /* ts.h */; };
-		88EDC9832333C6B700542B53 /* ts.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A02333C6B600542B53 /* ts.h */; };
 		88EDC9842333C6B700542B53 /* cryptoerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A12333C6B600542B53 /* cryptoerr.h */; };
-		88EDC9852333C6B700542B53 /* cryptoerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A12333C6B600542B53 /* cryptoerr.h */; };
 		88EDC9862333C6B700542B53 /* storeerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A22333C6B600542B53 /* storeerr.h */; };
-		88EDC9872333C6B700542B53 /* storeerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A22333C6B600542B53 /* storeerr.h */; };
 		88EDC9882333C6B700542B53 /* buffererr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A32333C6B600542B53 /* buffererr.h */; };
-		88EDC9892333C6B700542B53 /* buffererr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A32333C6B600542B53 /* buffererr.h */; };
 		88EDC98A2333C6B700542B53 /* seed.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A42333C6B600542B53 /* seed.h */; };
-		88EDC98B2333C6B700542B53 /* seed.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A42333C6B600542B53 /* seed.h */; };
 		88EDC98C2333C6B700542B53 /* modes.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A52333C6B600542B53 /* modes.h */; };
-		88EDC98D2333C6B700542B53 /* modes.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A52333C6B600542B53 /* modes.h */; };
 		88EDC98E2333C6B700542B53 /* ssl2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A62333C6B600542B53 /* ssl2.h */; };
-		88EDC98F2333C6B700542B53 /* ssl2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A62333C6B600542B53 /* ssl2.h */; };
 		88EDC9902333C6B700542B53 /* tserr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A72333C6B600542B53 /* tserr.h */; };
-		88EDC9912333C6B700542B53 /* tserr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A72333C6B600542B53 /* tserr.h */; };
 		88EDC9922333C6B700542B53 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A82333C6B600542B53 /* rsa.h */; };
-		88EDC9932333C6B700542B53 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A82333C6B600542B53 /* rsa.h */; };
 		88EDC9942333C6B700542B53 /* ripemd.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A92333C6B600542B53 /* ripemd.h */; };
-		88EDC9952333C6B700542B53 /* ripemd.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8A92333C6B600542B53 /* ripemd.h */; };
 		88EDC9962333C6B700542B53 /* whrlpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AA2333C6B600542B53 /* whrlpool.h */; };
-		88EDC9972333C6B700542B53 /* whrlpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AA2333C6B600542B53 /* whrlpool.h */; };
 		88EDC9982333C6B700542B53 /* tls1.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AB2333C6B600542B53 /* tls1.h */; };
-		88EDC9992333C6B700542B53 /* tls1.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AB2333C6B600542B53 /* tls1.h */; };
 		88EDC99A2333C6B700542B53 /* rsaerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AC2333C6B600542B53 /* rsaerr.h */; };
-		88EDC99B2333C6B700542B53 /* rsaerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AC2333C6B600542B53 /* rsaerr.h */; };
 		88EDC99C2333C6B700542B53 /* randerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AD2333C6B600542B53 /* randerr.h */; };
-		88EDC99D2333C6B700542B53 /* randerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AD2333C6B600542B53 /* randerr.h */; };
 		88EDC99E2333C6B700542B53 /* mdc2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AE2333C6B600542B53 /* mdc2.h */; };
-		88EDC99F2333C6B700542B53 /* mdc2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AE2333C6B600542B53 /* mdc2.h */; };
 		88EDC9A02333C6B700542B53 /* ocsperr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AF2333C6B600542B53 /* ocsperr.h */; };
-		88EDC9A12333C6B700542B53 /* ocsperr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8AF2333C6B600542B53 /* ocsperr.h */; };
 		88EDC9A22333C6B700542B53 /* x509err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B02333C6B600542B53 /* x509err.h */; };
-		88EDC9A32333C6B700542B53 /* x509err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B02333C6B600542B53 /* x509err.h */; };
 		88EDC9A42333C6B700542B53 /* pkcs7err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B12333C6B600542B53 /* pkcs7err.h */; };
-		88EDC9A52333C6B700542B53 /* pkcs7err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B12333C6B600542B53 /* pkcs7err.h */; };
 		88EDC9A62333C6B700542B53 /* dsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B22333C6B600542B53 /* dsa.h */; };
-		88EDC9A72333C6B700542B53 /* dsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B22333C6B600542B53 /* dsa.h */; };
 		88EDC9A82333C6B700542B53 /* kdferr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B32333C6B600542B53 /* kdferr.h */; };
-		88EDC9A92333C6B700542B53 /* kdferr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B32333C6B600542B53 /* kdferr.h */; };
 		88EDC9AA2333C6B700542B53 /* srtp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B42333C6B600542B53 /* srtp.h */; };
-		88EDC9AB2333C6B700542B53 /* srtp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B42333C6B600542B53 /* srtp.h */; };
 		88EDC9AC2333C6B700542B53 /* asn1t.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B52333C6B600542B53 /* asn1t.h */; };
-		88EDC9AD2333C6B700542B53 /* asn1t.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B52333C6B600542B53 /* asn1t.h */; };
 		88EDC9AE2333C6B700542B53 /* dsaerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B62333C6B600542B53 /* dsaerr.h */; };
-		88EDC9AF2333C6B700542B53 /* dsaerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B62333C6B600542B53 /* dsaerr.h */; };
 		88EDC9B02333C6B700542B53 /* bnerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B72333C6B600542B53 /* bnerr.h */; };
-		88EDC9B12333C6B700542B53 /* bnerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B72333C6B600542B53 /* bnerr.h */; };
 		88EDC9B22333C6B700542B53 /* conferr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B82333C6B600542B53 /* conferr.h */; };
-		88EDC9B32333C6B700542B53 /* conferr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B82333C6B600542B53 /* conferr.h */; };
 		88EDC9B42333C6B700542B53 /* cmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B92333C6B600542B53 /* cmac.h */; };
-		88EDC9B52333C6B700542B53 /* cmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8B92333C6B600542B53 /* cmac.h */; };
 		88EDC9B62333C6B700542B53 /* ebcdic.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BA2333C6B600542B53 /* ebcdic.h */; };
-		88EDC9B72333C6B700542B53 /* ebcdic.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BA2333C6B600542B53 /* ebcdic.h */; };
 		88EDC9B82333C6B700542B53 /* store.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BB2333C6B600542B53 /* store.h */; };
-		88EDC9B92333C6B700542B53 /* store.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BB2333C6B600542B53 /* store.h */; };
 		88EDC9BA2333C6B700542B53 /* idea.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BC2333C6B600542B53 /* idea.h */; };
-		88EDC9BB2333C6B700542B53 /* idea.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BC2333C6B600542B53 /* idea.h */; };
 		88EDC9BC2333C6B700542B53 /* lhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BD2333C6B600542B53 /* lhash.h */; };
-		88EDC9BD2333C6B700542B53 /* lhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BD2333C6B600542B53 /* lhash.h */; };
 		88EDC9BE2333C6B700542B53 /* asn1err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BE2333C6B600542B53 /* asn1err.h */; };
-		88EDC9BF2333C6B700542B53 /* asn1err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88EDC8BE2333C6B600542B53 /* asn1err.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -499,8 +373,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8897ECFE23353AE600C1F4A3 /* libcrypto.a in Frameworks */,
-				8897ECFC23353AE600C1F4A3 /* libssl.a in Frameworks */,
+				8869EF20233BF3CB002999C3 /* libssl.a in Frameworks */,
+				8869EF1F233BF3CB002999C3 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,138 +793,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88EDC9992333C6B700542B53 /* tls1.h in Headers */,
-				88EDC91E2333C6B700542B53 /* rc2.h in Headers */,
-				88EDC9322333C6B700542B53 /* txt_db.h in Headers */,
-				88EDC8F42333C6B700542B53 /* md2.h in Headers */,
-				88EDC94E2333C6B700542B53 /* pkcs7.h in Headers */,
-				88EDC8EC2333C6B700542B53 /* pem2.h in Headers */,
-				88EDC8FC2333C6B700542B53 /* err.h in Headers */,
-				88EDC99D2333C6B700542B53 /* randerr.h in Headers */,
-				88EDC9612333C6B700542B53 /* evp.h in Headers */,
-				88EDC9B72333C6B700542B53 /* ebcdic.h in Headers */,
-				88EDC92A2333C6B700542B53 /* __DECC_INCLUDE_EPILOGUE.H in Headers */,
-				88EDC8F02333C6B700542B53 /* pem.h in Headers */,
-				88EDC9632333C6B700542B53 /* e_os2.h in Headers */,
-				88EDC96B2333C6B700542B53 /* engineerr.h in Headers */,
-				88EDC9AB2333C6B700542B53 /* srtp.h in Headers */,
-				88EDC8CA2333C6B600542B53 /* dsoerr.h in Headers */,
-				88EDC91A2333C6B700542B53 /* opensslconf.h in Headers */,
-				88EDC93C2333C6B700542B53 /* sslerr.h in Headers */,
-				88EDC9672333C6B700542B53 /* hmac.h in Headers */,
-				88EDC9242333C6B700542B53 /* x509v3.h in Headers */,
-				88EDC9BF2333C6B700542B53 /* asn1err.h in Headers */,
 				5DF04F361C629116001B9986 /* SDLSecurityType.h in Headers */,
-				88EDC9792333C6B700542B53 /* ocsp.h in Headers */,
-				88EDC9AF2333C6B700542B53 /* dsaerr.h in Headers */,
 				5D84682E1C86256D00592787 /* SDLPrivateSecurityConstants.h in Headers */,
-				88EDC95C2333C6B700542B53 /* camellia.h in Headers */,
-				88EDC9262333C6B700542B53 /* conf.h in Headers */,
-				88EDC90A2333C6B700542B53 /* asn1_mac.h in Headers */,
 				5DAECE79232BF3890041A7E9 /* SDLSecurityLogger.h in Headers */,
 				5DF9170A1C5A6F1C009C7B55 /* _SDLTLSEngine.h in Headers */,
-				88EDC9852333C6B700542B53 /* cryptoerr.h in Headers */,
-				88EDC9342333C6B700542B53 /* comperr.h in Headers */,
-				88EDC9562333C6B700542B53 /* buffer.h in Headers */,
-				88EDC8F22333C6B700542B53 /* asyncerr.h in Headers */,
-				88EDC9162333C6B700542B53 /* asn1.h in Headers */,
-				88EDC9892333C6B700542B53 /* buffererr.h in Headers */,
-				88EDC9952333C6B700542B53 /* ripemd.h in Headers */,
-				88EDC9442333C6B700542B53 /* objects.h in Headers */,
-				88EDC9772333C6B700542B53 /* des.h in Headers */,
-				88EDC9712333C6B700542B53 /* cast.h in Headers */,
-				88EDC8C82333C6B600542B53 /* numbers.h in Headers */,
-				88EDC9A92333C6B700542B53 /* kdferr.h in Headers */,
-				88EDC99B2333C6B700542B53 /* rsaerr.h in Headers */,
-				88EDC9832333C6B700542B53 /* ts.h in Headers */,
-				88EDC9082333C6B700542B53 /* x509.h in Headers */,
-				88EDC97B2333C6B700542B53 /* ec.h in Headers */,
-				88EDC9BB2333C6B700542B53 /* idea.h in Headers */,
-				88EDC8D62333C6B700542B53 /* dane.h in Headers */,
-				88EDC8D22333C6B600542B53 /* __DECC_INCLUDE_EPILOGUE.H in Headers */,
-				88EDC9382333C6B700542B53 /* safestack.h in Headers */,
-				88EDC8E02333C6B700542B53 /* sslconf.h in Headers */,
-				88EDC9202333C6B700542B53 /* dh.h in Headers */,
-				88EDC9B32333C6B700542B53 /* conferr.h in Headers */,
-				88EDC9582333C6B700542B53 /* ssl.h in Headers */,
-				88EDC96D2333C6B700542B53 /* comp.h in Headers */,
-				88EDC9302333C6B700542B53 /* x509_vfy.h in Headers */,
-				88EDC98F2333C6B700542B53 /* ssl2.h in Headers */,
-				88EDC9422333C6B700542B53 /* x509v3err.h in Headers */,
-				88EDC8CE2333C6B600542B53 /* __DECC_INCLUDE_PROLOGUE.H in Headers */,
-				88EDC8E62333C6B700542B53 /* o_dir.h in Headers */,
-				88EDC8F62333C6B700542B53 /* ssl3.h in Headers */,
-				88EDC9652333C6B700542B53 /* md4.h in Headers */,
-				88EDC9542333C6B700542B53 /* async.h in Headers */,
-				88EDC97F2333C6B700542B53 /* rand.h in Headers */,
-				88EDC9AD2333C6B700542B53 /* asn1t.h in Headers */,
-				88EDC95A2333C6B700542B53 /* srp.h in Headers */,
-				88EDC8DE2333C6B700542B53 /* nelem.h in Headers */,
-				88EDC90C2333C6B700542B53 /* objectserr.h in Headers */,
-				88EDC9692333C6B700542B53 /* aes.h in Headers */,
-				88EDC9402333C6B700542B53 /* uierr.h in Headers */,
-				88EDC9A72333C6B700542B53 /* dsa.h in Headers */,
-				88EDC9912333C6B700542B53 /* tserr.h in Headers */,
-				88EDC9522333C6B700542B53 /* ct.h in Headers */,
-				88EDC92E2333C6B700542B53 /* pemerr.h in Headers */,
-				88EDC9752333C6B700542B53 /* stack.h in Headers */,
-				88EDC9A12333C6B700542B53 /* ocsperr.h in Headers */,
-				88EDC92C2333C6B700542B53 /* md5.h in Headers */,
-				88EDC9B92333C6B700542B53 /* store.h in Headers */,
-				88EDC9872333C6B700542B53 /* storeerr.h in Headers */,
-				88EDC9932333C6B700542B53 /* rsa.h in Headers */,
-				88EDC8E42333C6B700542B53 /* refcount.h in Headers */,
-				88EDC90E2333C6B700542B53 /* cmserr.h in Headers */,
-				88EDC93E2333C6B700542B53 /* rc5.h in Headers */,
-				88EDC9282333C6B700542B53 /* rand_drbg.h in Headers */,
-				88EDC9062333C6B700542B53 /* conf_api.h in Headers */,
-				88EDC8DA2333C6B700542B53 /* comp.h in Headers */,
-				88EDC8DC2333C6B700542B53 /* cryptlib.h in Headers */,
-				88EDC8E22333C6B700542B53 /* dso.h in Headers */,
-				88EDC9462333C6B700542B53 /* pkcs12.h in Headers */,
-				88EDC8E82333C6B700542B53 /* thread_once.h in Headers */,
-				88EDC9482333C6B700542B53 /* crypto.h in Headers */,
-				88EDC9B52333C6B700542B53 /* cmac.h in Headers */,
-				88EDC9002333C6B700542B53 /* blowfish.h in Headers */,
-				88EDC99F2333C6B700542B53 /* mdc2.h in Headers */,
-				88EDC98D2333C6B700542B53 /* modes.h in Headers */,
-				88EDC8C62333C6B600542B53 /* err.h in Headers */,
-				88EDC8C42333C6B600542B53 /* tsan_assist.h in Headers */,
-				88EDC8D42333C6B700542B53 /* constant_time_locl.h in Headers */,
-				88EDC8D82333C6B700542B53 /* sockets.h in Headers */,
-				88EDC9502333C6B700542B53 /* obj_mac.h in Headers */,
-				88EDC9972333C6B700542B53 /* whrlpool.h in Headers */,
-				88EDC94A2333C6B700542B53 /* opensslv.h in Headers */,
-				88EDC95F2333C6B700542B53 /* dherr.h in Headers */,
-				88EDC98B2333C6B700542B53 /* seed.h in Headers */,
-				88EDC9182333C6B700542B53 /* bioerr.h in Headers */,
-				88EDC9222333C6B700542B53 /* __DECC_INCLUDE_PROLOGUE.H in Headers */,
-				88EDC9022333C6B700542B53 /* cms.h in Headers */,
-				88EDC93A2333C6B700542B53 /* ecdsa.h in Headers */,
-				88EDC9362333C6B700542B53 /* cterr.h in Headers */,
-				88EDC9122333C6B700542B53 /* sha.h in Headers */,
-				88EDC94C2333C6B700542B53 /* evperr.h in Headers */,
-				88EDC8EE2333C6B700542B53 /* kdf.h in Headers */,
 				5DF917131C5AA368009C7B55 /* SDLSecurityConstants.h in Headers */,
-				88EDC9BD2333C6B700542B53 /* lhash.h in Headers */,
-				88EDC9042333C6B700542B53 /* engine.h in Headers */,
-				88EDC8FA2333C6B700542B53 /* dtls1.h in Headers */,
-				88EDC8EA2333C6B700542B53 /* o_str.h in Headers */,
-				88EDC8FE2333C6B700542B53 /* bn.h in Headers */,
-				88EDC96F2333C6B700542B53 /* pkcs12err.h in Headers */,
 				5DF916FF1C5A6C94009C7B55 /* SDLSecurityManager.h in Headers */,
-				88EDC9102333C6B700542B53 /* ui.h in Headers */,
-				88EDC8F82333C6B700542B53 /* ossl_typ.h in Headers */,
-				88EDC97D2333C6B700542B53 /* ecdh.h in Headers */,
-				88EDC9142333C6B700542B53 /* symhacks.h in Headers */,
-				88EDC8D02333C6B600542B53 /* conf.h in Headers */,
-				88EDC9732333C6B700542B53 /* rc4.h in Headers */,
-				88EDC8CC2333C6B600542B53 /* bio.h in Headers */,
-				88EDC9812333C6B700542B53 /* ecerr.h in Headers */,
-				88EDC9A52333C6B700542B53 /* pkcs7err.h in Headers */,
-				88EDC9A32333C6B700542B53 /* x509err.h in Headers */,
-				88EDC9B12333C6B700542B53 /* bnerr.h in Headers */,
-				88EDC91C2333C6B700542B53 /* bio.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
