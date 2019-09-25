@@ -241,7 +241,6 @@ static const int SDLTLSReadBufferSize = 4096;
     }
     
     CONF_modules_unload(1);
-    ERR_remove_state(0);
     ERR_free_strings();
 
     EVP_cleanup();
