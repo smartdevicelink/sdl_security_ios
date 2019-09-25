@@ -1428,6 +1428,7 @@
 					"\"$(SRCROOT)/Dependencies/OpenSSL/lib\"",
 					"$(PROJECT_DIR)/Dependencies/OpenSSL/lib",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdl.SDLSecurity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1460,6 +1461,7 @@
 					"\"$(SRCROOT)/Dependencies/OpenSSL/lib\"",
 					"$(PROJECT_DIR)/Dependencies/OpenSSL/lib",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdl.SDLSecurity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1477,6 +1479,7 @@
 				);
 				INFOPLIST_FILE = SDLSecurityTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.livio.SDLSecurityTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1492,6 +1495,7 @@
 				);
 				INFOPLIST_FILE = SDLSecurityTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.livio.SDLSecurityTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1512,6 +1516,7 @@
 					"\"$(SRCROOT)/Dependencies/OpenSSL/lib\"",
 					"$(PROJECT_DIR)/Dependencies/OpenSSL/lib",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = include;
@@ -1534,6 +1539,7 @@
 					"\"$(SRCROOT)/Dependencies/OpenSSL/lib\"",
 					"$(PROJECT_DIR)/Dependencies/OpenSSL/lib",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = include;
@@ -1563,6 +1569,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.livio.Resources;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1592,6 +1599,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.livio.Resources;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
