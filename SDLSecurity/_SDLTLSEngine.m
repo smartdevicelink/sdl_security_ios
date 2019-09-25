@@ -133,7 +133,7 @@ static const int SDLTLSReadBufferSize = 4096;
     OpenSSL_add_all_algorithms();
     SSL_library_init();
 
-    sslContext = SSL_CTX_new(DTLSv1_server_method());
+    sslContext = SSL_CTX_new(DTLS_server_method());
     SSL_CTX_set_verify(sslContext, SSL_VERIFY_NONE, NULL);
     
     long options = SSL_OP_NO_SSLv2 | SSL_OP_NO_COMPRESSION | SSL_OP_SINGLE_DH_USE | SSL_OP_SINGLE_ECDH_USE;
