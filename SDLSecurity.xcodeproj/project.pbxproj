@@ -36,10 +36,10 @@
 		5DF917131C5AA368009C7B55 /* SDLSecurityConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DF917141C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */; };
 		5DF917151C5AA368009C7B55 /* SDLSecurityConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */; };
-		8869EF1F233BF3CB002999C3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECFA23353AE600C1F4A3 /* libcrypto.a */; };
-		8869EF20233BF3CB002999C3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECF923353AE600C1F4A3 /* libssl.a */; };
-		8897ECFB23353AE600C1F4A3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECF923353AE600C1F4A3 /* libssl.a */; };
-		8897ECFD23353AE600C1F4A3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897ECFA23353AE600C1F4A3 /* libcrypto.a */; };
+		887ADFE8233CF69200481432 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 887ADFE6233CF69200481432 /* libcrypto.a */; };
+		887ADFE9233CF69200481432 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 887ADFE6233CF69200481432 /* libcrypto.a */; };
+		887ADFEA233CF69200481432 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 887ADFE7233CF69200481432 /* libssl.a */; };
+		887ADFEB233CF69200481432 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 887ADFE7233CF69200481432 /* libssl.a */; };
 		8897ED0223353CED00C1F4A3 /* missing_openSSL_functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8897ED0123353CED00C1F4A3 /* missing_openSSL_functions.m */; };
 		8897ED0323353CED00C1F4A3 /* missing_openSSL_functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8897ED0123353CED00C1F4A3 /* missing_openSSL_functions.m */; };
 		88EDC8C22333C6B600542B53 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 88EDC83C2333C6B600542B53 /* LICENSE */; };
@@ -218,8 +218,8 @@
 		5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLSecurityConstants.h; sourceTree = "<group>"; };
 		5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLSecurityConstants.m; sourceTree = "<group>"; };
 		8842509C230D9C0000F83FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8897ECF923353AE600C1F4A3 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		8897ECFA23353AE600C1F4A3 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		887ADFE6233CF69200481432 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		887ADFE7233CF69200481432 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		8897ED0123353CED00C1F4A3 /* missing_openSSL_functions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = missing_openSSL_functions.m; sourceTree = "<group>"; };
 		88EDC83C2333C6B600542B53 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		88EDC83F2333C6B600542B53 /* tsan_assist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tsan_assist.h; sourceTree = "<group>"; };
@@ -356,8 +356,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8897ECFD23353AE600C1F4A3 /* libcrypto.a in Frameworks */,
-				8897ECFB23353AE600C1F4A3 /* libssl.a in Frameworks */,
+				887ADFEA233CF69200481432 /* libssl.a in Frameworks */,
+				887ADFE8233CF69200481432 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,8 +373,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8869EF20233BF3CB002999C3 /* libssl.a in Frameworks */,
-				8869EF1F233BF3CB002999C3 /* libcrypto.a in Frameworks */,
+				887ADFEB233CF69200481432 /* libssl.a in Frameworks */,
+				887ADFE9233CF69200481432 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,8 +639,8 @@
 		88EDC8BF2333C6B600542B53 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				8897ECFA23353AE600C1F4A3 /* libcrypto.a */,
-				8897ECF923353AE600C1F4A3 /* libssl.a */,
+				887ADFE6233CF69200481432 /* libcrypto.a */,
+				887ADFE7233CF69200481432 /* libssl.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -1193,7 +1193,7 @@
 		5DF916F91C5A6C2B009C7B55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1216,7 +1216,7 @@
 		5DF916FA1C5A6C2B009C7B55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
