@@ -129,7 +129,7 @@
 #pragma clang diagnostic pop
         if (base64Decoded == nil) {
             SDLSecurityLogE(@"TLS security certificate is invalid");
-            completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:nil]);
+            completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: @"TLS security certificate is invalid"}]);
         }
 
         // TODO: Encrypt?
