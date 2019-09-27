@@ -30,6 +30,18 @@ In order to use this security library with SDL, an OEM must rename this library 
 ## Generating the Static Library
 Once the security library has been configured by the OEM, it is used to generate a static library that developers add to their SDL iOS apps
 
+1. To build the *SDLSecurityStatic* target:
+    * Run the the *SDLSecurityStatic* target (a simulator or device both work)
+    * This generates three different builds of the *libSDLSecurityStatic.a* file, which can be found in the derived data of the project. 
+        * *Debug-iphoneos* - will only work on an iPhone 
+        * *Debug-iphonesimulator* - will only work on a simulator
+        * *Debug-universal*  - will work on both the iPhone and simulator
+    * In the **Products** folder select *libSDLSecurityStatic.a*, right click and select **Show in Finder**. This will take you to the three builds listed above.
+2. To use the build in your project:
+    *  Drag and drop 3 files into your project: **libSDLSecurityStatic.a**, **include/SDLSecurityConstants.h** and **include/SDLSecurityManager.h**. Make sure **libSDLSecurityStatic.a** has been added to your project's target membership.  
+    *  To use the security manager, import **SDLSecurityManager.h** into where you are setting the encryption manager in your SDL project. If you have a Swift project, this will require adding a bridging-header to the project.
+        * `let encryptionManager = SDLEncryptionConfiguration(securityManagers: [SDLSecurityManager.self]], delegate: nil)`
+
 ## Updating the OpenSSL Dependency
 We have included a build of the OpenSSL library  so the security library can work out of the box with a few minor customizations. Production versions of this library should replace the OpenSSL dependency with a trusted build. The following configurations may have to be updated:
 
@@ -47,4 +59,8 @@ We have included a build of the OpenSSL library  so the security library can wor
         
 ### Adding Your Own OpenSSL Build
 ### Common Issues
+
+| OS Name | Xcode Platform Name | Valid Architectures | Clang -mxxx-version-min |
+| iOS | iPhoneOS | arm64 armv7 armv7s  | -miphoneos-version-min or -mios-version-min |
+| iOS Simulator | iPhoneOSSimulator | i386 x86_64 | -miphonesimulator-version-min or -mios-simulator-version-min |
 
