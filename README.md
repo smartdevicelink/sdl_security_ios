@@ -27,20 +27,24 @@ Once the certificate is downloaded it is stored on disk so the certfifcate can p
 ### Renaming the Library
 In order to use this security library with SDL, an OEM must rename this library and classes. This is because a developer who wants to support multiple OEMS will have to add a security manager from each OEM. If OEMS use the same class names then it will be impossible for the developer to include more than one security library in their application.
 
-## Generating the Static Library
-Once the security library has been configured by the OEM, it is used to generate a static library that developers add to their SDL iOS apps
+## Generating the Static Security Library
+Once the security library has been configured by the OEM, it is used to generate a static library that developers add to their SDL iOS apps. You can easily build the static library, **libSDLSecurityStatic.a**, in Xcode using the **SDLSecurityStatic** target:
 
-1. To build the *SDLSecurityStatic* target:
-    * Run the the *SDLSecurityStatic* target (a simulator or device both work)
-    * This generates three different builds of the *libSDLSecurityStatic.a* file, which can be found in the derived data of the project. 
-        * *Debug-iphoneos* - will only work on an iPhone 
-        * *Debug-iphonesimulator* - will only work on a simulator
-        * *Debug-universal*  - will work on both the iPhone and simulator
-    * In the **Products** folder select *libSDLSecurityStatic.a*, right click and select **Show in Finder**. This will take you to the three builds listed above.
-2. To use the build in your project:
-    *  Drag and drop 3 files into your project: **libSDLSecurityStatic.a**, **include/SDLSecurityConstants.h** and **include/SDLSecurityManager.h**. Make sure **libSDLSecurityStatic.a** has been added to your project's target membership.  
-    *  To use the security manager, import **SDLSecurityManager.h** into where you are setting the encryption manager in your SDL project. If you have a Swift project, this will require adding a bridging-header to the project.
-        * `let encryptionManager = SDLEncryptionConfiguration(securityManagers: [SDLSecurityManager.self]], delegate: nil)`
+1. In the scheme menu of Xcode, set the active scheme to **SDLSecurityStatic**.
+1. Build and run the **SDLSecurityStatic** scheme (**Product > Build For > Running**). 
+1. In the project navigator you will find the **libSDLSecurityStatic.a** build under **SDLSecurity > Products**.
+1. Right click on the **libSDLSecurityStatic.a** build and select **Show in Finder**. This will take you to the derived data of the project which has the three builds listed below:
+    * *Debug-iphoneos* - will only work on an iPhone 
+    * *Debug-iphonesimulator* - will only work on a simulator
+    * *Debug-universal*  - will work on both the iPhone and simulator
+1. There are also two header files **include/SDLSecurityConstants.h** and **include/SDLSecurityManager.h** that must be used along with **libSDLSecurityStatic.a** archive build.
+    
+## Adding the Static Security Library to a SDL App
+In order to use the static security library in an SDL app you must have three files: **libSDLSecurityStatic.a**, **SDLSecurityConstants.h** and **SDLSecurityManager.h**
+
+1. In Xcode, drag and drop the following 3 files into your project: **libSDLSecurityStatic.a**, **SDLSecurityConstants.h** and **SDLSecurityManager.h**. Make sure **libSDLSecurityStatic.a** has been added to the project's target membership.  
+1. Import **SDLSecurityManager.h** into the file where the the SDLConfiguration`'s `SDLEncryptionConfiguration` is being set. If you have a Swift project, this will require adding a bridging-header to the project.
+    `let encryptionManager = SDLEncryptionConfiguration(securityManagers: [SDLSecurityManager.self]], delegate: nil)`
 
 ## Updating the OpenSSL Dependency
 We have included a build of the OpenSSL library  so the security library can work out of the box with a few minor customizations. Production versions of this library should replace the OpenSSL dependency with a trusted build. The following configurations may have to be updated:
