@@ -75,9 +75,6 @@
         return nil;
     }
     
-    // TODO: Decrypt?
-    
-    // TODO: Return data
     return [NSData dataWithContentsOfFile:certPath];
 }
 
