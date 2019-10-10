@@ -42,133 +42,6 @@
 		88C1CBD6234E58E800820C9D /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C1CBD3234E58E700820C9D /* libcrypto.a */; };
 		88C1CBD7234E58E800820C9D /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C1CBD4234E58E800820C9D /* libssl.a */; };
 		88C1CBD8234E58E800820C9D /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C1CBD4234E58E800820C9D /* libssl.a */; };
-		88C2F994234D2A5E00DE364E /* pem2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F914234D2A5E00DE364E /* pem2.h */; };
-		88C2F995234D2A5E00DE364E /* kdf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F915234D2A5E00DE364E /* kdf.h */; };
-		88C2F996234D2A5E00DE364E /* pem.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F916234D2A5E00DE364E /* pem.h */; };
-		88C2F997234D2A5E00DE364E /* asyncerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F917234D2A5E00DE364E /* asyncerr.h */; };
-		88C2F998234D2A5E00DE364E /* md2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F918234D2A5E00DE364E /* md2.h */; };
-		88C2F999234D2A5E00DE364E /* ssl3.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F919234D2A5E00DE364E /* ssl3.h */; };
-		88C2F99A234D2A5E00DE364E /* ossl_typ.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F91A234D2A5E00DE364E /* ossl_typ.h */; };
-		88C2F99B234D2A5E00DE364E /* dtls1.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F91B234D2A5E00DE364E /* dtls1.h */; };
-		88C2F99C234D2A5E00DE364E /* err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F91C234D2A5E00DE364E /* err.h */; };
-		88C2F99D234D2A5E00DE364E /* bn.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F91D234D2A5E00DE364E /* bn.h */; };
-		88C2F99E234D2A5E00DE364E /* blowfish.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F91E234D2A5E00DE364E /* blowfish.h */; };
-		88C2F99F234D2A5E00DE364E /* cms.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F91F234D2A5E00DE364E /* cms.h */; };
-		88C2F9A0234D2A5E00DE364E /* engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F920234D2A5E00DE364E /* engine.h */; };
-		88C2F9A1234D2A5E00DE364E /* conf_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F921234D2A5E00DE364E /* conf_api.h */; };
-		88C2F9A2234D2A5E00DE364E /* x509.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F922234D2A5E00DE364E /* x509.h */; };
-		88C2F9A3234D2A5E00DE364E /* asn1_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F923234D2A5E00DE364E /* asn1_mac.h */; };
-		88C2F9A4234D2A5E00DE364E /* objectserr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F924234D2A5E00DE364E /* objectserr.h */; };
-		88C2F9A5234D2A5E00DE364E /* cmserr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F925234D2A5E00DE364E /* cmserr.h */; };
-		88C2F9A6234D2A5E00DE364E /* ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F926234D2A5E00DE364E /* ui.h */; };
-		88C2F9A7234D2A5E00DE364E /* sha.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F927234D2A5E00DE364E /* sha.h */; };
-		88C2F9A8234D2A5E00DE364E /* symhacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F928234D2A5E00DE364E /* symhacks.h */; };
-		88C2F9A9234D2A5E00DE364E /* asn1.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F929234D2A5E00DE364E /* asn1.h */; };
-		88C2F9AA234D2A5E00DE364E /* bioerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F92A234D2A5E00DE364E /* bioerr.h */; };
-		88C2F9AB234D2A5E00DE364E /* opensslconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F92B234D2A5E00DE364E /* opensslconf.h */; };
-		88C2F9AC234D2A5E00DE364E /* bio.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F92C234D2A5E00DE364E /* bio.h */; };
-		88C2F9AD234D2A5E00DE364E /* rc2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F92D234D2A5E00DE364E /* rc2.h */; };
-		88C2F9AE234D2A5E00DE364E /* dh.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F92E234D2A5E00DE364E /* dh.h */; };
-		88C2F9AF234D2A5E00DE364E /* __DECC_INCLUDE_PROLOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F92F234D2A5E00DE364E /* __DECC_INCLUDE_PROLOGUE.H */; };
-		88C2F9B0234D2A5E00DE364E /* x509v3.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F930234D2A5E00DE364E /* x509v3.h */; };
-		88C2F9B1234D2A5E00DE364E /* conf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F931234D2A5E00DE364E /* conf.h */; };
-		88C2F9B2234D2A5E00DE364E /* rand_drbg.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F932234D2A5E00DE364E /* rand_drbg.h */; };
-		88C2F9B3234D2A5E00DE364E /* __DECC_INCLUDE_EPILOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F933234D2A5E00DE364E /* __DECC_INCLUDE_EPILOGUE.H */; };
-		88C2F9B4234D2A5E00DE364E /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F934234D2A5E00DE364E /* md5.h */; };
-		88C2F9B5234D2A5E00DE364E /* pemerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F935234D2A5E00DE364E /* pemerr.h */; };
-		88C2F9B6234D2A5E00DE364E /* x509_vfy.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F936234D2A5E00DE364E /* x509_vfy.h */; };
-		88C2F9B7234D2A5E00DE364E /* txt_db.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F937234D2A5E00DE364E /* txt_db.h */; };
-		88C2F9B8234D2A5E00DE364E /* comperr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F938234D2A5E00DE364E /* comperr.h */; };
-		88C2F9B9234D2A5E00DE364E /* cterr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F939234D2A5E00DE364E /* cterr.h */; };
-		88C2F9BA234D2A5E00DE364E /* safestack.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F93A234D2A5E00DE364E /* safestack.h */; };
-		88C2F9BB234D2A5E00DE364E /* ecdsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F93B234D2A5E00DE364E /* ecdsa.h */; };
-		88C2F9BC234D2A5E00DE364E /* sslerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F93C234D2A5E00DE364E /* sslerr.h */; };
-		88C2F9BD234D2A5E00DE364E /* rc5.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F93D234D2A5E00DE364E /* rc5.h */; };
-		88C2F9BE234D2A5E00DE364E /* uierr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F93E234D2A5E00DE364E /* uierr.h */; };
-		88C2F9BF234D2A5E00DE364E /* x509v3err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F93F234D2A5E00DE364E /* x509v3err.h */; };
-		88C2F9C0234D2A5E00DE364E /* objects.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F940234D2A5E00DE364E /* objects.h */; };
-		88C2F9C1234D2A5E00DE364E /* pkcs12.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F941234D2A5E00DE364E /* pkcs12.h */; };
-		88C2F9C2234D2A5E00DE364E /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F942234D2A5E00DE364E /* crypto.h */; };
-		88C2F9C3234D2A5E00DE364E /* opensslv.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F943234D2A5E00DE364E /* opensslv.h */; };
-		88C2F9C4234D2A5E00DE364E /* evperr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F944234D2A5E00DE364E /* evperr.h */; };
-		88C2F9C5234D2A5E00DE364E /* pkcs7.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F945234D2A5E00DE364E /* pkcs7.h */; };
-		88C2F9C6234D2A5E00DE364E /* obj_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F946234D2A5E00DE364E /* obj_mac.h */; };
-		88C2F9C7234D2A5E00DE364E /* ct.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F947234D2A5E00DE364E /* ct.h */; };
-		88C2F9C8234D2A5E00DE364E /* async.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F948234D2A5E00DE364E /* async.h */; };
-		88C2F9C9234D2A5E00DE364E /* buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F949234D2A5E00DE364E /* buffer.h */; };
-		88C2F9CA234D2A5E00DE364E /* ssl.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F94A234D2A5E00DE364E /* ssl.h */; };
-		88C2F9CB234D2A5E00DE364E /* srp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F94B234D2A5E00DE364E /* srp.h */; };
-		88C2F9CC234D2A5E00DE364E /* camellia.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F94C234D2A5E00DE364E /* camellia.h */; };
-		88C2F9CD234D2A5E00DE364E /* opensslconf.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 88C2F94D234D2A5E00DE364E /* opensslconf.h.in */; };
-		88C2F9CE234D2A5E00DE364E /* dherr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F94E234D2A5E00DE364E /* dherr.h */; };
-		88C2F9CF234D2A5E00DE364E /* evp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F94F234D2A5E00DE364E /* evp.h */; };
-		88C2F9D0234D2A5E00DE364E /* e_os2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F950234D2A5E00DE364E /* e_os2.h */; };
-		88C2F9D1234D2A5E00DE364E /* md4.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F951234D2A5E00DE364E /* md4.h */; };
-		88C2F9D2234D2A5E00DE364E /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F952234D2A5E00DE364E /* hmac.h */; };
-		88C2F9D3234D2A5E00DE364E /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F953234D2A5E00DE364E /* aes.h */; };
-		88C2F9D4234D2A5E00DE364E /* engineerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F954234D2A5E00DE364E /* engineerr.h */; };
-		88C2F9D5234D2A5E00DE364E /* comp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F955234D2A5E00DE364E /* comp.h */; };
-		88C2F9D6234D2A5E00DE364E /* pkcs12err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F956234D2A5E00DE364E /* pkcs12err.h */; };
-		88C2F9D7234D2A5E00DE364E /* cast.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F957234D2A5E00DE364E /* cast.h */; };
-		88C2F9D8234D2A5E00DE364E /* rc4.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F958234D2A5E00DE364E /* rc4.h */; };
-		88C2F9D9234D2A5E00DE364E /* stack.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F959234D2A5E00DE364E /* stack.h */; };
-		88C2F9DA234D2A5E00DE364E /* des.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F95A234D2A5E00DE364E /* des.h */; };
-		88C2F9DB234D2A5E00DE364E /* ocsp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F95B234D2A5E00DE364E /* ocsp.h */; };
-		88C2F9DC234D2A5E00DE364E /* ec.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F95C234D2A5E00DE364E /* ec.h */; };
-		88C2F9DD234D2A5E00DE364E /* ecdh.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F95D234D2A5E00DE364E /* ecdh.h */; };
-		88C2F9DE234D2A5E00DE364E /* rand.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F95E234D2A5E00DE364E /* rand.h */; };
-		88C2F9DF234D2A5E00DE364E /* ecerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F95F234D2A5E00DE364E /* ecerr.h */; };
-		88C2F9E0234D2A5E00DE364E /* ts.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F960234D2A5E00DE364E /* ts.h */; };
-		88C2F9E1234D2A5E00DE364E /* cryptoerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F961234D2A5E00DE364E /* cryptoerr.h */; };
-		88C2F9E2234D2A5E00DE364E /* storeerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F962234D2A5E00DE364E /* storeerr.h */; };
-		88C2F9E3234D2A5E00DE364E /* buffererr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F963234D2A5E00DE364E /* buffererr.h */; };
-		88C2F9E4234D2A5E00DE364E /* seed.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F964234D2A5E00DE364E /* seed.h */; };
-		88C2F9E5234D2A5E00DE364E /* modes.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F965234D2A5E00DE364E /* modes.h */; };
-		88C2F9E6234D2A5E00DE364E /* ssl2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F966234D2A5E00DE364E /* ssl2.h */; };
-		88C2F9E7234D2A5E00DE364E /* tserr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F967234D2A5E00DE364E /* tserr.h */; };
-		88C2F9E8234D2A5E00DE364E /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F968234D2A5E00DE364E /* rsa.h */; };
-		88C2F9E9234D2A5E00DE364E /* ripemd.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F969234D2A5E00DE364E /* ripemd.h */; };
-		88C2F9EA234D2A5E00DE364E /* whrlpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F96A234D2A5E00DE364E /* whrlpool.h */; };
-		88C2F9EB234D2A5E00DE364E /* tls1.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F96B234D2A5E00DE364E /* tls1.h */; };
-		88C2F9EC234D2A5E00DE364E /* rsaerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F96C234D2A5E00DE364E /* rsaerr.h */; };
-		88C2F9ED234D2A5E00DE364E /* randerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F96D234D2A5E00DE364E /* randerr.h */; };
-		88C2F9EE234D2A5E00DE364E /* mdc2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F96E234D2A5E00DE364E /* mdc2.h */; };
-		88C2F9EF234D2A5E00DE364E /* ocsperr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F96F234D2A5E00DE364E /* ocsperr.h */; };
-		88C2F9F0234D2A5E00DE364E /* x509err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F970234D2A5E00DE364E /* x509err.h */; };
-		88C2F9F1234D2A5E00DE364E /* pkcs7err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F971234D2A5E00DE364E /* pkcs7err.h */; };
-		88C2F9F2234D2A5E00DE364E /* dsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F972234D2A5E00DE364E /* dsa.h */; };
-		88C2F9F3234D2A5E00DE364E /* kdferr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F973234D2A5E00DE364E /* kdferr.h */; };
-		88C2F9F4234D2A5E00DE364E /* srtp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F974234D2A5E00DE364E /* srtp.h */; };
-		88C2F9F5234D2A5E00DE364E /* asn1t.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F975234D2A5E00DE364E /* asn1t.h */; };
-		88C2F9F6234D2A5E00DE364E /* dsaerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F976234D2A5E00DE364E /* dsaerr.h */; };
-		88C2F9F7234D2A5E00DE364E /* bnerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F977234D2A5E00DE364E /* bnerr.h */; };
-		88C2F9F8234D2A5E00DE364E /* conferr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F978234D2A5E00DE364E /* conferr.h */; };
-		88C2F9F9234D2A5E00DE364E /* cmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F979234D2A5E00DE364E /* cmac.h */; };
-		88C2F9FA234D2A5E00DE364E /* ebcdic.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F97A234D2A5E00DE364E /* ebcdic.h */; };
-		88C2F9FB234D2A5E00DE364E /* store.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F97B234D2A5E00DE364E /* store.h */; };
-		88C2F9FC234D2A5E00DE364E /* idea.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F97C234D2A5E00DE364E /* idea.h */; };
-		88C2F9FD234D2A5E00DE364E /* lhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F97D234D2A5E00DE364E /* lhash.h */; };
-		88C2F9FE234D2A5E00DE364E /* asn1err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F97E234D2A5E00DE364E /* asn1err.h */; };
-		88C2F9FF234D2A5E00DE364E /* tsan_assist.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F980234D2A5E00DE364E /* tsan_assist.h */; };
-		88C2FA00234D2A5E00DE364E /* err.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F981234D2A5E00DE364E /* err.h */; };
-		88C2FA01234D2A5E00DE364E /* numbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F982234D2A5E00DE364E /* numbers.h */; };
-		88C2FA02234D2A5E00DE364E /* dsoerr.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F983234D2A5E00DE364E /* dsoerr.h */; };
-		88C2FA03234D2A5E00DE364E /* bio.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F984234D2A5E00DE364E /* bio.h */; };
-		88C2FA04234D2A5E00DE364E /* __DECC_INCLUDE_PROLOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F985234D2A5E00DE364E /* __DECC_INCLUDE_PROLOGUE.H */; };
-		88C2FA05234D2A5E00DE364E /* conf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F986234D2A5E00DE364E /* conf.h */; };
-		88C2FA06234D2A5E00DE364E /* __DECC_INCLUDE_EPILOGUE.H in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F987234D2A5E00DE364E /* __DECC_INCLUDE_EPILOGUE.H */; };
-		88C2FA07234D2A5E00DE364E /* constant_time_locl.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F988234D2A5E00DE364E /* constant_time_locl.h */; };
-		88C2FA08234D2A5E00DE364E /* dane.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F989234D2A5E00DE364E /* dane.h */; };
-		88C2FA09234D2A5E00DE364E /* sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F98A234D2A5E00DE364E /* sockets.h */; };
-		88C2FA0A234D2A5E00DE364E /* comp.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F98B234D2A5E00DE364E /* comp.h */; };
-		88C2FA0B234D2A5E00DE364E /* cryptlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F98C234D2A5E00DE364E /* cryptlib.h */; };
-		88C2FA0C234D2A5E00DE364E /* nelem.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F98D234D2A5E00DE364E /* nelem.h */; };
-		88C2FA0D234D2A5E00DE364E /* sslconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F98E234D2A5E00DE364E /* sslconf.h */; };
-		88C2FA0E234D2A5E00DE364E /* dso.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F98F234D2A5E00DE364E /* dso.h */; };
-		88C2FA0F234D2A5E00DE364E /* refcount.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F990234D2A5E00DE364E /* refcount.h */; };
-		88C2FA10234D2A5E00DE364E /* o_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F991234D2A5E00DE364E /* o_dir.h */; };
-		88C2FA11234D2A5E00DE364E /* thread_once.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F992234D2A5E00DE364E /* thread_once.h */; };
-		88C2FA12234D2A5E00DE364E /* o_str.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C2F993234D2A5E00DE364E /* o_str.h */; };
 		88EDC8C22333C6B600542B53 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 88EDC83C2333C6B600542B53 /* LICENSE */; };
 /* End PBXBuildFile section */
 
@@ -652,140 +525,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88C2F9D7234D2A5E00DE364E /* cast.h in Headers */,
-				88C2F9B4234D2A5E00DE364E /* md5.h in Headers */,
-				88C2F9AD234D2A5E00DE364E /* rc2.h in Headers */,
-				88C2F9C3234D2A5E00DE364E /* opensslv.h in Headers */,
-				88C2F9AC234D2A5E00DE364E /* bio.h in Headers */,
-				88C2F9E4234D2A5E00DE364E /* seed.h in Headers */,
-				88C2F996234D2A5E00DE364E /* pem.h in Headers */,
-				88C2F9E2234D2A5E00DE364E /* storeerr.h in Headers */,
-				88C2F9A1234D2A5E00DE364E /* conf_api.h in Headers */,
-				88C2F9A6234D2A5E00DE364E /* ui.h in Headers */,
-				88C2FA05234D2A5E00DE364E /* conf.h in Headers */,
 				5DF917121C5AA368009C7B55 /* SDLSecurityConstants.h in Headers */,
-				88C2F99D234D2A5E00DE364E /* bn.h in Headers */,
-				88C2F9D0234D2A5E00DE364E /* e_os2.h in Headers */,
-				88C2F9F4234D2A5E00DE364E /* srtp.h in Headers */,
-				88C2F9C7234D2A5E00DE364E /* ct.h in Headers */,
-				88C2F99C234D2A5E00DE364E /* err.h in Headers */,
-				88C2F9B3234D2A5E00DE364E /* __DECC_INCLUDE_EPILOGUE.H in Headers */,
-				88C2FA10234D2A5E00DE364E /* o_dir.h in Headers */,
-				88C2F9DB234D2A5E00DE364E /* ocsp.h in Headers */,
-				88C2F9A2234D2A5E00DE364E /* x509.h in Headers */,
-				88C2F9A7234D2A5E00DE364E /* sha.h in Headers */,
 				5D40CA991C51215200E6F987 /* SDLSecurityManager.h in Headers */,
-				88C2F9EB234D2A5E00DE364E /* tls1.h in Headers */,
-				88C2F999234D2A5E00DE364E /* ssl3.h in Headers */,
-				88C2F9BA234D2A5E00DE364E /* safestack.h in Headers */,
-				88C2F9BE234D2A5E00DE364E /* uierr.h in Headers */,
-				88C2F9A0234D2A5E00DE364E /* engine.h in Headers */,
-				88C2FA12234D2A5E00DE364E /* o_str.h in Headers */,
-				88C2F9DA234D2A5E00DE364E /* des.h in Headers */,
-				88C2FA01234D2A5E00DE364E /* numbers.h in Headers */,
-				88C2F9D3234D2A5E00DE364E /* aes.h in Headers */,
-				88C2F9F2234D2A5E00DE364E /* dsa.h in Headers */,
-				88C2F9DD234D2A5E00DE364E /* ecdh.h in Headers */,
-				88C2F9B5234D2A5E00DE364E /* pemerr.h in Headers */,
-				88C2F99F234D2A5E00DE364E /* cms.h in Headers */,
-				88C2F9BC234D2A5E00DE364E /* sslerr.h in Headers */,
-				88C2FA0E234D2A5E00DE364E /* dso.h in Headers */,
-				88C2F9E6234D2A5E00DE364E /* ssl2.h in Headers */,
 				5DF917091C5A6F1C009C7B55 /* _SDLTLSEngine.h in Headers */,
-				88C2FA09234D2A5E00DE364E /* sockets.h in Headers */,
-				88C2F9B8234D2A5E00DE364E /* comperr.h in Headers */,
-				88C2F9E8234D2A5E00DE364E /* rsa.h in Headers */,
-				88C2F9F9234D2A5E00DE364E /* cmac.h in Headers */,
-				88C2F9E5234D2A5E00DE364E /* modes.h in Headers */,
-				88C2F9E7234D2A5E00DE364E /* tserr.h in Headers */,
-				88C2F9F1234D2A5E00DE364E /* pkcs7err.h in Headers */,
-				88C2F9D2234D2A5E00DE364E /* hmac.h in Headers */,
-				88C2F9F0234D2A5E00DE364E /* x509err.h in Headers */,
-				88C2FA0C234D2A5E00DE364E /* nelem.h in Headers */,
-				88C2F9AB234D2A5E00DE364E /* opensslconf.h in Headers */,
-				88C2F9A3234D2A5E00DE364E /* asn1_mac.h in Headers */,
-				88C2F9FB234D2A5E00DE364E /* store.h in Headers */,
-				88C2F9C2234D2A5E00DE364E /* crypto.h in Headers */,
-				88C2F9C0234D2A5E00DE364E /* objects.h in Headers */,
-				88C2FA06234D2A5E00DE364E /* __DECC_INCLUDE_EPILOGUE.H in Headers */,
-				88C2FA03234D2A5E00DE364E /* bio.h in Headers */,
-				88C2F99B234D2A5E00DE364E /* dtls1.h in Headers */,
-				88C2F9CC234D2A5E00DE364E /* camellia.h in Headers */,
-				88C2F9A9234D2A5E00DE364E /* asn1.h in Headers */,
-				88C2F9EC234D2A5E00DE364E /* rsaerr.h in Headers */,
-				88C2F9D6234D2A5E00DE364E /* pkcs12err.h in Headers */,
-				88C2F994234D2A5E00DE364E /* pem2.h in Headers */,
-				88C2F9DF234D2A5E00DE364E /* ecerr.h in Headers */,
-				88C2F9B7234D2A5E00DE364E /* txt_db.h in Headers */,
-				88C2F9F8234D2A5E00DE364E /* conferr.h in Headers */,
-				88C2F9D5234D2A5E00DE364E /* comp.h in Headers */,
-				88C2F9BD234D2A5E00DE364E /* rc5.h in Headers */,
-				88C2F9B0234D2A5E00DE364E /* x509v3.h in Headers */,
 				5D40CA811C511C7200E6F987 /* SDLSecurity.h in Headers */,
-				88C2F9CE234D2A5E00DE364E /* dherr.h in Headers */,
-				88C2F9F7234D2A5E00DE364E /* bnerr.h in Headers */,
-				88C2F9E3234D2A5E00DE364E /* buffererr.h in Headers */,
-				88C2F9A8234D2A5E00DE364E /* symhacks.h in Headers */,
 				5D4DC2E123214D00003A69B0 /* SDLSecurityLogger.h in Headers */,
-				88C2F997234D2A5E00DE364E /* asyncerr.h in Headers */,
-				88C2F9C6234D2A5E00DE364E /* obj_mac.h in Headers */,
-				88C2FA0F234D2A5E00DE364E /* refcount.h in Headers */,
-				88C2FA07234D2A5E00DE364E /* constant_time_locl.h in Headers */,
-				88C2F9D9234D2A5E00DE364E /* stack.h in Headers */,
-				88C2F9DC234D2A5E00DE364E /* ec.h in Headers */,
 				5D84682D1C86256D00592787 /* SDLPrivateSecurityConstants.h in Headers */,
-				88C2F9D8234D2A5E00DE364E /* rc4.h in Headers */,
-				88C2FA00234D2A5E00DE364E /* err.h in Headers */,
-				88C2F9AA234D2A5E00DE364E /* bioerr.h in Headers */,
-				88C2F9FE234D2A5E00DE364E /* asn1err.h in Headers */,
-				88C2F9C8234D2A5E00DE364E /* async.h in Headers */,
-				88C2FA11234D2A5E00DE364E /* thread_once.h in Headers */,
-				88C2F9E1234D2A5E00DE364E /* cryptoerr.h in Headers */,
-				88C2F9F6234D2A5E00DE364E /* dsaerr.h in Headers */,
-				88C2F9E0234D2A5E00DE364E /* ts.h in Headers */,
-				88C2F9C4234D2A5E00DE364E /* evperr.h in Headers */,
-				88C2F99E234D2A5E00DE364E /* blowfish.h in Headers */,
-				88C2FA0D234D2A5E00DE364E /* sslconf.h in Headers */,
-				88C2F9C1234D2A5E00DE364E /* pkcs12.h in Headers */,
-				88C2F9F5234D2A5E00DE364E /* asn1t.h in Headers */,
-				88C2F9E9234D2A5E00DE364E /* ripemd.h in Headers */,
-				88C2F9B6234D2A5E00DE364E /* x509_vfy.h in Headers */,
-				88C2F9B1234D2A5E00DE364E /* conf.h in Headers */,
-				88C2F99A234D2A5E00DE364E /* ossl_typ.h in Headers */,
-				88C2F9CB234D2A5E00DE364E /* srp.h in Headers */,
-				88C2F9DE234D2A5E00DE364E /* rand.h in Headers */,
-				88C2FA04234D2A5E00DE364E /* __DECC_INCLUDE_PROLOGUE.H in Headers */,
-				88C2F9C5234D2A5E00DE364E /* pkcs7.h in Headers */,
-				88C2F9EE234D2A5E00DE364E /* mdc2.h in Headers */,
-				88C2F9A4234D2A5E00DE364E /* objectserr.h in Headers */,
-				88C2F9B9234D2A5E00DE364E /* cterr.h in Headers */,
-				88C2F9B2234D2A5E00DE364E /* rand_drbg.h in Headers */,
-				88C2F9AE234D2A5E00DE364E /* dh.h in Headers */,
-				88C2F9D1234D2A5E00DE364E /* md4.h in Headers */,
-				88C2F998234D2A5E00DE364E /* md2.h in Headers */,
-				88C2F9BF234D2A5E00DE364E /* x509v3err.h in Headers */,
-				88C2FA08234D2A5E00DE364E /* dane.h in Headers */,
-				88C2F9AF234D2A5E00DE364E /* __DECC_INCLUDE_PROLOGUE.H in Headers */,
-				88C2F9CF234D2A5E00DE364E /* evp.h in Headers */,
-				88C2F9EF234D2A5E00DE364E /* ocsperr.h in Headers */,
-				88C2F9EA234D2A5E00DE364E /* whrlpool.h in Headers */,
-				88C2FA0B234D2A5E00DE364E /* cryptlib.h in Headers */,
-				88C2F9D4234D2A5E00DE364E /* engineerr.h in Headers */,
-				88C2F9FD234D2A5E00DE364E /* lhash.h in Headers */,
-				88C2F9C9234D2A5E00DE364E /* buffer.h in Headers */,
 				5DC412F41C62426F0062E6F9 /* SDLSecurityType.h in Headers */,
-				88C2F9FA234D2A5E00DE364E /* ebcdic.h in Headers */,
-				88C2F9F3234D2A5E00DE364E /* kdferr.h in Headers */,
-				88C2F995234D2A5E00DE364E /* kdf.h in Headers */,
-				88C2F9BB234D2A5E00DE364E /* ecdsa.h in Headers */,
-				88C2FA02234D2A5E00DE364E /* dsoerr.h in Headers */,
-				88C2F9CA234D2A5E00DE364E /* ssl.h in Headers */,
-				88C2F9A5234D2A5E00DE364E /* cmserr.h in Headers */,
-				88C2F9ED234D2A5E00DE364E /* randerr.h in Headers */,
 				5D5E27871C848A1900495F0B /* _SDLCertificateManager.h in Headers */,
-				88C2F9FF234D2A5E00DE364E /* tsan_assist.h in Headers */,
-				88C2F9FC234D2A5E00DE364E /* idea.h in Headers */,
-				88C2FA0A234D2A5E00DE364E /* comp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -907,7 +654,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88EDC8C22333C6B600542B53 /* LICENSE in Resources */,
-				88C2F9CD234D2A5E00DE364E /* opensslconf.h.in in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -932,7 +678,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Version 2.82\n#\n# c.f. http://stackoverflow.com/questions/3520977/build-fat-static-library-device-simulator-using-xcode-and-sdk-4\n#\n# Latest Change:\n# - MORE tweaks to get the iOS 10+ and 9- working\n# - Support iOS 10+\n# - Corrected typo for iOS 1-10+ (thanks @stuikomma)\n#\n# Purpose:\n#   Automatically create a Universal static library for iPhone + iPad + iPhone Simulator from within XCode\n#\n# Author: Adam Martin - http://twitter.com/redglassesapps\n# Based on: original script from Eonil (main changes: Eonil's script WILL NOT WORK in Xcode GUI - it WILL CRASH YOUR COMPUTER)\n#\n\nset -e\nset -o pipefail\n\n#################[ Tests: helps workaround any future bugs in Xcode ]########\n#\nDEBUG_THIS_SCRIPT=\"false\"\n\nif [ $DEBUG_THIS_SCRIPT = \"true\" ]\nthen\necho \"########### TESTS #############\"\necho \"Use the following variables when debugging this script; note that they may change on recursions\"\necho \"BUILD_DIR = $BUILD_DIR\"\necho \"BUILD_ROOT = $BUILD_ROOT\"\necho \"CONFIGURATION_BUILD_DIR = $CONFIGURATION_BUILD_DIR\"\necho \"BUILT_PRODUCTS_DIR = $BUILT_PRODUCTS_DIR\"\necho \"CONFIGURATION_TEMP_DIR = $CONFIGURATION_TEMP_DIR\"\necho \"TARGET_BUILD_DIR = $TARGET_BUILD_DIR\"\nfi\n\n#####################[ part 1 ]##################\n# First, work out the BASESDK version number (NB: Apple ought to report this, but they hide it)\n#    (incidental: searching for substrings in sh is a nightmare! Sob)\n\nSDK_VERSION=$(echo ${SDK_NAME} | grep -o '\\d\\{1,2\\}\\.\\d\\{1,2\\}$')\n\n# Next, work out if we're in SIM or DEVICE\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nOTHER_SDK_TO_BUILD=iphoneos${SDK_VERSION}\nelse\nOTHER_SDK_TO_BUILD=iphonesimulator${SDK_VERSION}\nfi\n\necho \"XCode has selected SDK: ${PLATFORM_NAME} with version: ${SDK_VERSION} (although back-targetting: ${IPHONEOS_DEPLOYMENT_TARGET})\"\necho \"...therefore, OTHER_SDK_TO_BUILD = ${OTHER_SDK_TO_BUILD}\"\n#\n#####################[ end of part 1 ]##################\n\n#####################[ part 2 ]##################\n#\n# IF this is the original invocation, invoke WHATEVER other builds are required\n#\n# Xcode is already building ONE target...\n#\n# ...but this is a LIBRARY, so Apple is wrong to set it to build just one.\n# ...we need to build ALL targets\n# ...we MUST NOT re-build the target that is ALREADY being built: Xcode WILL CRASH YOUR COMPUTER if you try this (infinite recursion!)\n#\n# So: build ONLY the missing platforms/configurations.\n\nif [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: I am NOT the root invocation, so I'm NOT going to recurse\"\nelse\n# CRITICAL:\n# Prevent infinite recursion (Xcode sucks)\nexport ALREADYINVOKED=\"true\"\n\necho \"RECURSION: I am the root ... recursing all missing build targets NOW...\"\necho \"RECURSION: ...about to invoke: xcodebuild -configuration \\\"${CONFIGURATION}\\\" -project \\\"${PROJECT_NAME}.xcodeproj\\\" -target \\\"${TARGET_NAME}\\\" -sdk \\\"${OTHER_SDK_TO_BUILD}\\\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO\" BUILD_DIR=\\\"${BUILD_DIR}\\\" BUILD_ROOT=\\\"${BUILD_ROOT}\\\" SYMROOT=\\\"${SYMROOT}\\\"\n\nxcodebuild -configuration \"${CONFIGURATION}\" -project \"${PROJECT_NAME}.xcodeproj\" -target \"${TARGET_NAME}\" -sdk \"${OTHER_SDK_TO_BUILD}\" -arch x86_64 -arch arm64 ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\"\n\nACTION=\"build\"\n\n# Merge all platform binaries as a fat binary for each configurations.\n\n# Calculate where the (multiple) built files are coming from:\nCURRENTCONFIG_DEVICE_DIR=${SYMROOT}/${CONFIGURATION}-iphoneos\nCURRENTCONFIG_SIMULATOR_DIR=${SYMROOT}/${CONFIGURATION}-iphonesimulator\n\necho \"Taking device build from: ${CURRENTCONFIG_DEVICE_DIR}\"\necho \"Taking simulator build from: ${CURRENTCONFIG_SIMULATOR_DIR}\"\n\nCREATING_UNIVERSAL_DIR=${SYMROOT}/${CONFIGURATION}-universal\necho \"...Outputing a universal build to: ${CREATING_UNIVERSAL_DIR}\"\n\n# ... remove the products of previous runs of this script\n#      NB: this directory is ONLY created by this script - it should be safe to delete!\n\nrm -rf \"${CREATING_UNIVERSAL_DIR}\"\nmkdir \"${CREATING_UNIVERSAL_DIR}\"\n\n#\necho \"Creating the universal build:\"\necho \"\\t\\tFor current configuration: ${CONFIGURATION}\"\necho \"\\t\\tCreating archive file: ${EXECUTABLE_NAME}\"\nxcrun lipo -create -output \"${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_DEVICE_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_SIMULATOR_DIR}/${EXECUTABLE_NAME}\"\n\n#########\n#\n# Copy the public header files in the \"include\" folder to the universal build\n#\nif [ -d \"${CURRENTCONFIG_DEVICE_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\" ]\nthen\necho \"\\t\\tCreating directory in universal build: /${PUBLIC_HEADERS_FOLDER_PATH}\"\nmkdir -p \"${CREATING_UNIVERSAL_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\"\n\necho \"\\t\\tCopying headers from:\"\necho \"\\t\\t\\t${CURRENTCONFIG_DEVICE_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\" \necho \"\\t\\t\\tto\"\necho \"\\t\\t\\t${CREATING_UNIVERSAL_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\"\ncp -r \"${CURRENTCONFIG_DEVICE_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\"* \"${CREATING_UNIVERSAL_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\"\nfi\nfi\n";
+			shellScript = "# Version 2.82\n#\n# c.f. http://stackoverflow.com/questions/3520977/build-fat-static-library-device-simulator-using-xcode-and-sdk-4\n#\n# Latest Change:\n# - MORE tweaks to get the iOS 10+ and 9- working\n# - Support iOS 10+\n# - Corrected typo for iOS 1-10+ (thanks @stuikomma)\n#\n# Purpose:\n#   Automatically create a Universal static library for iPhone + iPad + iPhone Simulator from within XCode\n#\n# Author: Adam Martin - http://twitter.com/redglassesapps\n# Based on: original script from Eonil (main changes: Eonil's script WILL NOT WORK in Xcode GUI - it WILL CRASH YOUR COMPUTER)\n#\n\nset -e\nset -o pipefail\n\n#################[ Tests: helps workaround any future bugs in Xcode ]########\n#\nDEBUG_THIS_SCRIPT=\"false\"\n\nif [ $DEBUG_THIS_SCRIPT = \"true\" ]\nthen\necho \"########### TESTS #############\"\necho \"Use the following variables when debugging this script; note that they may change on recursions\"\necho \"BUILD_DIR = $BUILD_DIR\"\necho \"BUILD_ROOT = $BUILD_ROOT\"\necho \"CONFIGURATION_BUILD_DIR = $CONFIGURATION_BUILD_DIR\"\necho \"BUILT_PRODUCTS_DIR = $BUILT_PRODUCTS_DIR\"\necho \"CONFIGURATION_TEMP_DIR = $CONFIGURATION_TEMP_DIR\"\necho \"TARGET_BUILD_DIR = $TARGET_BUILD_DIR\"\nfi\n\n#####################[ part 1 ]##################\n# First, work out the BASESDK version number (NB: Apple ought to report this, but they hide it)\n#    (incidental: searching for substrings in sh is a nightmare! Sob)\n\nSDK_VERSION=$(echo ${SDK_NAME} | grep -o '\\d\\{1,2\\}\\.\\d\\{1,2\\}$')\n\n# Next, work out if we're in SIM or DEVICE\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nOTHER_SDK_TO_BUILD=iphoneos${SDK_VERSION}\nelse\nOTHER_SDK_TO_BUILD=iphonesimulator${SDK_VERSION}\nfi\n\necho \"XCode has selected SDK: ${PLATFORM_NAME} with version: ${SDK_VERSION} (although back-targetting: ${IPHONEOS_DEPLOYMENT_TARGET})\"\necho \"...therefore, OTHER_SDK_TO_BUILD = ${OTHER_SDK_TO_BUILD}\"\n#\n#####################[ end of part 1 ]##################\n\n#####################[ part 2 ]##################\n#\n# IF this is the original invocation, invoke WHATEVER other builds are required\n#\n# Xcode is already building ONE target...\n#\n# ...but this is a LIBRARY, so Apple is wrong to set it to build just one.\n# ...we need to build ALL targets\n# ...we MUST NOT re-build the target that is ALREADY being built: Xcode WILL CRASH YOUR COMPUTER if you try this (infinite recursion!)\n#\n# So: build ONLY the missing platforms/configurations.\n\nif [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: I am NOT the root invocation, so I'm NOT going to recurse\"\nelse\n# CRITICAL:\n# Prevent infinite recursion (Xcode sucks)\nexport ALREADYINVOKED=\"true\"\n\necho \"RECURSION: I am the root ... recursing all missing build targets NOW...\"\necho \"RECURSION: ...about to invoke: xcodebuild -configuration \\\"${CONFIGURATION}\\\" -project \\\"${PROJECT_NAME}.xcodeproj\\\" -target \\\"${TARGET_NAME}\\\" -sdk \\\"${OTHER_SDK_TO_BUILD}\\\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO\" BUILD_DIR=\\\"${BUILD_DIR}\\\" BUILD_ROOT=\\\"${BUILD_ROOT}\\\" SYMROOT=\\\"${SYMROOT}\\\"\n\nxcodebuild -configuration \"${CONFIGURATION}\" -project \"${PROJECT_NAME}.xcodeproj\" -target \"${TARGET_NAME}\" -sdk \"${OTHER_SDK_TO_BUILD}\" -arch x86_64 -arch arm64 -arch i386 ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\"\n\nACTION=\"build\"\n\n# Merge all platform binaries as a fat binary for each configurations.\n\n# Calculate where the (multiple) built files are coming from:\nCURRENTCONFIG_DEVICE_DIR=${SYMROOT}/${CONFIGURATION}-iphoneos\nCURRENTCONFIG_SIMULATOR_DIR=${SYMROOT}/${CONFIGURATION}-iphonesimulator\n\necho \"Taking device build from: ${CURRENTCONFIG_DEVICE_DIR}\"\necho \"Taking simulator build from: ${CURRENTCONFIG_SIMULATOR_DIR}\"\n\nCREATING_UNIVERSAL_DIR=${SYMROOT}/${CONFIGURATION}-universal\necho \"...Outputing a universal build to: ${CREATING_UNIVERSAL_DIR}\"\n\n# ... remove the products of previous runs of this script\n#      NB: this directory is ONLY created by this script - it should be safe to delete!\n\nrm -rf \"${CREATING_UNIVERSAL_DIR}\"\nmkdir \"${CREATING_UNIVERSAL_DIR}\"\n\n#\necho \"Creating the universal build:\"\necho \"\\t\\tFor current configuration: ${CONFIGURATION}\"\necho \"\\t\\tCreating archive file: ${EXECUTABLE_NAME}\"\nxcrun lipo -create -output \"${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_DEVICE_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_SIMULATOR_DIR}/${EXECUTABLE_NAME}\"\n\n#########\n#\n# Copy the public header files in the \"include\" folder to the universal build\n#\nif [ -d \"${CURRENTCONFIG_DEVICE_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\" ]\nthen\necho \"\\t\\tCreating directory in universal build: /${PUBLIC_HEADERS_FOLDER_PATH}\"\nmkdir -p \"${CREATING_UNIVERSAL_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\"\n\necho \"\\t\\tCopying headers from:\"\necho \"\\t\\t\\t${CURRENTCONFIG_DEVICE_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\" \necho \"\\t\\t\\tto\"\necho \"\\t\\t\\t${CREATING_UNIVERSAL_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\"\ncp -r \"${CURRENTCONFIG_DEVICE_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\"* \"${CREATING_UNIVERSAL_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}\"\nfi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1115,9 +861,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependencies/OpenSSL/lib\"",
-					"$(PROJECT_DIR)/Dependencies/OpenSSL/lib",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdl.SDLSecurity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1148,9 +893,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependencies/OpenSSL/lib\"",
-					"$(PROJECT_DIR)/Dependencies/OpenSSL/lib",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdl.SDLSecurity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1203,7 +947,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependencies/OpenSSL/lib\"",
-					"$(PROJECT_DIR)/Dependencies/OpenSSL/lib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1226,7 +969,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependencies/OpenSSL/lib\"",
-					"$(PROJECT_DIR)/Dependencies/OpenSSL/lib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
