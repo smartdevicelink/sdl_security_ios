@@ -89,6 +89,9 @@
     queryComponents.queryItems = queryItems;
     NSURL *url = queryComponents.URL;
 
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.timeoutIntervalForRequest = 20.0;
+
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 
