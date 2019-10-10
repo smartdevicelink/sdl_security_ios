@@ -15,14 +15,14 @@
 
 @interface _SDLCertificateManager ()
 
-@property (nonatomic, copy) NSURL *certificateURL;
+@property (nonatomic, copy) NSString *certificateURL;
 
 @end
 
 
 @implementation _SDLCertificateManager
 
-- (instancetype)initWithCertificateServerURL:(NSURL *)url {
+- (instancetype)initWithCertificateServerURL:(NSString *)url {
     self = [super init];
     if (!self) {
         return nil;
@@ -82,20 +82,19 @@
 }
 
 - (void)retrieveNewCertificateWithAppId:(NSString *)appId completionHandler:(SDLCertificateRetrievedHandler)completionHandler {
-    SDLSecurityLogD(@"Performing network request for certificate");
+    SDLSecurityLogD(@"Performing network request for a certificate");
 
-    NSString *certificateURL = [NSString stringWithFormat:@"%@?appID=%@", self.certificateURL.absoluteString, appId];
-
-    SDLSecurityLogD(@"Getting certificate data from: %@", certificateURL);
+    NSArray<NSURLQueryItem *> *queryItems = @[[[NSURLQueryItem alloc] initWithName:@"appID" value:appId]];
+    NSURLComponents *queryComponents = [NSURLComponents componentsWithString:self.certificateURL];
+    queryComponents.queryItems = queryItems;
+    NSURL *url = queryComponents.URL;
 
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURL *url = [NSURL URLWithString:certificateURL];
     NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 
         if (data.length == 0) {
-            SDLSecurityLogE(@"No certificate data returned");
-            // TODO: return custom error
-            return completionHandler(NO, nil);
+            SDLSecurityLogE(@"No data returned");
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNoCertificate userInfo:@{NSLocalizedDescriptionKey: @"Network request did not return data"}]);
         }
 
         NSError *jsonError = nil;
@@ -103,29 +102,27 @@
         NSDictionary *jsonDictionary = jsonArray.firstObject;
 
         if (jsonError != nil || jsonDictionary == nil) {
-            SDLSecurityLogE(@"Error parsing JSON");
-            // TODO: return custom error
-            return completionHandler(NO, nil);
+            SDLSecurityLogE(@"Error parsing network request data");
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNoCertificate userInfo:@{NSLocalizedDescriptionKey: @"Network request did not return a certificate"}]);
         }
 
-        NSData *base64Decoded = [[NSData alloc] initWithBase64EncodedData:[jsonDictionary objectForKey:@"certificate"] options:0];
-
-        if (base64Decoded == nil) {
-            SDLSecurityLogE(@"Security certificate is invalid");
-            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:nil]);
+        NSData *certificateData = [[NSData alloc] initWithBase64EncodedData:[jsonDictionary objectForKey:@"certificate"] options:0];
+        if (certificateData.length == 0) {
+            SDLSecurityLogE(@"Certificate is invalid");
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: @"Certificate is invalid"}]);
         }
 
-        // We have the cert data, store it as a file in the correct path
+        // Store the cert data as a file on disk
         NSError *writeFileError = nil;
         [self.class sdl_deleteCertificate];
-        BOOL writeSuccess = [base64Decoded writeToFile:[[self class] sdl_certificateFilePath] options:0 error:&writeFileError];
+        BOOL writeSuccess = [certificateData writeToFile:[[self class] sdl_certificateFilePath] options:0 error:&writeFileError];
         if (!writeSuccess) {
-            SDLSecurityLogE(@"Error writing TLS certificate to disk: %@", writeFileError);
-            return completionHandler(NO, writeFileError);
+            SDLSecurityLogE(@"Error writing certificate to disk: %@", writeFileError.localizedDescription);
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: writeFileError.localizedDescription}]);
         }
 
-        // Everything succeeded, the new cert exists at the file path
-        SDLSecurityLogD(@"TLS certificate downloaded successfully");
+        // Certificate downloaded and saved to disk successfully
+        SDLSecurityLogD(@"Certificate downloaded successfully");
         return completionHandler(YES, nil);
     }];
 
