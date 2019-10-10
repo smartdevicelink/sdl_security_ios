@@ -1,16 +1,16 @@
 # SDL Security iOS
-SDL Security is a security library for encrypting data transmitted between an [SDL iOS application](https://github.com/smartdevicelink/sdl_ios) and [SDL Core](https://github.com/smartdevicelink/sdl_core). On setup, a certificate associated with the SDL app's unique app id is downloaded from a URL. Then, the OpenSSL cryptographic library is used to encrypt and decrypt data using the TLS protocol. 
+SDL Security is a security library for encrypting data transmitted between an [SDL iOS application](https://github.com/smartdevicelink/sdl_ios) and [SDL Core](https://github.com/smartdevicelink/sdl_core). On setup, a certificate associated with the SDL app's unique app id is downloaded from a URL. Then the OpenSSL cryptographic library is used to encrypt and decrypt data using the DTLS protocol.
 
 ### How It Works
-SDL Security is an example security library that automotive OEMs can use to build their own proprietary security library. The security library must be configured by the OEM to work with their proprietary version of SDL Core. Once the security library has been configured, it is used to generate a static library that developers add to their SDL iOS apps.
+SDL Security is an example security library that automotive OEMs can use to build their own proprietary security libraries. The security library must be modified by the OEM to work with their proprietary version of SDL Core. Once the security library has been modified, it is used to generate a static library that developers add to their SDL iOS apps.
 
-Anyone implementing this library should take care to add additional protections as this library is not cryptographically secure out-of-the box.
+OEMs implementing this library should take care to add additional protections as this library is not cryptographically secure out-of-the box.
 
 ### What Can Be Encrypted?
-This library can be used to encrypt [SDL services](https://github.com/smartdevicelink/protocol_spec#5-services) such as the video, audio or RPC services.  
+This library can be used to encrypt [SDL services](https://github.com/smartdevicelink/protocol_spec#5-services) such as the video, audio or RPC services.
 
 ## Configuring the Library
-The following customizations must be made by the OEM in order for the library to work with their proprietary version of SDL Core.
+The following customizations must be made by the OEM in order for the library to work with their proprietary version of SDL Core:
 
 ### Certificate URL
 The `CertQAURL` URL in the **SDLPrivateSecurityConstants.m** file should to be updated to point to a database that will return certificate data for a specific SDL `appID`. The certificate data will be stored on disk as a `.pfx` file so it can persist between app sessions. If the certificate has expired, the library will automatically try to download a new certificate.
@@ -36,18 +36,16 @@ Once the security library has been configured by the OEM, it is used to generate
 1. Right click on the **libSDLSecurityStatic.a** build and select **Show in Finder**. This will take you to the derived data of the project which has the three builds listed below:
     * *Debug-iphoneos* - will only work on an iPhone 
     * *Debug-iphonesimulator* - will only work on a simulator
-    * *Debug-universal*  - will work on both the iPhone and simulator
+    * *Debug-universal* - will work on both the iPhone and simulator
 1. There are also two header files in the **include** folder, **SDLSecurityConstants.h** and **SDLSecurityManager.h** that must be included along with **libSDLSecurityStatic.a** archive build.
     
 ## Adding the Static Security Library to a SDL App
-In order to use the static security library in an SDL app you must have three files: **libSDLSecurityStatic.a**, **SDLSecurityConstants.h** and **SDLSecurityManager.h**
-
-1. In Xcode, drag and drop the following 3 files into your project: **libSDLSecurityStatic.a**, **SDLSecurityConstants.h** and **SDLSecurityManager.h**. Make sure **libSDLSecurityStatic.a** has been added to the project's target membership.  
-1. Import **SDLSecurityManager.h** into the file where the the `SDLConfiguration`'s `SDLEncryptionConfiguration` is being set. If you have a Swift project, this will require adding a bridging header to the project.
+1. In Xcode, drag and drop the following 3 files into your project: **libSDLSecurityStatic.a**, **SDLSecurityConstants.h** and **SDLSecurityManager.h** (or their equivalents after OEM naming modifications are made). Make sure **libSDLSecurityStatic.a** has been added to the project's target membership.  
+1. Import **SDLSecurityManager.h** into the file where the the `SDLConfiguration`'s `SDLEncryptionConfiguration` or `SDLStreamingMediaConfiguration` is being set. If you have a Swift project, this will require adding a bridging header to the project.
     `let encryptionManager = SDLEncryptionConfiguration(securityManagers: [SDLSecurityManager.self]], delegate: nil)`
 
 ## Updating the OpenSSL Dependency
-We have included a build of the OpenSSL library  so the security library can work out of the box with a few minor customizations. Production versions of this library should replace the OpenSSL dependency with a trusted build. The following configurations may have to be updated:
+We have included a build of the OpenSSL library so that the security library can work out of the box with a few minor customizations. However, this example does not often update the OpenSSL build and it is provided for example purposes. Production versions of this library should replace the OpenSSL dependency with an updated and trusted build. The following configurations may have to be updated:
 
 1. Make sure that the OpenSSL library builds **libcrypto.a**  and **libssl.a** have been added to the **SDLSecurityStatic** target.
 1. Configure the build settings for the **SDLSecurityStatic** target.
