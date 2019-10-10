@@ -90,6 +90,8 @@
     sessionConfig.timeoutIntervalForRequest = 20.0;
 
     NSURLSession *session = [NSURLSession sharedSession];
+
+    __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 
         if (data.length == 0) {
@@ -114,8 +116,8 @@
 
         // Store the cert data as a file on disk
         NSError *writeFileError = nil;
-        [self.class sdl_deleteCertificate];
-        BOOL writeSuccess = [certificateData writeToFile:[[self class] sdl_certificateFilePath] options:0 error:&writeFileError];
+        [weakSelf.class sdl_deleteCertificate];
+        BOOL writeSuccess = [certificateData writeToFile:[[weakSelf class] sdl_certificateFilePath] options:0 error:&writeFileError];
         if (!writeSuccess) {
             SDLSecurityLogE(@"Error writing certificate to disk: %@", writeFileError.localizedDescription);
             return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: writeFileError.localizedDescription}]);
