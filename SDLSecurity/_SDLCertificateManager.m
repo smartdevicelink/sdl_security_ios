@@ -35,12 +35,20 @@
 
 + (NSString *)sdl_buildSecurityDirectory {
     SDLSecurityLogD(@"Creating certificate directory");
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+
+    // Place the certs in the application directory path
+    // https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW1
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) firstObject];
+
+    // The security directory has to be customized per vendor
     NSString *securityDirectoryName = [NSString stringWithFormat:@"sdl_security_%@", VendorName];
     NSString *securityPath = [documentsPath stringByAppendingPathComponent:securityDirectoryName];
-    
+
+    // Check if the directory already exists
     if (![[NSFileManager defaultManager] fileExistsAtPath:securityPath]) {
         NSError *directoryCreationError = nil;
+
+        // Create the directory if it doesn't exist
         [[NSFileManager defaultManager] createDirectoryAtPath:securityPath withIntermediateDirectories:NO attributes:nil error:&directoryCreationError];
         if (directoryCreationError != nil) {
             SDLSecurityLogE(@"Error creating certificate directory: %@", directoryCreationError);
