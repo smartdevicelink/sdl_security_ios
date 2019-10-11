@@ -13,7 +13,9 @@ This library can be used to encrypt [SDL services](https://github.com/smartdevic
 The following customizations must be made by the OEM in order for the library to work with their proprietary version of SDL Core:
 
 ### Certificate URL
-The `CertQAURL` URL in the **SDLPrivateSecurityConstants.m** file should to be updated to point to a database that will return certificate data for a specific SDL `appID`. The certificate data will be stored on disk as a `.pfx` file so it can persist between app sessions. If the certificate has expired, the library will automatically try to download a new certificate.
+The `CertQAURL` URL in the **SDLPrivateSecurityConstants.m** file should to be updated to point to a database that will return certificate data for a specific SDL `appID`. The certificate data will be stored on disk as a `.pfx` file so it can persist between app sessions. If the certificate has expired, the library will automatically try to download a new certificate. 
+
+Depending on the object you return for the certificate request, you may have to update how the certificate is extracted from the object in **_SDLCertificateManager.m**.
 
 ### Vehicle Makes
 The `availableMakes` property should be updated in the **SDLSecurityManager.m** file to list all supported vehicle types. The `vehicleType` returned by SDL Core's `RegisterAppInterface` response is used to select the security manager associated with that vehicle type. It is important that the vehicle types listed in `availableMakes` match exactly the `vehicleType`s returned by the `RegisterAppInterface` response, otherwise the security manager will not be selected and configured. 
@@ -42,7 +44,12 @@ Once the security library has been configured by the OEM, it is used to generate
 ## Adding the Static Security Library to a SDL App
 1. In Xcode, drag and drop the following 3 files into your project: **libSDLSecurityStatic.a**, **SDLSecurityConstants.h** and **SDLSecurityManager.h** (or their equivalents after OEM naming modifications are made). Make sure **libSDLSecurityStatic.a** has been added to the project's target membership.  
 1. Import **SDLSecurityManager.h** into the file where the the `SDLConfiguration`'s `SDLEncryptionConfiguration` or `SDLStreamingMediaConfiguration` is being set. If you have a Swift project, this will require adding a bridging header to the project.
-    `let encryptionManager = SDLEncryptionConfiguration(securityManagers: [SDLSecurityManager.self]], delegate: nil)`
+    ```swift
+    let encryptionManager = SDLEncryptionConfiguration(securityManagers: [SDLSecurityManager.self]], delegate: nil)
+    ```
+    ```objc
+
+    ```
 
 ## Updating the OpenSSL Dependency
 We have included a build of the OpenSSL library so that the security library can work out of the box with a few minor customizations. However, this example does not often update the OpenSSL build and it is provided for example purposes. Production versions of this library should replace the OpenSSL dependency with an updated and trusted build. The following configurations may have to be updated:
