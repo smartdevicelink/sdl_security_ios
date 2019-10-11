@@ -24,7 +24,7 @@ The `availableMakes` property should be updated in the **SDLSecurityManager.m** 
 In order to check the mobile certificate parameters, the security library needs the TLS issuer and certificate password used to generate the certificate. Currently the the `SDLTLSIssuer` and `SDLTLSCertPassword` properties used to check the certificate are hardcoded in the **SDLPrivateSecurityConstants.m** file. 
 
 ### Certificate Storage
-Once the certificate is downloaded it is stored on disk so the certificate can persist between app sessions. The `VendorName` property in the  **SDLSecurityManager.m** file is used to create a directory where your certificate is stored. We recommend updating this property to your company name. 
+Once the certificate is downloaded it is stored on disk so the certificate can persist between app sessions. The `VendorName` property in the **SDLPrivateSecurityConstants.m** file is used to create a directory where your certificate is stored. We recommend updating this property to your company name. 
 
 ### Renaming the Library
 In order to use this security library with SDL, an OEM must rename this library and classes. This is because a developer who wants to support multiple OEMS will have to add a security manager from each OEM. If OEMS use the same class names then it will be impossible for the developer to include more than one security library in their application.
