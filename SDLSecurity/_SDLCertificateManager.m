@@ -126,7 +126,7 @@
         // Save the certificate to disk
         NSError *writeFileError = nil;
         [weakSelf.class sdl_deleteCertificate];
-        BOOL writeSuccess = [certificateData writeToFile:[[weakSelf class] sdl_certificateFilePath] options:0 error:&writeFileError];
+        BOOL writeSuccess = [certificateData writeToFile:[weakSelf.class sdl_certificateFilePath] options:0 error:&writeFileError];
         if (!writeSuccess) {
             SDLSecurityLogE(@"Error writing certificate to disk: %@", writeFileError.localizedDescription);
             return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: writeFileError.localizedDescription}]);
