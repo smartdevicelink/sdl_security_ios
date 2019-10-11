@@ -133,7 +133,7 @@ static const int SDLTLSReadBufferSize = 4096;
     OpenSSL_add_all_algorithms();
     SSL_library_init();
 
-    sslContext = SSL_CTX_new(DTLSv1_server_method());
+    sslContext = SSL_CTX_new(DTLS_server_method());
     SSL_CTX_set_verify(sslContext, SSL_VERIFY_NONE, NULL);
     
     long options = SSL_OP_NO_SSLv2 | SSL_OP_NO_COMPRESSION | SSL_OP_SINGLE_DH_USE | SSL_OP_SINGLE_ECDH_USE;
@@ -241,7 +241,6 @@ static const int SDLTLSReadBufferSize = 4096;
     }
     
     CONF_modules_unload(1);
-    ERR_remove_state(0);
     ERR_free_strings();
 
     EVP_cleanup();
@@ -303,7 +302,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
         if (certificateExpiryASN1 != NULL) {
             ASN1_GENERALIZEDTIME *certificateExpiryASN1Generalized = ASN1_TIME_to_generalizedtime(certificateExpiryASN1, NULL);
             if (certificateExpiryASN1Generalized != NULL) {
-                unsigned char *certificateExpiryData = ASN1_STRING_data(certificateExpiryASN1Generalized);
+                const unsigned char *certificateExpiryData = ASN1_STRING_get0_data(certificateExpiryASN1Generalized);
                 
                 // ASN1 generalized times look like this: "20131114230046Z"
                 //                                format:  YYYYMMDDHHMMSS
