@@ -48,11 +48,13 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:securityPath]) {
         NSError *directoryCreationError = nil;
 
-        // Create the directory if it doesn't exist
-        [[NSFileManager defaultManager] createDirectoryAtPath:securityPath withIntermediateDirectories:NO attributes:nil error:&directoryCreationError];
+        // Create the directory if it doesn't exist. Create the intermediate directories as the "Application Support" directory not exist in the app's sandbox by default.
+        [[NSFileManager defaultManager] createDirectoryAtPath:securityPath withIntermediateDirectories:YES attributes:nil error:&directoryCreationError];
         if (directoryCreationError != nil) {
             SDLSecurityLogE(@"Error creating certificate directory: %@", directoryCreationError);
         }
+    } else {
+        SDLSecurityLogD(@"Certificate directory already exists");
     }
     
     return securityPath;
@@ -69,7 +71,7 @@
     SDLSecurityLogD(@"Deleting certificate");
     NSString *certificatePath = [self sdl_certificateFilePath];
     if (![[NSFileManager defaultManager] fileExistsAtPath:certificatePath]) {
-        SDLSecurityLogW(@"No certificate to delete");
+        SDLSecurityLogD(@"No certificate to delete");
         return;
     }
     
@@ -98,7 +100,6 @@
     sessionConfig.timeoutIntervalForRequest = 20.0;
 
     NSURLSession *session = [NSURLSession sharedSession];
-
     __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 
@@ -122,7 +123,7 @@
             return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: @"Certificate is invalid"}]);
         }
 
-        // Store the cert data as a file on disk
+        // Save the certificate to disk
         NSError *writeFileError = nil;
         [weakSelf.class sdl_deleteCertificate];
         BOOL writeSuccess = [certificateData writeToFile:[[weakSelf class] sdl_certificateFilePath] options:0 error:&writeFileError];
@@ -131,7 +132,6 @@
             return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: writeFileError.localizedDescription}]);
         }
 
-        // Certificate downloaded and saved to disk successfully
         SDLSecurityLogD(@"Certificate downloaded successfully");
         return completionHandler(YES, nil);
     }];
