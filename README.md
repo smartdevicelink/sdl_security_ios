@@ -13,7 +13,7 @@ This library can be used to encrypt [SDL services](https://github.com/smartdevic
 The following customizations must be made by the OEM in order for the library to work with their proprietary version of SDL Core:
 
 ### Certificate URL
-The `CertQAURL` URL in the **SDLPrivateSecurityConstants.m** file should to be updated to point to a database that will return certificate data for a specific SDL `appID`. The certificate data will be stored on disk as a `.pfx` file so it can persist between app sessions. If the certificate has expired, the library will automatically try to download a new certificate. 
+The `CertQAURL` URL in the **SDLPrivateSecurityConstants.m** file should be updated to point to a database that will return certificate data for a specific SDL `appID`. The certificate data will be stored on disk as a `.pfx` file so it can persist between app sessions. If the certificate has expired, the library will automatically try to download a new certificate. 
 
 Depending on the what you return for the certificate request, you may have to update how the certificate is extracted from the JSON object in **_SDLCertificateManager.m**.
 
