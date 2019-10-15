@@ -15,14 +15,14 @@
 
 @interface _SDLCertificateManager ()
 
-@property (nonatomic, copy) NSURL *certificateURL;
+@property (nonatomic, copy) NSString *certificateURL;
 
 @end
 
 
 @implementation _SDLCertificateManager
 
-- (instancetype)initWithCertificateServerURL:(NSURL *)url {
+- (instancetype)initWithCertificateServerURL:(NSString *)url {
     self = [super init];
     if (!self) {
         return nil;
@@ -48,11 +48,13 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:securityPath]) {
         NSError *directoryCreationError = nil;
 
-        // Create the directory if it doesn't exist
-        [[NSFileManager defaultManager] createDirectoryAtPath:securityPath withIntermediateDirectories:NO attributes:nil error:&directoryCreationError];
+        // Create the directory if it doesn't exist. Create the intermediate directories as the "Application Support" directory not exist in the app's sandbox by default.
+        [[NSFileManager defaultManager] createDirectoryAtPath:securityPath withIntermediateDirectories:YES attributes:nil error:&directoryCreationError];
         if (directoryCreationError != nil) {
             SDLSecurityLogE(@"Error creating certificate directory: %@", directoryCreationError);
         }
+    } else {
+        SDLSecurityLogD(@"Certificate directory already exists");
     }
     
     return securityPath;
@@ -69,7 +71,7 @@
     SDLSecurityLogD(@"Deleting certificate");
     NSString *certificatePath = [self sdl_certificateFilePath];
     if (![[NSFileManager defaultManager] fileExistsAtPath:certificatePath]) {
-        SDLSecurityLogW(@"No certificate to delete");
+        SDLSecurityLogD(@"No certificate to delete");
         return;
     }
     
@@ -83,80 +85,58 @@
         return nil;
     }
     
-    // TODO: Decrypt?
-    
-    // TODO: Return data
     return [NSData dataWithContentsOfFile:certPath];
 }
 
 - (void)retrieveNewCertificateWithAppId:(NSString *)appId completionHandler:(SDLCertificateRetrievedHandler)completionHandler {
-    SDLSecurityLogD(@"Performing network request for certificate");
+    SDLSecurityLogD(@"Performing network request for a certificate");
 
-    // Create the URL request with the required parameters
-    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:self.certificateURL] mutableCopy];
-    if (request == nil) {
-        SDLSecurityLogE(@"Error creating security request from URL");
-        completionHandler(NO, nil); // TODO: Error
-        return;
-    }
-    
-    [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"accept"];
-    
-    // Attempt to serialize the app id dictionary into json data
-    NSError *jsonEncodeError = nil;
-    NSDictionary *appIdJSON = @{@"appId": appId};
-    NSData *appIdData = [NSJSONSerialization dataWithJSONObject:appIdJSON options:0 error:&jsonEncodeError];
-    if (appIdData == nil) {
-        SDLSecurityLogE(@"Error creating security request JSON");
-        completionHandler(NO, jsonEncodeError);
-        return;
-    }
+    NSArray<NSURLQueryItem *> *queryItems = @[[[NSURLQueryItem alloc] initWithName:@"appID" value:appId]];
+    NSURLComponents *queryComponents = [NSURLComponents componentsWithString:self.certificateURL];
+    queryComponents.queryItems = queryItems;
+    NSURL *url = queryComponents.URL;
 
-    [[NSURLSession sharedSession] uploadTaskWithRequest:request fromData:appIdData completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        // If the certificate server didn't send us any data back
-        if (data == nil) {
-            SDLSecurityLogE(@"Security server responded with an error. Response: %@, Error: %@", response, error);
-            completionHandler(NO, error);
-            return;
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.timeoutIntervalForRequest = 20.0;
+
+    NSURLSession *session = [NSURLSession sharedSession];
+    __weak typeof(self) weakSelf = self;
+    NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+
+        if (data.length == 0) {
+            SDLSecurityLogE(@"No data returned");
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNoCertificate userInfo:@{NSLocalizedDescriptionKey: @"Network request did not return data"}]);
         }
 
-        // Try to decode the server data
-        NSError *jsonDecodeError = nil;
-        NSDictionary *jsonDecodedDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonDecodeError];
-        if ((jsonDecodedDict == nil) || (jsonDecodedDict[@"Certificate"] == nil)) {
-            SDLSecurityLogE(@"Error decoding JSON: %@", jsonDecodeError);
-            completionHandler(NO, jsonDecodeError);
-            return;
+        NSError *jsonError = nil;
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        NSDictionary *jsonDictionary = jsonArray.firstObject;
+
+        if (jsonError != nil || jsonDictionary == nil) {
+            SDLSecurityLogE(@"Error parsing network request data");
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNoCertificate userInfo:@{NSLocalizedDescriptionKey: @"Network request did not return a certificate"}]);
         }
 
-        // The cert is base 64 encoded. Decode it
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        NSData *base64Decoded = [[NSData alloc] initWithBase64Encoding:jsonDecodedDict[@"Certificate"]];
-#pragma clang diagnostic pop
-        if (base64Decoded == nil) {
-            SDLSecurityLogE(@"TLS security certificate is invalid");
-            completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: @"TLS security certificate is invalid"}]);
+        NSData *certificateData = [[NSData alloc] initWithBase64EncodedData:[jsonDictionary objectForKey:@"certificate"] options:0];
+        if (certificateData.length == 0) {
+            SDLSecurityLogE(@"Certificate is invalid");
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: @"Certificate is invalid"}]);
         }
 
-        // TODO: Encrypt?
-
-        // TODO: Weakself
-        // We have the cert data, store it as a file in the correct path
+        // Save the certificate to disk
         NSError *writeFileError = nil;
-        [[self class] sdl_deleteCertificate];
-        BOOL writeSuccess = [base64Decoded writeToFile:[[self class] sdl_certificateFilePath] options:0 error:&writeFileError];
+        [weakSelf.class sdl_deleteCertificate];
+        BOOL writeSuccess = [certificateData writeToFile:[weakSelf.class sdl_certificateFilePath] options:0 error:&writeFileError];
         if (!writeSuccess) {
-            SDLSecurityLogE(@"Error writing TLS certificate to disk: %@", writeFileError);
-            completionHandler(NO, writeFileError);
-            return;
+            SDLSecurityLogE(@"Error writing certificate to disk: %@", writeFileError.localizedDescription);
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: writeFileError.localizedDescription}]);
         }
 
-        // Everything succeeded, the new cert exists at the file path
-        SDLSecurityLogD(@"TLS certificate downloaded successfully");
-        completionHandler(YES, nil);
+        SDLSecurityLogD(@"Certificate downloaded successfully");
+        return completionHandler(YES, nil);
     }];
+
+    [task resume];
 }
 
 @end

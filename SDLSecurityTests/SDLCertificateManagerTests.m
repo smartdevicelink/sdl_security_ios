@@ -27,7 +27,7 @@ static NSString *const TestAppId = @"000000000";
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
-    self.certManager = [[_SDLCertificateManager alloc] init];
+    self.certManager = [[_SDLCertificateManager alloc] initWithCertificateServerURL:@"testURL"];
 }
 
 - (void)tearDown {

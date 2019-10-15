@@ -15,9 +15,11 @@ typedef void (^SDLCertificateRetrievedHandler)(BOOL success, NSError *__nullable
 
 @interface _SDLCertificateManager : NSObject
 
-- (instancetype)initWithCertificateServerURL:(NSURL *)url;
-
 @property (nonatomic, copy, readonly, nullable) NSData *certificateData;
+
+- (instancetype)init NS_UNAVAILABLE;
+
+- (instancetype)initWithCertificateServerURL:(NSString *)url;
 
 - (void)retrieveNewCertificateWithAppId:(NSString *)appId completionHandler:(SDLCertificateRetrievedHandler)completionHandler;
 
