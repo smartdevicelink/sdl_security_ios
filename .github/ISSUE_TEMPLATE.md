@@ -15,8 +15,9 @@
 [Some observed behavior]
 
 ##### OS & Version Information
-* SDL Security iOS Version: [What version of the sdl_security_ios library has this bug been seen on]
-* SDL iOS Version: [What version of the sdl_ios library was being used]
+* SDL Security iOS Version: [What version of the sdl_security_ios library was this bug seen on]
+* SDL iOS Version: [What version of the sdl_ios library were you using when the bug occurred]
+* iOS Version: [What version of iOS were you using when the bug occurred]
 * Testing Against: [What you tested with to observe this behavior]
 
 ##### Test Case, Sample Code, and / or Example App
