@@ -33,10 +33,3 @@ The third party software included and used by this project is:
 * Copyright (c) 1995-1998 Eric A. Young, Tim J. Hudson
 * Licensed under a dual-license (the OpenSSL license plus the SSLeay license)
 * See https://github.com/openssl/openssl/tree/OpenSSL_1_1_1-stable
-
-**cpp-base64.**
-
-* Copyright © 2004-2017 by René Nyffenegger
-* Licensed under zlib License.
-* See https://github.com/ReneNyffenegger/cpp-base64.
-
