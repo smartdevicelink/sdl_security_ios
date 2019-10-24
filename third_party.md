@@ -27,11 +27,12 @@ original licenses.
 
 The third party software included and used by this project is:
 
-**OpenSSL 1.0.2**
+**OpenSSL 1.1.1**
 
-* Copyright (c) 1998-2016 The OpenSSL Project.  All rights reserved.
-* Licensed under OpenSSL License.
-* See https://github.com/openssl/openssl/treeOpenSSL_1_0_2f.
+* Copyright (c) 1998-2019 The OpenSSL Project
+* Copyright (c) 1995-1998 Eric A. Young, Tim J. Hudson
+* Licensed under a dual-license (the OpenSSL license plus the SSLeay license)
+* See https://github.com/openssl/openssl/tree/OpenSSL_1_1_1-stable
 
 **cpp-base64.**
 
