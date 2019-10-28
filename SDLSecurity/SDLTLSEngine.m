@@ -1,5 +1,5 @@
 //
-//  SDLSecurityPrivate.m
+//  SDLTLSEngine.m
 //  SDLSecurity
 //
 //  Created by Joel Fischer on 1/28/16.
@@ -14,7 +14,7 @@
 #import <openssl/conf.h>
 #import <openssl/pkcs12.h>
 
-#import "_SDLCertificateManager.h"
+#import "SDLCertificateManager.h"
 #import "SDLPrivateSecurityConstants.h"
 #import "SDLSecurityConstants.h"
 #import "SDLSecurityLoggerMacros.h"
@@ -37,7 +37,7 @@ static const int SDLTLSReadBufferSize = 4096;
 }
 
 @property (assign, nonatomic) SDLTLSEngineState state;
-@property (strong, nonatomic) _SDLCertificateManager *certificateManager;
+@property (strong, nonatomic) SDLCertificateManager *certificateManager;
 @property (copy, nonatomic) NSString *appId;
 
 @end
@@ -59,7 +59,7 @@ static const int SDLTLSReadBufferSize = 4096;
     
     _state = SDLTLSEngineStateDisconnected;
     _appId = appId;
-    _certificateManager = [[_SDLCertificateManager alloc] initWithCertificateServerURL:CertQAURL];
+    _certificateManager = [[SDLCertificateManager alloc] initWithCertificateServerURL:CertQAURL];
 
     SSL_load_error_strings();
     ERR_load_BIO_strings();

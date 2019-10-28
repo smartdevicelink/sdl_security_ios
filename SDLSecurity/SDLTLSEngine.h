@@ -1,5 +1,5 @@
 //
-//  SDLSecurityPrivate.h
+//  SDLTLSEngine.h
 //  SDLSecurity
 //
 //  Created by Joel Fischer on 1/28/16.

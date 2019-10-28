@@ -1,5 +1,5 @@
 //
-//  _SDLCertificateManager.m
+//  SDLCertificateManager.m
 //  SDLSecurity
 //
 //  Created by Joel Fischer on 2/29/16.

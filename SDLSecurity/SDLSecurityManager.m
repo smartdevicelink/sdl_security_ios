@@ -8,8 +8,9 @@
 
 #import "SDLSecurityManager.h"
 
-#import "_SDLCertificateManager.h"
-#import "_SDLTLSEngine.h"
+#import "SDLCertificateManager.h"
+#import "SDLTLSEngine.h"
+#import "SDLPrivateSecurityConstants.h"
 #import "SDLSecurityConstants.h"
 
 typedef NS_ENUM(NSUInteger, SDLTLSState) {
@@ -23,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SDLSecurityManager () {
     @private
-    _SDLTLSEngine *_privateSecurity;
+    SDLTLSEngine *_privateSecurity;
 }
 
 @property (assign, nonatomic) SDLTLSState state;
@@ -54,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
     
     // Set up the TLS engine
-    _privateSecurity = [[_SDLTLSEngine alloc] initWithAppId:appId];
+    _privateSecurity = [[SDLTLSEngine alloc] initWithAppId:appId];
     [_privateSecurity initializeTLSWithCompletionHandler:^(BOOL success, NSError * _Nullable error) {
         if (success) {
             self.state = SDLTLSStateInitialized;
@@ -88,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSSet<NSString *> *)availableMakes {
-    return [NSSet setWithArray:@[@"Example"]];
+    return availableMakes;
 }
 
 @end
