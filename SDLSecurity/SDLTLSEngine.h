@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface _SDLTLSEngine : NSObject
+@interface SDLTLSEngine : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 

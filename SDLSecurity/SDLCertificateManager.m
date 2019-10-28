@@ -6,21 +6,21 @@
 //  Copyright © 2016 livio. All rights reserved.
 //
 
-#import "_SDLCertificateManager.h"
+#import "SDLCertificateManager.h"
 
 #import "SDLPrivateSecurityConstants.h"
 #import "SDLSecurityConstants.h"
 #import "SDLSecurityLoggerMacros.h"
 
 
-@interface _SDLCertificateManager ()
+@interface SDLCertificateManager ()
 
 @property (nonatomic, copy) NSString *certificateURL;
 
 @end
 
 
-@implementation _SDLCertificateManager
+@implementation SDLCertificateManager
 
 - (instancetype)initWithCertificateServerURL:(NSString *)url {
     self = [super init];

@@ -6,7 +6,7 @@
 //  Copyright © 2016 livio. All rights reserved.
 //
 
-#import "_SDLTLSEngine.h"
+#import "SDLTLSEngine.h"
 
 #import <openssl/bio.h>
 #import <openssl/ssl.h>
@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, SDLTLSEngineState) {
 
 static const int SDLTLSReadBufferSize = 4096;
 
-@interface _SDLTLSEngine () {
+@interface SDLTLSEngine () {
     SSL *sslConnection;
     SSL_CTX *sslContext;
     BIO *readBIO;
@@ -43,7 +43,7 @@ static const int SDLTLSReadBufferSize = 4096;
 @end
 
 
-@implementation _SDLTLSEngine
+@implementation SDLTLSEngine
 
 #pragma mark - Lifecycle
 
