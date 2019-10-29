@@ -15,7 +15,19 @@ The following customizations must be made by the OEM in order for the library to
 ### Certificate URL
 The `CertQAURL` URL in the **SDLPrivateSecurityConstants.m** file should be updated to point to a database that will return certificate data for a specific SDL `appID`. The certificate data will be stored on disk as a `.pfx` file so it can persist between app sessions. If the certificate has expired, the library will automatically try to download a new certificate. 
 
-Depending on the what you return for the certificate request, you may have to update how the certificate is extracted from the JSON object in **_SDLCertificateManager.m**.
+Depending on the response you return for the certificate request, you may need to update how the certificate is extracted from the JSON object in **_SDLCertificateManager.m**. Currently the certificate manager is set up to handle parsing this JSON format:
+```
+{
+  "meta": {
+    "request_id": "<The id of your request>",
+    "code": 200,
+    "message": null
+  },
+  "data": {
+    "certificate": "<The base64 encoded PFX file data>"
+  }
+}
+```
 
 ### Vehicle Makes
 The `availableMakes` property should be updated in the **SDLSecurityManager.m** file to list all supported vehicle types. The `vehicleType` returned by SDL Core's `RegisterAppInterface` response is used to select the security manager associated with that vehicle type. It is important that the vehicle types listed in `availableMakes` match exactly the `vehicleType`s returned by the `RegisterAppInterface` response, otherwise the security manager will not be selected and configured. 
