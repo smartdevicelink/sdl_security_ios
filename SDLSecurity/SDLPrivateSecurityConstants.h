@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSSet<NSString *> *availableMakes;
 extern NSString *const CertDevURL;
 extern NSString *const CertQAURL;
 extern NSString *const CertProdURL;
@@ -17,5 +16,7 @@ extern NSString *const SDLTLSIssuer;
 extern const char *SDLTLSCertPassword;
 
 @interface SDLPrivateSecurityConstants : NSObject
+
++ (NSSet<NSString *> *)availableMakes;
 
 @end

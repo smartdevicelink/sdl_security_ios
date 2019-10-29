@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSSet<NSString *> *)availableMakes {
-    return [SDLPrivateSecurityConstants.class availableMakes];
+    return SDLPrivateSecurityConstants.availableMakes;
 }
 
 @end
