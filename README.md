@@ -19,12 +19,12 @@ Depending on the response you return for the certificate request, you may need t
 ```
 {
   "meta": {
-  "request_id": "...",
+    "request_id": "<The id of your request>",
     "code": 200,
     "message": null
   },
   "data": {
-    "certificate": "..."
+    "certificate": "<The base64 encoded PFX file data>"
   }
 }
 ```
