@@ -8,7 +8,6 @@
 
 #import "SDLPrivateSecurityConstants.h"
 
-NSSet<NSString *> *availableMakes;
 NSString *const CertDevURL = @"http://www.google.com";
 NSString *const CertQAURL = @"http://www.google.com";
 NSString *const CertProdURL = @"http://www.google.com";
