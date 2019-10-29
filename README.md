@@ -15,7 +15,7 @@ The following customizations must be made by the OEM in order for the library to
 ### Certificate URL
 The `CertQAURL` URL in the **SDLPrivateSecurityConstants.m** file should be updated to point to a database that will return certificate data for a specific SDL `appID`. The certificate data will be stored on disk as a `.pfx` file so it can persist between app sessions. If the certificate has expired, the library will automatically try to download a new certificate. 
 
-Depending on the what you return for the certificate request, you may have to update how the certificate is extracted from the JSON object in **_SDLCertificateManager.m**. Currently the certificate manager is setup to handle parsing this JSON format:
+Depending on the response you return for the certificate request, you may need to update how the certificate is extracted from the JSON object in **_SDLCertificateManager.m**. Currently the certificate manager is set up to handle parsing this JSON format:
 ```
 {
   "meta": {
