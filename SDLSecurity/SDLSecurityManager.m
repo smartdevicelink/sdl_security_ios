@@ -9,9 +9,9 @@
 #import "SDLSecurityManager.h"
 
 #import "SDLCertificateManager.h"
-#import "SDLTLSEngine.h"
 #import "SDLPrivateSecurityConstants.h"
 #import "SDLSecurityConstants.h"
+#import "SDLTLSEngine.h"
 
 typedef NS_ENUM(NSUInteger, SDLTLSState) {
     SDLTLSStateUninitialized,
