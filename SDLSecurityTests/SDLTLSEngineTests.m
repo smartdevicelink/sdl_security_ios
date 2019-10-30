@@ -8,14 +8,14 @@
 
 #import <XCTest/XCTest.h>
 
-#import "_SDLTLSEngine.h"
+#import "SDLTLSEngine.h"
 
 static NSString *const TestAppId = @"584421907";
 
 
 @interface SDLTLSEngineTests : XCTestCase
 
-@property (strong, nonatomic) _SDLTLSEngine *tlsEngine;
+@property (strong, nonatomic) SDLTLSEngine *tlsEngine;
 
 @end
 
@@ -31,7 +31,7 @@ static NSString *const TestAppId = @"584421907";
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
-    self.tlsEngine = [[_SDLTLSEngine alloc] initWithAppId:TestAppId];
+    self.tlsEngine = [[SDLTLSEngine alloc] initWithAppId:TestAppId];
 }
 
 - (void)tearDown {
