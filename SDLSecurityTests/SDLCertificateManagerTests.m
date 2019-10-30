@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "_SDLCertificateManager.h"
+#import "SDLCertificateManager.h"
 
 
 static NSString *const TestAppId = @"000000000";
@@ -16,7 +16,7 @@ static NSString *const TestAppId = @"000000000";
 
 @interface SDLCertificateManagerTests : XCTestCase
 
-@property (strong, nonatomic) _SDLCertificateManager *certManager;
+@property (strong, nonatomic) SDLCertificateManager *certManager;
 
 @end
 
@@ -27,7 +27,7 @@ static NSString *const TestAppId = @"000000000";
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
-    self.certManager = [[_SDLCertificateManager alloc] initWithCertificateServerURL:@"testURL"];
+    self.certManager = [[SDLCertificateManager alloc] initWithCertificateServerURL:@"testURL"];
 }
 
 - (void)tearDown {

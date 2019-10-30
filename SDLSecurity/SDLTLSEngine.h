@@ -1,5 +1,5 @@
 //
-//  SDLSecurityPrivate.h
+//  SDLTLSEngine.h
 //  SDLSecurity
 //
 //  Created by Joel Fischer on 1/28/16.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface _SDLTLSEngine : NSObject
+@interface SDLTLSEngine : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 
