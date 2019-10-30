@@ -8,11 +8,17 @@
 
 #import "SDLPrivateSecurityConstants.h"
 
-
 NSString *const CertDevURL = @"http://www.google.com";
 NSString *const CertQAURL = @"http://www.google.com";
 NSString *const CertProdURL = @"http://www.google.com";
-NSString *const VendorName = @"SDL"; // Change
+NSString *const VendorName = @"SDL";
+NSString *const SDLTLSIssuer = @"SDLTLSIssuer";
+const char *SDLTLSCertPassword = "SDLTLSCertPassword";
 
-NSString *const SDLTLSIssuer = @"YourIssuer";
-const char *SDLTLSCertPassword = "CertPassword";
+@implementation SDLPrivateSecurityConstants
+
++ (NSSet<NSString *> *)availableMakes {
+    return [NSSet setWithArray:@[@"SDL"]];
+}
+
+@end
