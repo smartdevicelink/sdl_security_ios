@@ -1,26 +1,26 @@
 //
-//  _SDLCertificateManager.m
+//  SDLCertificateManager.m
 //  SDLSecurity
 //
 //  Created by Joel Fischer on 2/29/16.
 //  Copyright © 2016 livio. All rights reserved.
 //
 
-#import "_SDLCertificateManager.h"
+#import "SDLCertificateManager.h"
 
 #import "SDLPrivateSecurityConstants.h"
 #import "SDLSecurityConstants.h"
 #import "SDLSecurityLoggerMacros.h"
 
 
-@interface _SDLCertificateManager ()
+@interface SDLCertificateManager ()
 
 @property (nonatomic, copy) NSString *certificateURL;
 
 @end
 
 
-@implementation _SDLCertificateManager
+@implementation SDLCertificateManager
 
 - (instancetype)initWithCertificateServerURL:(NSString *)url {
     self = [super init];
@@ -91,7 +91,7 @@
 - (void)retrieveNewCertificateWithAppId:(NSString *)appId completionHandler:(SDLCertificateRetrievedHandler)completionHandler {
     SDLSecurityLogD(@"Performing network request for a certificate");
 
-    NSArray<NSURLQueryItem *> *queryItems = @[[[NSURLQueryItem alloc] initWithName:@"appID" value:appId]];
+    NSArray<NSURLQueryItem *> *queryItems = @[[[NSURLQueryItem alloc] initWithName:@"appId" value:appId]];
     NSURLComponents *queryComponents = [NSURLComponents componentsWithString:self.certificateURL];
     queryComponents.queryItems = queryItems;
     NSURL *url = queryComponents.URL;
@@ -109,15 +109,14 @@
         }
 
         NSError *jsonError = nil;
-        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        NSDictionary *jsonDictionary = jsonArray.firstObject;
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
 
         if (jsonError != nil || jsonDictionary == nil) {
             SDLSecurityLogE(@"Error parsing network request data");
             return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNoCertificate userInfo:@{NSLocalizedDescriptionKey: @"Network request did not return a certificate"}]);
         }
 
-        NSData *certificateData = [[NSData alloc] initWithBase64EncodedData:[jsonDictionary objectForKey:@"certificate"] options:0];
+        NSData *certificateData = [[NSData alloc] initWithBase64EncodedData:[jsonDictionary valueForKeyPath:@"data.certificate"] options:0];
         if (certificateData.length == 0) {
             SDLSecurityLogE(@"Certificate is invalid");
             return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: @"Certificate is invalid"}]);

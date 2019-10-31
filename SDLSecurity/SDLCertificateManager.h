@@ -1,5 +1,5 @@
 //
-//  _SDLCertificateManager.h
+//  SDLCertificateManager.h
 //  SDLSecurity
 //
 //  Created by Joel Fischer on 2/29/16.
@@ -13,14 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^SDLCertificateRetrievedHandler)(BOOL success, NSError *__nullable error);
 
 
-@interface _SDLCertificateManager : NSObject
+@interface SDLCertificateManager : NSObject
 
 @property (nonatomic, copy, readonly, nullable) NSData *certificateData;
 
 - (instancetype)init NS_UNAVAILABLE;
-
 - (instancetype)initWithCertificateServerURL:(NSString *)url;
-
 - (void)retrieveNewCertificateWithAppId:(NSString *)appId completionHandler:(SDLCertificateRetrievedHandler)completionHandler;
 
 @end
