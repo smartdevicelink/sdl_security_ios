@@ -24,6 +24,10 @@ typedef NS_ENUM(NSUInteger, SDLTLSErrorCode) {
     SDLTLSErrorCodeCertificateInvalid
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SDLSecurityConstants : NSObject
 
 @end
+
+NS_ASSUME_NONNULL_END

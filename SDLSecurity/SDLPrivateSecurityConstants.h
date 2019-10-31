@@ -9,18 +9,20 @@
 #import <Foundation/Foundation.h>
 
 /// The URL from which to download the PFX certificate file data
-extern NSString *const CertDevURL;
-extern NSString *const CertQAURL;
-extern NSString *const CertProdURL;
+extern NSString * _Nonnull const CertDevURL;
+extern NSString * _Nonnull const CertQAURL;
+extern NSString * _Nonnull const CertProdURL;
 
 /// The issuer name of the PFX certificate file
-extern NSString *const SDLTLSIssuer;
+extern NSString * _Nonnull const SDLTLSIssuer;
 
 /// The password used to generate the PFX certificate file
-extern const char *SDLTLSCertPassword;
+extern const char * _Nonnull SDLTLSCertPassword;
 
 /// The name of the custom directory folder where the downloaded certificate will be stored
-extern NSString *const VendorName;
+extern NSString * _Nonnull const VendorName;
+
+NS_ASSUME_NONNULL_BEGIN
 
 /// Private constants used by the security manager.
 @interface SDLPrivateSecurityConstants : NSObject
@@ -29,3 +31,5 @@ extern NSString *const VendorName;
 + (NSSet<NSString *> *)availableMakes;
 
 @end
+
+NS_ASSUME_NONNULL_END

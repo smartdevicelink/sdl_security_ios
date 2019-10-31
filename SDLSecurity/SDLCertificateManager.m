@@ -12,6 +12,7 @@
 #import "SDLSecurityConstants.h"
 #import "SDLSecurityLoggerMacros.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface SDLCertificateManager ()
 
@@ -139,3 +140,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
