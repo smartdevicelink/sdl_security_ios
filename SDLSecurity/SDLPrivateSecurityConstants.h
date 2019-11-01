@@ -13,7 +13,7 @@ extern NSString * _Nonnull const CertDevURL;
 extern NSString * _Nonnull const CertQAURL;
 extern NSString * _Nonnull const CertProdURL;
 
-/// The issuer name of the PFX certificate file
+/// The issuer of the PFX certificate file
 extern NSString * _Nonnull const SDLTLSIssuer;
 
 /// The password used to generate the PFX certificate file

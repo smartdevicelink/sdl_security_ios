@@ -14,57 +14,36 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init NS_UNAVAILABLE;
 
+/// Constructs a SDLTLSEngine object with the appID of the SDL app
+/// @param appId The appID of the SDL app
 - (instancetype)initWithAppId:(NSString *)appId NS_DESIGNATED_INITIALIZER;
 
-/**
- *  Use the built in certificate manager to attempt to initialize the TLS engine. This method will try to get stored cert data from the cert manager and if that fails, try to download a new certificate and re-initialize.
- *
- *  @param completionHandler A completion handler that says whether or not initialization succeeded, and if it did not, what error was returned.
- */
+/// Initializes the TLS engine using certificate data returned by the certificate manager. If no certificate exists or the certificate is expired, an attempt is made to download a new certificate.
+/// @param completionHandler Returns whether or not initialization succeeded. An error is returned if initialization failed
 - (void)initializeTLSWithCompletionHandler:(void(^)(BOOL success, NSError *_Nullable error))completionHandler;
 
-/**
- *  Mainly for testing, this method will not use the baked in certificate manager to try and get its data.
- *
- *  @param data  The certificate data to use to initialize the TLS engine
- *  @param error An error if initialization failed
- *
- *  @return Whether or not intialization succeeded
- */
+/// Initializes the TLS engine using the provided certificate data.
+/// Used for testing
+/// @param data The PFX certificate data which should be base64 encoded
+/// @param error The error is set if initialization failed
 - (BOOL)initializeTLSWithCertificateData:(NSData *)data error:(NSError **)error;
 
-/**
- *  End the current TLS instance
- */
+/// Closes the the current DTLS/SSL connection.
 - (void)shutdownTLS;
 
-/**
- *  Attempt to generate handshake data as a server using some client data.
- *
- *  @param data  The client data to be passed to the TLS engine
- *  @param error An out-parameter error if something goes wrong
- *
- *  @return Data to send to the client or nil if something went wrong
- */
+/// Generate handshake data as a server using client data.
+/// @param data The client data to be passed to the TLS engine
+/// @param error The error is set if the handshake fails
 - (nullable NSData *)runHandshakeWithClientData:(NSData *)data error:(NSError **)error;
 
-/**
- *  Attempt to decrypt some data using the current TLS session
- *
- *  @param encryptedData The encrypted data to decrypt
- *  @param error         An out-parameter error if something goes wrong
- *
- *  @return The decrypted data or nil if the decryption failed
- */
+/// Decrypts data using the current DTLS session. If decryption fails, `nil` is returned and the `error` parameter should be checked for an error message.
+/// @param encryptedData The encrypted data to be decrypted
+/// @param error The error is set if decryption fails
 - (nullable NSData *)decryptData:(NSData *)encryptedData withError:(NSError **)error;
-/**
- *  Attempt to decrypt some data using the current TLS session
- *
- *  @param decryptedData The unencrypted data to encrypt
- *  @param error         An out-parameter error if something goes wrong
- *
- *  @return The encrypted data or nil if the encryption failed
- */
+
+/// Encrypt data using the current DTLS session. If encyption fails, `nil` is returned and the `error` parameter should be checked for an error message.
+/// @param decryptedData The data to encrypt
+/// @param error The error is set if encryption fails
 - (nullable NSData *)encryptData:(NSData *)decryptedData withError:(NSError **)error;
 
 @end

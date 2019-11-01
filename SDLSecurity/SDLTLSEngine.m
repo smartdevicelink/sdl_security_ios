@@ -22,6 +22,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// An enum describing the state of the DTLS/SSL connection.
+/// SDLTLSEngineStateDisconnected: The connection is closed
+/// SDLTLSEngineStateInitialized: The connection is established
 typedef NS_ENUM(NSUInteger, SDLTLSEngineState) {
     SDLTLSEngineStateDisconnected,
     SDLTLSEngineStateInitialized,
@@ -30,19 +33,33 @@ typedef NS_ENUM(NSUInteger, SDLTLSEngineState) {
 static const int SDLTLSReadBufferSize = 4096;
 
 @interface SDLTLSEngine () {
-    SSL *sslConnection;
+    /// Configuration for establishing the DTLS/SSL enabled connection
     SSL_CTX *sslContext;
+    /// The DTLS/SSL connection
+    SSL *sslConnection;
+    /// Read and write memory BIOs
     BIO *readBIO;
     BIO *writeBIO;
 }
 
+/// The current state of the DTLS/SSL connection.
 @property (assign, nonatomic) SDLTLSEngineState state;
+/// Manager for downloading and caching a certificate.
 @property (strong, nonatomic) SDLCertificateManager *certificateManager;
+/// The appID of the SDL app
 @property (copy, nonatomic) NSString *appId;
 
 @end
 
 
+/*
+This diagram shows how data is encrypted and decrypted using the read and write BIOs.
++-----------------------------------------------------------------------------------------------+
+encrypted bytes ----> BIO_write(readBIO) --> |*****| --> SSL_read(ssl) -------> unencrypted bytes
+                                             |*SSL*|
+unencrypted bytes --> SSL_write(ssl) ------> |*****| --> BIO_read(writeBIO) --> encrypted bytes
++-----------------------------------------------------------------------------------------------+
+*/
 @implementation SDLTLSEngine
 
 #pragma mark - Lifecycle
@@ -61,16 +78,11 @@ static const int SDLTLSReadBufferSize = 4096;
     _appId = appId;
     _certificateManager = [[SDLCertificateManager alloc] initWithCertificateServerURL:CertQAURL];
 
-    SSL_load_error_strings();
-    ERR_load_BIO_strings();
-    OpenSSL_add_all_algorithms();
-    SSL_library_init();
+    [self.class sdlsec_OpenSSLInitialization];
 
     return self;
 }
 
-
-#pragma mark - Startup / Teardown
 
 // http://stackoverflow.com/questions/6371775/how-to-load-a-pkcs12-file-in-openssl-programmatically
 - (void)initializeTLSWithCompletionHandler:(void (^)(BOOL success, NSError * _Nullable))completionHandler {
@@ -128,10 +140,7 @@ static const int SDLTLSReadBufferSize = 4096;
     
     void *p12Buffer = (void *)data.bytes;
 
-    SSL_load_error_strings();
-    ERR_load_BIO_strings();
-    OpenSSL_add_all_algorithms();
-    SSL_library_init();
+    [self.class sdlsec_OpenSSLInitialization];
 
     sslContext = SSL_CTX_new(DTLS_server_method());
     SSL_CTX_set_verify(sslContext, SSL_VERIFY_NONE, NULL);
@@ -289,6 +298,13 @@ void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS
     }
 }
 
++ (void)sdlsec_OpenSSLInitialization {
+    SSL_load_error_strings();
+    ERR_load_BIO_strings();
+    OpenSSL_add_all_algorithms();
+    SSL_library_init();
+}
+
 #pragma mark - Certificate Validity
 
 // http://stackoverflow.com/questions/8850524/seccertificateref-how-to-get-the-certificate-information
@@ -392,17 +408,6 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     return dataToSend;
 }
 
-
-#pragma mark - Send / Receive
-
-//- (int)BIODataPending {
-//    return BIO_pending(readBIO);
-//}
-//
-//- (int)SSLDataPending {
-//    return SSL_pending(sslConnection);
-//}
-
 #pragma mark SSL
 
 - (int)sdlsec_SSLWriteDataToServer:(NSData *)data withError:(NSError * __autoreleasing*)error {
@@ -475,9 +480,15 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
 
 #pragma mark - Error
 
+/// Returns a custom error code for the result code of the preceding call on ssl.
+/// @param ssl <#ssl description#>
+/// @param value <#value description#>
+/// @param length <#length description#>
+/// @param isWrite <#isWrite description#>
 + (SDLTLSErrorCode)sdlsec_errorCodeFromSSL:(SSL *)ssl value:(int)value length:(int)length isWrite:(BOOL)isWrite {
+    // Get the result code for the preceding call to ssl
     int error = SSL_get_error(ssl, value);
-    
+
     switch(error) {
         case SSL_ERROR_NONE:
             if((length != value) && isWrite) {
