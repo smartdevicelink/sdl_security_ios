@@ -54,11 +54,11 @@ static const int SDLTLSReadBufferSize = 4096;
 
 /*
 This diagram shows how data is encrypted and decrypted using the read and write BIOs.
-+-----------------------------------------------------------------------------------------------+
-encrypted bytes ----> BIO_write(readBIO) --> |*****| --> SSL_read(ssl) -------> unencrypted bytes
-                                             |*SSL*|
-unencrypted bytes --> SSL_write(ssl) ------> |*****| --> BIO_read(writeBIO) --> encrypted bytes
-+-----------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------+
+encrypted bytes ---> BIO_write(readBIO) -------> |*****| -> SSL_read(sslConnection) -> unencrypted bytes
+                                                 |*SSL*|
+unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) ------> encrypted bytes
++------------------------------------------------------------------------------------------------------+
 */
 @implementation SDLTLSEngine
 
@@ -258,28 +258,38 @@ unencrypted bytes --> SSL_write(ssl) ------> |*****| --> BIO_read(writeBIO) --> 
     CRYPTO_cleanup_all_ex_data();
 }
 
+/// Checks whether the DTLS/SSL connection is in a state where fully protected data can be transferred. If not, a handshake is attempted and the connection state is checked again before returning.
 - (BOOL)sdlsec_TLSHandshake {
     if (sslConnection == NULL) {
         return NO;
     }
     
     if (!SSL_is_init_finished(sslConnection)) {
+        // Since the underlying BIO is blocking, this will only return once the handshake has been finished or an error occurred
         SSL_do_handshake(sslConnection);
     }
     
     return SSL_is_init_finished(sslConnection);
 }
 
+/// Closes the open DTLS/SSL session. A bidirectional shutdown handshake must be performed, which means the shutdown attempt should be tried again if the return value of the shutdown is zero.
 - (void)sdlsec_shutdown {
     int retryCount = 0;
     for (int i = 0; i < 4; i++) {
         retryCount = SSL_shutdown(sslConnection);
         if (retryCount > 0) {
+            // The retryCount will be 1 when a bidirectional shutdown has completed successfully
             break;
         }
     }
 }
 
+/// Destroys the OpenSSL structs created when extracting the PFX file's certificate and keys.
+/// @param cert The certificate data
+/// @param rsa The public key
+/// @param p12 The PFX file
+/// @param pbio Memory BIO for the PFX file
+/// @param pkey The private key
 void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS12 *_Nullable p12, BIO *_Nullable pbio, EVP_PKEY *_Nullable pkey) {
     if (cert != NULL) {
         X509_free(cert);
@@ -298,6 +308,7 @@ void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS
     }
 }
 
+/// Initilizes OpenSSL's libssl library by loading the error codes and algorithms.
 + (void)sdlsec_OpenSSLInitialization {
     SSL_load_error_strings();
     ERR_load_BIO_strings();
@@ -308,8 +319,7 @@ void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS
 #pragma mark - Certificate Validity
 
 // http://stackoverflow.com/questions/8850524/seccertificateref-how-to-get-the-certificate-information
-static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
-{
+static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     SDLSecurityLogD(@"Verifying certificate expiration date");
     NSDate *expiryDate = nil;
     
@@ -408,8 +418,11 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     return dataToSend;
 }
 
-#pragma mark SSL
+#pragma mark Read and write encrypted data from server
 
+/// Writes unencrypted data to the server
+/// @param data The unencrypted data
+/// @param error The error will be set if the data can not be written successfully
 - (int)sdlsec_SSLWriteDataToServer:(NSData *)data withError:(NSError * __autoreleasing*)error {
     int length = (int)data.length;
     void *buffer = (void *)data.bytes;
@@ -423,6 +436,8 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     return retVal;
 }
 
+/// Reads unencrypted data from the server
+/// @param error The error will be set if the data can not be read successfully
 - (nullable NSData *)sdlsec_SSLReadDataFromServerWithError:(NSError * __autoreleasing*)error {
     NSData *returnData = nil;
     
@@ -443,9 +458,9 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     return returnData;
 }
 
-
-#pragma mark BIO
-
+/// Writes encrypted data to the server.
+/// @param data Encrypted data
+/// @param error The error will be set if the data can not be written successfully
 - (int)sdlsec_BIOWriteDataToServer:(NSData *)data withError:(NSError * __autoreleasing*)error {
     int length = (int)data.length;
     void *buffer = (void *)data.bytes;
@@ -459,6 +474,8 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     return retVal;
 }
 
+/// Retrieves the encrypted data from the server.
+/// @param error The error will be set if the data can not be retrieved successfully
 - (nullable NSData *)sdlsec_BIOReadDataFromServerWithError:(NSError * __autoreleasing*)error {
     NSMutableData *returnData = [NSMutableData data];
     int length = SDLTLSReadBufferSize;
@@ -477,14 +494,13 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509)
     return returnData;
 }
 
+#pragma mark - Errors
 
-#pragma mark - Error
-
-/// Returns a custom error code for the result code of the preceding call on ssl.
-/// @param ssl <#ssl description#>
-/// @param value <#value description#>
-/// @param length <#length description#>
-/// @param isWrite <#isWrite description#>
+/// Creates a custom error code for the result code returned when attempting to read or write data from the server.
+/// @param ssl The DTLS/SSL connection
+/// @param value The value returned by the read or write action
+/// @param length The length of the data read or written
+/// @param isWrite True if a write action is being attempted; false if not
 + (SDLTLSErrorCode)sdlsec_errorCodeFromSSL:(SSL *)ssl value:(int)value length:(int)length isWrite:(BOOL)isWrite {
     // Get the result code for the preceding call to ssl
     int error = SSL_get_error(ssl, value);
