@@ -48,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+/// Returns an icon representation fo the LoggerLevel enum.
+/// @param logLevel The log level
 - (NSString *)sdl_logCharacterForLevel:(LoggerLevel)logLevel {
     switch (logLevel) {
         case LoggerLevelDebug: return @"🔵";
@@ -59,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+/// Returns a string representation of the LoggerLevel enum.
+/// @param logLevel The log level
 - (NSString *)sdl_logNameForLevel:(LoggerLevel)logLevel {
     switch (logLevel) {
         case LoggerLevelDebug: return @"DEBUG";
@@ -69,6 +73,8 @@ NS_ASSUME_NONNULL_BEGIN
             return @"UNKNOWN";
     }
 }
+
+#pragma mark - Class property getters
 
 + (NSDateFormatter *)dateFormatter {
     static NSDateFormatter *_dateFormatter = nil;
