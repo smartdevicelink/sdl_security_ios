@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SDLCertificateManager ()
 
+/// The URL where the PFX files are being hosted.
 @property (nonatomic, copy) NSString *certificateURL;
 
 @end
@@ -34,60 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-+ (NSString *)sdl_buildSecurityDirectory {
-    SDLSecurityLogD(@"Creating certificate directory");
-
-    // Place the certs in the application directory path
-    // https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW1
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) firstObject];
-
-    // The security directory has to be customized per vendor
-    NSString *securityDirectoryName = [NSString stringWithFormat:@"sdl_security_%@", VendorName];
-    NSString *securityPath = [documentsPath stringByAppendingPathComponent:securityDirectoryName];
-
-    // Check if the directory already exists
-    if (![[NSFileManager defaultManager] fileExistsAtPath:securityPath]) {
-        NSError *directoryCreationError = nil;
-
-        // Create the directory if it doesn't exist. Create the intermediate directories as the "Application Support" directory not exist in the app's sandbox by default.
-        [[NSFileManager defaultManager] createDirectoryAtPath:securityPath withIntermediateDirectories:YES attributes:nil error:&directoryCreationError];
-        if (directoryCreationError != nil) {
-            SDLSecurityLogE(@"Error creating certificate directory: %@", directoryCreationError);
-        }
-    } else {
-        SDLSecurityLogD(@"Certificate directory already exists");
-    }
-    
-    return securityPath;
-}
-
-+ (NSString *)sdl_certificateFilePath {
-    NSString *securityPath = [self sdl_buildSecurityDirectory];
-    NSString *certificatePath = [securityPath stringByAppendingPathComponent:@"cert.pfx"];
-    
-    return certificatePath;
-}
-
-+ (void)sdl_deleteCertificate {
-    SDLSecurityLogD(@"Deleting certificate");
-    NSString *certificatePath = [self sdl_certificateFilePath];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:certificatePath]) {
-        SDLSecurityLogD(@"No certificate to delete");
-        return;
-    }
-    
-    [[NSFileManager defaultManager] removeItemAtPath:certificatePath error:nil];
-}
-
-- (nullable NSData *)certificateData {
-    // Get the certificate's file path
-    NSString *certPath = [[self class] sdl_certificateFilePath];
-    if (![[NSFileManager defaultManager] isReadableFileAtPath:certPath]) {
-        return nil;
-    }
-    
-    return [NSData dataWithContentsOfFile:certPath];
-}
+#pragma mark - Certificate Retrieval
 
 - (void)retrieveNewCertificateWithAppId:(NSString *)appId completionHandler:(SDLCertificateRetrievedHandler)completionHandler {
     SDLSecurityLogD(@"Performing network request for a certificate");
@@ -137,6 +85,65 @@ NS_ASSUME_NONNULL_BEGIN
     }];
 
     [task resume];
+}
+
+#pragma mark - Certificate Caching
+
+/// Creates the directory where the PFX file will be cached
++ (NSString *)sdl_buildSecurityDirectory {
+    SDLSecurityLogD(@"Creating certificate directory");
+
+    // Place the PFX file in the application directory path
+    // https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW1
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) firstObject];
+
+    // The security directory has to be customized per vendor
+    NSString *securityDirectoryName = [NSString stringWithFormat:@"sdl_security_%@", VendorName];
+    NSString *securityPath = [documentsPath stringByAppendingPathComponent:securityDirectoryName];
+
+    // Check if the directory already exists
+    if (![[NSFileManager defaultManager] fileExistsAtPath:securityPath]) {
+        NSError *directoryCreationError = nil;
+
+        // Create the directory if it doesn't exist. Create the intermediate directories as the "Application Support" directory not exist in the app's sandbox by default.
+        [[NSFileManager defaultManager] createDirectoryAtPath:securityPath withIntermediateDirectories:YES attributes:nil error:&directoryCreationError];
+        if (directoryCreationError != nil) {
+            SDLSecurityLogE(@"Error creating certificate directory: %@", directoryCreationError);
+        }
+    } else {
+        SDLSecurityLogD(@"Certificate directory already exists");
+    }
+    
+    return securityPath;
+}
+
+/// The absolute file path of the cached PFX file
++ (NSString *)sdl_certificateFilePath {
+    NSString *securityPath = [self sdl_buildSecurityDirectory];
+    NSString *certificatePath = [securityPath stringByAppendingPathComponent:@"cert.pfx"];
+    
+    return certificatePath;
+}
+
+/// Deletes the cached PFX file, if it extists.
++ (void)sdl_deleteCertificate {
+    SDLSecurityLogD(@"Deleting certificate");
+    NSString *certificatePath = [self sdl_certificateFilePath];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:certificatePath]) {
+        SDLSecurityLogD(@"No certificate to delete");
+        return;
+    }
+    
+    [[NSFileManager defaultManager] removeItemAtPath:certificatePath error:nil];
+}
+
+- (nullable NSData *)certificateData {
+    NSString *certPath = [[self class] sdl_certificateFilePath];
+    if (![[NSFileManager defaultManager] isReadableFileAtPath:certPath]) {
+        return nil;
+    }
+    
+    return [NSData dataWithContentsOfFile:certPath];
 }
 
 @end
