@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Manager class for encrypting and decrypting data using the OpenSSL library.
 @interface SDLTLSEngine : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -18,11 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param appId The appID of the SDL app
 - (instancetype)initWithAppId:(NSString *)appId NS_DESIGNATED_INITIALIZER;
 
-/// Initializes the TLS engine using certificate data returned by the certificate manager. If no certificate exists or the certificate is expired, an attempt is made to download a new certificate.
+/// Initializes the DTLS engine using certificate data returned by the certificate manager. If no certificate exists or the certificate is expired, an attempt is made to download a new certificate.
 /// @param completionHandler Returns whether or not initialization succeeded. An error is returned if initialization failed
 - (void)initializeTLSWithCompletionHandler:(void(^)(BOOL success, NSError *_Nullable error))completionHandler;
 
-/// Initializes the TLS engine using the provided certificate data.
+/// Initializes the DTLS engine using the provided certificate data.
 /// Used for testing
 /// @param data The PFX certificate data which should be base64 encoded
 /// @param error The error is set if initialization failed
@@ -31,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Closes the the current DTLS/SSL connection.
 - (void)shutdownTLS;
 
-/// Generate handshake data as a server using client data.
+/// Generates handshake data using client data.
 /// @param data The client data to be passed to the TLS engine
 /// @param error The error is set if the handshake fails
 - (nullable NSData *)runHandshakeWithClientData:(NSData *)data error:(NSError **)error;

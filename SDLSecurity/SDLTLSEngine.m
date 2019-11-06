@@ -23,10 +23,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// An enum describing the state of the DTLS/SSL connection.
-/// SDLTLSEngineStateDisconnected: The connection is closed
-/// SDLTLSEngineStateInitialized: The connection is established
 typedef NS_ENUM(NSUInteger, SDLTLSEngineState) {
+    /// The connection is closed
     SDLTLSEngineStateDisconnected,
+    /// The connection is established
     SDLTLSEngineStateInitialized,
 };
 
@@ -51,9 +51,8 @@ static const int SDLTLSReadBufferSize = 4096;
 
 @end
 
-
 /*
-This diagram shows how data is encrypted and decrypted using the read and write BIOs.
+This diagram shows how data is encrypted and decrypted using the OpenSSL library.
 +------------------------------------------------------------------------------------------------------+
 encrypted bytes ---> BIO_write(readBIO) -------> |*****| -> SSL_read(sslConnection) -> unencrypted bytes
                                                  |*SSL*|
@@ -82,7 +81,6 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
 
     return self;
 }
-
 
 // http://stackoverflow.com/questions/6371775/how-to-load-a-pkcs12-file-in-openssl-programmatically
 - (void)initializeTLSWithCompletionHandler:(void (^)(BOOL success, NSError * _Nullable))completionHandler {
@@ -155,7 +153,6 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
         return NO;
     }
 
-    // TODO: Swap out the hardcoded password for however we're getting it
     success = PKCS12_parse(p12, SDLTLSCertPassword, &pkey, &certX509, NULL);
     if (certX509 == NULL || pkey == NULL) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
@@ -234,56 +231,6 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     return YES;
 }
 
-- (void)shutdownTLS {
-    SDLSecurityLogD(@"Shutting down TLS engine");
-    if (self.state != SDLTLSEngineStateInitialized) {
-        return;
-    }
-    
-    if (sslConnection != NULL) {
-        [self sdlsec_shutdown];
-        SSL_free(sslConnection);
-    }
-    
-    if (sslContext != NULL) {
-        SSL_CTX_free(sslContext);
-    }
-    
-    CONF_modules_unload(1);
-    ERR_free_strings();
-
-    EVP_cleanup();
-
-    sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
-    CRYPTO_cleanup_all_ex_data();
-}
-
-/// Checks whether the DTLS/SSL connection is in a state where fully protected data can be transferred. If not, a handshake is attempted and the connection state is checked again before returning.
-- (BOOL)sdlsec_TLSHandshake {
-    if (sslConnection == NULL) {
-        return NO;
-    }
-    
-    if (!SSL_is_init_finished(sslConnection)) {
-        // Since the underlying BIO is blocking, this will only return once the handshake has been finished or an error occurred
-        SSL_do_handshake(sslConnection);
-    }
-    
-    return SSL_is_init_finished(sslConnection);
-}
-
-/// Closes the open DTLS/SSL session. A bidirectional shutdown handshake must be performed, which means the shutdown attempt should be tried again if the return value of the shutdown is zero.
-- (void)sdlsec_shutdown {
-    int retryCount = 0;
-    for (int i = 0; i < 4; i++) {
-        retryCount = SSL_shutdown(sslConnection);
-        if (retryCount > 0) {
-            // The retryCount will be 1 when a bidirectional shutdown has completed successfully
-            break;
-        }
-    }
-}
-
 /// Destroys the OpenSSL structs created when extracting the PFX file's certificate and keys.
 /// @param cert The certificate data
 /// @param rsa The public key
@@ -316,9 +263,47 @@ void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS
     SSL_library_init();
 }
 
+- (void)shutdownTLS {
+    SDLSecurityLogD(@"Shutting down TLS engine");
+    if (self.state != SDLTLSEngineStateInitialized) {
+        return;
+    }
+
+    if (sslConnection != NULL) {
+        [self sdlsec_shutdown];
+        SSL_free(sslConnection);
+    }
+
+    if (sslContext != NULL) {
+        SSL_CTX_free(sslContext);
+    }
+
+    CONF_modules_unload(1);
+    ERR_free_strings();
+
+    EVP_cleanup();
+
+    sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
+    CRYPTO_cleanup_all_ex_data();
+}
+
+/// Closes the open DTLS/SSL session. A bidirectional shutdown handshake must be performed, which means the shutdown attempt should be tried again if the return value of the shutdown is zero.
+- (void)sdlsec_shutdown {
+    int retryCount = 0;
+    for (int i = 0; i < 4; i++) {
+        retryCount = SSL_shutdown(sslConnection);
+        if (retryCount > 0) {
+            // The retryCount will be 1 when a bidirectional shutdown has completed successfully
+            break;
+        }
+    }
+}
+
 #pragma mark - Certificate Validity
 
-// http://stackoverflow.com/questions/8850524/seccertificateref-how-to-get-the-certificate-information
+/// Gets the expiration date of the certificate
+/// @param certificateX509 The certificate data
+/// http://stackoverflow.com/questions/8850524/seccertificateref-how-to-get-the-certificate-information
 static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     SDLSecurityLogD(@"Verifying certificate expiration date");
     NSDate *expiryDate = nil;
@@ -360,8 +345,38 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     return expiryDate;
 }
 
+#pragma mark - Handshake
 
-#pragma mark - Encrypt / Decrypt
+- (nullable NSData *)runHandshakeWithClientData:(NSData *)data error:(NSError * _Nullable __autoreleasing *)error {
+    if ([self sdlsec_BIOWriteDataToServer:data withError:error] <= 0) {
+        return nil;
+    }
+
+    [self sdlsec_TLSHandshake];
+
+    NSData *dataToSend = [self sdlsec_BIOReadDataFromServerWithError:error];
+
+    [self sdlsec_TLSHandshake];
+
+    return dataToSend;
+}
+
+/// Checks whether the DTLS/SSL connection is in a state where fully protected data can be transferred. If not, a handshake is attempted and the connection state is checked again before returning.
+- (BOOL)sdlsec_TLSHandshake {
+    if (sslConnection == NULL) {
+        return NO;
+    }
+
+    if (!SSL_is_init_finished(sslConnection)) {
+        // Since the underlying BIO is blocking, this will only return once the handshake has been finished or an error occurred
+        SSL_do_handshake(sslConnection);
+    }
+
+    return SSL_is_init_finished(sslConnection);
+}
+
+
+#pragma mark - Encrypt / Decrypt Data
 
 - (nullable NSData *)encryptData:(NSData *)decryptedData withError:(NSError * _Nullable __autoreleasing *)error {
     if (![self sdlsec_TLSHandshake]) {
@@ -402,25 +417,9 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 }
 
 
-#pragma mark - Handshake
+#pragma mark OpenSSL Encryption / Decryption
 
-- (nullable NSData *)runHandshakeWithClientData:(NSData *)data error:(NSError * _Nullable __autoreleasing *)error {
-    if ([self sdlsec_BIOWriteDataToServer:data withError:error] <= 0) {
-        return nil;
-    }
-    
-    [self sdlsec_TLSHandshake];
-    
-    NSData *dataToSend = [self sdlsec_BIOReadDataFromServerWithError:error];
-    
-    [self sdlsec_TLSHandshake];
-    
-    return dataToSend;
-}
-
-#pragma mark Read and write encrypted data from server
-
-/// Writes unencrypted data to the server
+/// Writes the unencrypted data to the OpenSSL server so it can be encrypted.
 /// @param data The unencrypted data
 /// @param error The error will be set if the data can not be written successfully
 - (int)sdlsec_SSLWriteDataToServer:(NSData *)data withError:(NSError * __autoreleasing*)error {
@@ -436,7 +435,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     return retVal;
 }
 
-/// Reads unencrypted data from the server
+/// Reads the unencrypted data from the OpenSSL server.
 /// @param error The error will be set if the data can not be read successfully
 - (nullable NSData *)sdlsec_SSLReadDataFromServerWithError:(NSError * __autoreleasing*)error {
     NSData *returnData = nil;
@@ -458,7 +457,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     return returnData;
 }
 
-/// Writes encrypted data to the server.
+/// Writes encrypted data to the OpenSSL server so it can be decrypted.
 /// @param data Encrypted data
 /// @param error The error will be set if the data can not be written successfully
 - (int)sdlsec_BIOWriteDataToServer:(NSData *)data withError:(NSError * __autoreleasing*)error {
@@ -474,7 +473,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     return retVal;
 }
 
-/// Retrieves the encrypted data from the server.
+/// Retrieves the encrypted data from the OpenSSL server.
 /// @param error The error will be set if the data can not be retrieved successfully
 - (nullable NSData *)sdlsec_BIOReadDataFromServerWithError:(NSError * __autoreleasing*)error {
     NSMutableData *returnData = [NSMutableData data];
@@ -494,9 +493,10 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     return returnData;
 }
 
+
 #pragma mark - Errors
 
-/// Creates a custom error code for the result code returned when attempting to read or write data from the server.
+/// Examines the result code returned when attempting to read or write data from the server and returns a human readable version of the result code. If an error occured, an error is returned; if successful no error is returned.
 /// @param ssl The DTLS/SSL connection
 /// @param value The value returned by the read or write action
 /// @param length The length of the data read or written
