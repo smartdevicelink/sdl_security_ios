@@ -11,14 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// An enum describing the severity level of the log message.
-/// LoggerLevelOff: Not used
-/// LoggerLevelError: A non-recoverable error occured
-/// LoggerLevelWarning: An error occured but it is recoverable
-/// LoggerLevelDebug: Detailed summary information
 typedef NS_ENUM(NSInteger, LoggerLevel) {
+    /// Not used
     LoggerLevelOff = 0,
+    /// A non-recoverable error occured
     LoggerLevelError = 1,
+    /// An error occured but it is recoverable
     LoggerLevelWarning = 2,
+    /// Detailed summary
     LoggerLevelDebug = 3
 };
 
