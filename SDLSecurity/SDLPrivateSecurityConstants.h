@@ -8,18 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-/// The URL from which to download the PFX certificate file data
+/// The development URL from which to download the PFX file data.
 extern NSString * _Nonnull const CertDevURL;
+
+/// The quality assurance URL from which to download the PFX file data.
 extern NSString * _Nonnull const CertQAURL;
+
+/// The production URL from which to download the PFX file data.
 extern NSString * _Nonnull const CertProdURL;
 
-/// The issuer of the PFX certificate file
+/// The issuer of the PFX file.
 extern NSString * _Nonnull const SDLTLSIssuer;
 
-/// The password used to generate the PFX certificate file
+/// The password used to generate the PFX file.
 extern const char * _Nonnull SDLTLSCertPassword;
 
-/// The name of the custom directory folder where the downloaded certificate will be stored
+/// The name of the custom directory folder where the downloaded PFX file will be stored.
 extern NSString * _Nonnull const VendorName;
 
 NS_ASSUME_NONNULL_BEGIN

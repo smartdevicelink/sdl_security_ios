@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
     return certificatePath;
 }
 
-/// Deletes the cached PFX file, if it extists.
+/// Deletes the cached PFX file, if it exists.
 + (void)sdl_deleteCertificate {
     SDLSecurityLogD(@"Deleting certificate");
     NSString *certificatePath = [self sdl_certificateFilePath];
