@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const CertDevURL;
-extern NSString *const CertQAURL;
-extern NSString *const CertProdURL;
+extern NSString *const CertificateURL;
 extern NSString *const VendorName;
 extern NSString *const SDLTLSIssuer;
 extern const char *SDLTLSCertPassword;

@@ -59,7 +59,7 @@ static const int SDLTLSReadBufferSize = 4096;
     
     _state = SDLTLSEngineStateDisconnected;
     _appId = appId;
-    _certificateManager = [[SDLCertificateManager alloc] initWithCertificateServerURL:CertQAURL];
+    _certificateManager = [[SDLCertificateManager alloc] initWithCertificateServerURL:CertificateURL];
 
     SSL_load_error_strings();
     ERR_load_BIO_strings();
