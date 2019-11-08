@@ -41,9 +41,10 @@ Once the certificate is downloaded it is stored on disk so the certificate can p
 ### Renaming the Library
 In order to use this security library with SDL, an OEM must rename this library and classes. This is because a developer who wants to support multiple OEMS will have to add a security manager from each OEM. If OEMS use the same class names then it will be impossible for the developer to include more than one security library in their application.
 
-## Generating the Static Security Library
-Once the security library has been configured by the OEM, it is used to generate a static library that developers add to their SDL iOS apps. The static library, **libSDLSecurityStatic.a**, can easily be built in Xcode using the **SDLSecurityStatic** target:
+## Static Security Library
+Once the security library has been configured by the OEM, it is used to generate a static library that developers add to their SDL iOS apps. The static library, **libSDLSecurityStatic.a**, can easily be built in Xcode using the **SDLSecurityStatic** target. 
 
+### Generating the Static Security Library
 1. In the scheme menu of Xcode, set the active scheme to **SDLSecurityStatic**.
 1. Build and run the **SDLSecurityStatic** scheme (**Product > Build For > Running**). 
 1. In the project navigator you will find the **libSDLSecurityStatic.a** build under **SDLSecurity > Products**.
@@ -53,20 +54,46 @@ Once the security library has been configured by the OEM, it is used to generate
     * *Debug-universal* - will work on both the iPhone and simulator
 1. There are also two header files in the **include** folder, **SDLSecurityConstants.h** and **SDLSecurityManager.h** that must be included along with **libSDLSecurityStatic.a** archive build.
     
-## Adding the Static Security Library to a SDL App
+### Adding the Static Security Library to a SDL App
 1. In Xcode, drag and drop the following 3 files into your project: **libSDLSecurityStatic.a**, **SDLSecurityConstants.h** and **SDLSecurityManager.h** (or their equivalents after OEM naming modifications are made). Make sure **libSDLSecurityStatic.a** has been added to the project's target membership.  
 1. Import **SDLSecurityManager.h** into the file where the the `SDLConfiguration`'s `SDLEncryptionConfiguration` or `SDLStreamingMediaConfiguration` is being set. If you have a Swift project, this will require adding a bridging header to the project.
 
-### Adding the SDLSecurityManager to a Project
-#### Swift
-```swift
-let encryptionConfig = SDLEncryptionConfiguration(securityManagers: [SDLSecurityManager.self]], delegate: nil)
-```
+    #### Swift
+    ```swift
+    let encryptionConfig = SDLEncryptionConfiguration(securityManagers: [SDLSecurityManager.self]], delegate: self)
+    ```
 
-#### Objective-C
-```objc
-SDLEncryptionConfiguration *encryptionConfig = [[SDLEncryptionConfiguration alloc] initWithSecurityManagers:@[SDLSecurityManager.self] delegate:nil];
-```
+    #### Objective-C
+    ```objc
+    SDLEncryptionConfiguration *encryptionConfig = [[SDLEncryptionConfiguration alloc] initWithSecurityManagers:@[SDLSecurityManager.self] delegate:self];
+    ```
+
+### Dynamic Security Library Framework
+For convenience when debugging, a dynamic framework can also be built and dropped into the SDL iOS app.
+
+### Generating the Dynamic Security Library Framework
+1. In the scheme menu of Xcode, set the active scheme to **SDLSecurity**.
+1. Build and run the **SDLSecurity** scheme (**Product > Build For > Running**). If you want to use the build in the simulator, you must select a simulated device as the run destination before building and running; likewise, to use on an iPhone, you must select a real device as the run destination.
+1. In the project navigator you will find the **SDLSecurity.framework** build under **SDLSecurity > Products**.
+1. Right click on the **SDLSecurity.framework** build and select **Show in Finder**. This will take you to the derived data of the project which has the framework.
+
+### Adding the Dynamic Security Library Framework to a SDL App
+1. In Xcode, drag and drop the framework into your project.   
+1. Import the `SDLSecurity` module into the file where the the `SDLConfiguration`'s `SDLEncryptionConfiguration` or `SDLStreamingMediaConfiguration` is being set.
+
+    #### Swift
+    ```swift
+    import SDLSecurity
+
+    let encryptionConfig = SDLEncryptionConfiguration(securityManagers: [SDLSecurityManager.self]], delegate: self)
+    ```
+
+    #### Objective-C
+    ```objc
+    @import SDLSecurity;
+
+    SDLEncryptionConfiguration *encryptionConfig = [[SDLEncryptionConfiguration alloc] initWithSecurityManagers:@[SDLSecurityManager.self] delegate:self];
+    ```
 
 ## Updating the OpenSSL Dependency
 We have included a build of the OpenSSL library so that the security library can work out of the box with a few minor customizations. However, this example does not often update the OpenSSL build and it is provided for example purposes. Production versions of this library should replace the OpenSSL dependency with an updated and trusted build. The following configurations may have to be updated:
