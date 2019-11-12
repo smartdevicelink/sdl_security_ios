@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, SDLTLSErrorCode) {
     SDLTLSErrorCodeWriteFailed,
     /// An unknown error occured with the OpenSSL library
     SDLTLSErrorCodeGeneric,
-    /// The DTLS/SSL connection is not in state where fully protected data can be transferred
+    /// The DTLS/SSL connection is not in a state where fully protected data can be transferred
     SDLTLSErrorCodeNotInitialized,
     /// The PFX file's keys or certificate parameters are incorrect
     SDLTLSErrorCodeInitializationFailure,

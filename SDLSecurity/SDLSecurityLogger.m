@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-/// Returns an icon representation fo the LoggerLevel enum.
+/// Returns an icon representation of the LoggerLevel enum.
 /// @param logLevel The log level
 - (NSString *)sdl_logCharacterForLevel:(LoggerLevel)logLevel {
     switch (logLevel) {
