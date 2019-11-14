@@ -12,6 +12,8 @@
 
 #import "SDLSecurityManager.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation SDLSecurityLogger
 
 + (SDLSecurityLogger *)shared {
@@ -46,6 +48,8 @@
     }
 }
 
+/// Returns an icon representation of the LoggerLevel enum.
+/// @param logLevel The log level
 - (NSString *)sdl_logCharacterForLevel:(LoggerLevel)logLevel {
     switch (logLevel) {
         case LoggerLevelDebug: return @"🔵";
@@ -57,6 +61,8 @@
     }
 }
 
+/// Returns a string representation of the LoggerLevel enum.
+/// @param logLevel The log level
 - (NSString *)sdl_logNameForLevel:(LoggerLevel)logLevel {
     switch (logLevel) {
         case LoggerLevelDebug: return @"DEBUG";
@@ -67,6 +73,8 @@
             return @"UNKNOWN";
     }
 }
+
+#pragma mark - Class property getters
 
 + (NSDateFormatter *)dateFormatter {
     static NSDateFormatter *_dateFormatter = nil;
@@ -80,3 +88,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
