@@ -11,10 +11,10 @@
 /// Sets the certificate url based on whether the build configuration is RELEASE or DEBUG
 #if DEBUG
 /// Certificate URL for debugging
-NSString * _Nonnull const CertDevURL = @"https://www.debugURL.com";
+NSString * _Nonnull const CertificateURL = @"https://www.debugURL.com";
 #else
 /// Certificate URL for release
-NSString * _Nonnull const CertDevURL = @"https://www.productionURL.com";
+NSString * _Nonnull const CertificateURL = @"https://www.productionURL.com";
 #endif
 
 const char *SDLTLSCertPassword = "SDLTLSCertPassword";
