@@ -8,12 +8,14 @@
 
 #import "SDLPrivateSecurityConstants.h"
 
-NSString *const CertDevURL = @"http://www.google.com";
-NSString *const CertQAURL = @"http://www.google.com";
-NSString *const CertProdURL = @"http://www.google.com";
-NSString *const VendorName = @"SDL";
-NSString *const SDLTLSIssuer = @"SDLTLSIssuer";
+NSString * _Nonnull const CertDevURL = @"http://www.google.com";
+NSString * _Nonnull const CertQAURL = @"http://www.google.com";
+NSString * _Nonnull const CertProdURL = @"http://www.google.com";
+NSString * _Nonnull const VendorName = @"SDL";
+NSString * _Nonnull const SDLTLSIssuer = @"SDLTLSIssuer";
 const char *SDLTLSCertPassword = "SDLTLSCertPassword";
+
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation SDLPrivateSecurityConstants
 
@@ -22,3 +24,5 @@ const char *SDLTLSCertPassword = "SDLTLSCertPassword";
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

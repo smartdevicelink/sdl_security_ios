@@ -8,15 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const CertDevURL;
-extern NSString *const CertQAURL;
-extern NSString *const CertProdURL;
-extern NSString *const VendorName;
-extern NSString *const SDLTLSIssuer;
-extern const char *SDLTLSCertPassword;
+/// The development URL from which to download the PFX file data.
+extern NSString * _Nonnull const CertDevURL;
 
+/// The quality assurance URL from which to download the PFX file data.
+extern NSString * _Nonnull const CertQAURL;
+
+/// The production URL from which to download the PFX file data.
+extern NSString * _Nonnull const CertProdURL;
+
+/// The issuer of the PFX file.
+extern NSString * _Nonnull const SDLTLSIssuer;
+
+/// The password used to generate the PFX file.
+extern const char * _Nonnull SDLTLSCertPassword;
+
+/// The name of the custom directory folder where the downloaded PFX file will be stored.
+extern NSString * _Nonnull const VendorName;
+
+NS_ASSUME_NONNULL_BEGIN
+
+/// Private constants used by the security manager.
 @interface SDLPrivateSecurityConstants : NSObject
 
+/// The vehicle types this security library supports.
 + (NSSet<NSString *> *)availableMakes;
 
 @end
+
+NS_ASSUME_NONNULL_END

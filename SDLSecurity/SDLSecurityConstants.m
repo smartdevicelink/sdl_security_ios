@@ -10,6 +10,10 @@
 
 NSString *const SDLSecurityErrorDomain = @"com.sdl.security";
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation SDLSecurityConstants
 
 @end
+
+NS_ASSUME_NONNULL_END
