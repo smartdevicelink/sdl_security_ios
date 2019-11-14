@@ -341,7 +341,6 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
         }
     }
 
-    SDLSecurityLogD(@"Certificate expiration date: %@", expiryDate);
     return expiryDate;
 }
 

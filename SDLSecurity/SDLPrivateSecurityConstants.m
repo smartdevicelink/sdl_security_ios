@@ -8,7 +8,7 @@
 
 #import "SDLPrivateSecurityConstants.h"
 
-/// Sets the certificate url based on whether the build configuration is RELEASE or DEBUG
+/// Sets the certificate url based on whether the build configuration for this library is RELEASE or DEBUG
 #if DEBUG
 /// Certificate URL for debugging
 NSString * _Nonnull const CertificateURL = @"https://www.debugURL.com";
