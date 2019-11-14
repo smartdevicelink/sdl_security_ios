@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-/// The development URL from which to download the PFX file data.
+/// The URL from which to download the PFX file data.
 extern NSString * _Nonnull const CertificateURL;
 
 /// The issuer of the PFX file.
