@@ -8,12 +8,18 @@
 
 #import "SDLPrivateSecurityConstants.h"
 
-NSString * _Nonnull const CertDevURL = @"http://www.google.com";
-NSString * _Nonnull const CertQAURL = @"http://www.google.com";
-NSString * _Nonnull const CertProdURL = @"http://www.google.com";
-NSString * _Nonnull const VendorName = @"SDL";
+/// Sets the certificate url based on whether the build configuration for this library is RELEASE or DEBUG
+#if DEBUG
+/// Certificate URL for debugging
+NSString * _Nonnull const CertificateURL = @"https://www.debugURL.com";
+#else
+/// Certificate URL for release
+NSString * _Nonnull const CertificateURL = @"https://www.productionURL.com";
+#endif
+
 NSString * _Nonnull const SDLTLSIssuer = @"SDLTLSIssuer";
-const char *SDLTLSCertPassword = "SDLTLSCertPassword";
+const char * _Nonnull SDLTLSCertPassword = "SDLTLSCertPassword";
+NSString * _Nonnull const VendorName = @"SDL";
 
 NS_ASSUME_NONNULL_BEGIN
 
