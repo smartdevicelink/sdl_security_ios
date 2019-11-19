@@ -75,7 +75,7 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     
     _state = SDLTLSEngineStateDisconnected;
     _appId = appId;
-    _certificateManager = [[SDLCertificateManager alloc] initWithCertificateServerURL:CertQAURL];
+    _certificateManager = [[SDLCertificateManager alloc] initWithCertificateServerURL:CertificateURL];
 
     [self.class sdlsec_OpenSSLInitialization];
 
@@ -341,7 +341,6 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
         }
     }
 
-    SDLSecurityLogD(@"Certificate expiration date: %@", expiryDate);
     return expiryDate;
 }
 
