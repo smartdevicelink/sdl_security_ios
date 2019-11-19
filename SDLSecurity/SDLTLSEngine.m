@@ -473,13 +473,13 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 /// Retrieves the encrypted data from the OpenSSL server.
 /// @param error The error will be set if the data can not be retrieved successfully
 - (nullable NSData *)sdlsec_ReadEncryptedDataFromSSLServerWithError:(NSError * __autoreleasing*)error {
-    NSMutableData *returnData = [NSMutableData data];
+    NSMutableData *encryptedData = [NSMutableData data];
     int length = SDLTLSReadBufferSize;
     void *buffer = malloc(SDLTLSReadBufferSize);
     int bufferLength = 0;
 
     while ((bufferLength = BIO_read(writeBIO, buffer, length)) >= 0) {
-        [returnData appendBytes:buffer length:bufferLength];
+        [encryptedData appendBytes:buffer length:bufferLength];
 
         SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
         if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
@@ -487,7 +487,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
         }
     }
 
-    return returnData;
+    return encryptedData;
 }
 
 
