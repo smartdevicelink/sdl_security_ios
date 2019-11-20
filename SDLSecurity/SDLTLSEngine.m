@@ -407,7 +407,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
         return nil;
     }
     
-    NSData *data = [self sdlsec_readUnencryptedDataFromSSLWithError:error];
+    NSData *data = [self sdlsec_getDecryptedDataFromSSLWithError:error];
     if (*error != nil) {
         return nil;
     }
@@ -434,24 +434,24 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     return retVal;
 }
 
-/// Retrieves the unencrypted data from the OpenSSL server.
+/// Retrieves the decrypted data from the OpenSSL server.
 /// @param error The error will be set if the data can not be read successfully
-- (nullable NSData *)sdlsec_readUnencryptedDataFromSSLWithError:(NSError * __autoreleasing*)error {
-    NSMutableData *unencryptedData = [NSMutableData data];
+- (nullable NSData *)sdlsec_getDecryptedDataFromSSLWithError:(NSError * __autoreleasing*)error {
+    NSMutableData *decryptedData = [NSMutableData data];
     int length = SDLTLSReadBufferSize;
     void *buffer = malloc(SDLTLSReadBufferSize);
     int bufferLength = 0;
 
     while ((bufferLength = SSL_read(sslConnection, buffer, length)) >= 0) {
-        [unencryptedData appendBytes:buffer length:bufferLength];
+        [decryptedData appendBytes:buffer length:bufferLength];
 
         SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
         if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot SSL read data from server"}];
+            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot read decrypted data from the SSL server"}];
         }
     }
 
-    return unencryptedData;
+    return decryptedData;
 }
 
 /// Writes encrypted data to the OpenSSL server so it can be decrypted and returns the number of bytes successfully written.
@@ -464,7 +464,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 
     SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:retVal length:length isWrite:NO];
     if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot BIO write data to server"}];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot write encrypted data to server"}];
     }
 
     return retVal;
@@ -483,7 +483,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 
         SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
         if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot BIO read data from server"}];
+            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot read encrypted data from server"}];
         }
     }
 
