@@ -493,7 +493,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 
 #pragma mark - Errors
 
-/// Examines the result code returned when attempting to read or write data from the server and returns a human readable version of the result code. If an error occured, an error is returned; if successful no error is returned.
+/// Examines the result code returned when attempting to read or write data from the server and returns a human readable version of the result code. If an error occured, an error is returned; if successful, no error is returned.
 /// @param ssl The DTLS/SSL connection
 /// @param value The value returned by the read or write action
 /// @param length The length of the data read or written
