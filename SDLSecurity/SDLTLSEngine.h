@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param error The error is set if initialization failed
 - (BOOL)initializeTLSWithCertificateData:(NSData *)data error:(NSError **)error;
 
-/// Closes the the current DTLS/SSL connection.
+/// Closes the current DTLS/SSL connection.
 - (void)shutdownTLS;
 
 /// Generates handshake data using client data.
