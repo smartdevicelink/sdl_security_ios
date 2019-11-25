@@ -383,7 +383,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
         return nil;
     }
     
-    [self sdlsec_writeToSSLServerUnencryptedData:decryptedData withError:error];
+    [self sdlsec_writeToSSLServerWithUnencryptedData:decryptedData withError:error];
     if (*error != nil) {
         return nil;
     }
@@ -421,7 +421,7 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 /// Writes the unencrypted data to the OpenSSL server so it can be encrypted and returns the number of bytes successfully written.
 /// @param data The unencrypted data
 /// @param error The error will be set if the data can not be written successfully
-- (int)sdlsec_writeToSSLServerUnencryptedData:(NSData *)data withError:(NSError * __autoreleasing*)error {
+- (int)sdlsec_writeToSSLServerWithUnencryptedData:(NSData *)data withError:(NSError * __autoreleasing*)error {
     int length = (int)data.length;
     void *buffer = (void *)data.bytes;
     int retVal = SSL_write(sslConnection, buffer, length);
