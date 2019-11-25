@@ -8,14 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-/// The development URL from which to download the PFX file data.
-extern NSString * _Nonnull const CertDevURL;
-
-/// The quality assurance URL from which to download the PFX file data.
-extern NSString * _Nonnull const CertQAURL;
-
-/// The production URL from which to download the PFX file data.
-extern NSString * _Nonnull const CertProdURL;
+/// The URL from which to download the PFX file data.
+extern NSString * _Nonnull const CertificateURL;
 
 /// The issuer of the PFX file.
 extern NSString * _Nonnull const SDLTLSIssuer;
