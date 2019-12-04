@@ -68,7 +68,7 @@ Once the security library has been configured by the OEM, it is used to generate
     SDLEncryptionConfiguration *encryptionConfig = [[SDLEncryptionConfiguration alloc] initWithSecurityManagers:@[SDLSecurityManager.self] delegate:self];
     ```
 
-### Dynamic Security Library Framework
+## Dynamic Security Library Framework
 For convenience when debugging (it's less secure than a static framework, which can more easily be obfuscated), a dynamic framework can be easily built and dropped into a SDL iOS app.
 
 ### Generating the Dynamic Security Library Framework
