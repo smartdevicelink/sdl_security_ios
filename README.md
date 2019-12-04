@@ -69,7 +69,7 @@ Once the security library has been configured by the OEM, it is used to generate
     ```
 
 ### Dynamic Security Library Framework
-For convenience when debugging, a dynamic framework can be easily built and dropped into a SDL iOS app.
+For convenience when debugging (it's less secure than a static framework, which can more easily be obfuscated), a dynamic framework can be easily built and dropped into a SDL iOS app.
 
 ### Generating the Dynamic Security Library Framework
 1. In the scheme menu of Xcode, set the active scheme to **SDLSecurity**.
