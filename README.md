@@ -98,7 +98,7 @@ For convenience when debugging (it's less secure than a static framework, which 
 ## Updating the OpenSSL Dependency
 We have included a build of the OpenSSL library so that the security library can work out of the box with a few minor customizations. However, this example does not often update the OpenSSL build and it is provided for example purposes. Production versions of this library should replace the OpenSSL dependency with an updated and trusted build. The following configurations may have to be updated:
 
-1. Make sure that the OpenSSL library builds **libcrypto.a** and **libssl.a** have been added to the **SDLSecurityStatic** target.
-1. Configure the build settings for the **SDLSecurityStatic** target.
+1. Make sure that the OpenSSL library builds **libcrypto.a** and **libssl.a** have been added to the **SDLSecurityStatic** and the **SDLSecurity** targets.
+1. Configure the build settings for the **SDLSecurityStatic** and **SDLSecurity** targets.
     * In **Build Settings > Library Search Paths** include the path to the **libcrypto.a** and **libssl.a** static libraries.
     * In **Build Settings > Header Search Paths** include the path to the **OpenSSL** public headers.
