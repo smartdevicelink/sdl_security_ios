@@ -313,6 +313,7 @@
 				5D40CA981C51215200E6F987 /* SDLSecurityManager.m */,
 				5DF917101C5AA368009C7B55 /* SDLSecurityConstants.h */,
 				5DF917111C5AA368009C7B55 /* SDLSecurityConstants.m */,
+				88136021236A1F03000F64DD /* Protocol */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -323,13 +324,20 @@
 				5D81600823214B9A001EAAB2 /* Logger */,
 				5D84682B1C86256D00592787 /* SDLPrivateSecurityConstants.h */,
 				5D84682C1C86256D00592787 /* SDLPrivateSecurityConstants.m */,
-				5DC412F31C62426F0062E6F9 /* SDLSecurityType.h */,
 				5DF917071C5A6F1C009C7B55 /* SDLTLSEngine.h */,
 				5DF917081C5A6F1C009C7B55 /* SDLTLSEngine.m */,
 				5D5E27851C848A1900495F0B /* SDLCertificateManager.h */,
 				5D5E27861C848A1900495F0B /* SDLCertificateManager.m */,
 			);
 			name = Private;
+			sourceTree = "<group>";
+		};
+		88136021236A1F03000F64DD /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				5DC412F31C62426F0062E6F9 /* SDLSecurityType.h */,
+			);
+			name = Protocol;
 			sourceTree = "<group>";
 		};
 		8842509B230D9C0000F83FD7 /* Resources */ = {
