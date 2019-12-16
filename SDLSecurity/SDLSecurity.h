@@ -14,6 +14,6 @@ FOUNDATION_EXPORT double SDLSecurityVersionNumber;
 //! Project version string for SDLSecurity.
 FOUNDATION_EXPORT const unsigned char SDLSecurityVersionString[];
 
-#import <SDLSecurity/SDLTLSSecurityManager.h>
-#import <SDLSecurity/SDLSecurityType.h>
 #import <SDLSecurity/SDLSecurityConstants.h>
+#import <SDLSecurity/SDLSecurityManager.h>
+#import <SDLSecurity/SDLSecurityType.h>
