@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
         }
 
         NSString *certificateKey = @"data.certificate";
-        if (![jsonDictionary valueForKeyPath:certificateKey]) {
+        if ([jsonDictionary valueForKeyPath:certificateKey] == nil) {
             SDLSecurityLogE(@"Error parsing the network request data for the certificate");
             return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNoCertificate userInfo:@{NSLocalizedDescriptionKey: @"Network request did not return certificate data in the expected JSON format"}]);
         }
