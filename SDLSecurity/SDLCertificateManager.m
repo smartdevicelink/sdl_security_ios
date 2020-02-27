@@ -62,10 +62,17 @@ NS_ASSUME_NONNULL_BEGIN
 
         if (jsonError != nil || jsonDictionary == nil) {
             SDLSecurityLogE(@"Error parsing network request data");
-            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNoCertificate userInfo:@{NSLocalizedDescriptionKey: @"Network request did not return a certificate"}]);
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNoCertificate userInfo:@{NSLocalizedDescriptionKey: @"Network request did not return data in the expected format"}]);
         }
 
-        NSData *certificateData = [[NSData alloc] initWithBase64EncodedData:[jsonDictionary valueForKeyPath:@"data.certificate"] options:0];
+        NSString *certificateKey = @"data.certificate";
+        NSData *certificateBase64EncodedData = [jsonDictionary valueForKeyPath:certificateKey];
+        if (certificateBase64EncodedData == nil) {
+            SDLSecurityLogE(@"Error parsing the network request data for the certificate");
+            return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeNoCertificate userInfo:@{NSLocalizedDescriptionKey: @"Network request did not return certificate data in the expected JSON format"}]);
+        }
+
+        NSData *certificateData = [[NSData alloc] initWithBase64EncodedData:certificateBase64EncodedData options:0];
         if (certificateData.length == 0) {
             SDLSecurityLogE(@"Certificate is invalid");
             return completionHandler(NO, [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: @"Certificate is invalid"}]);
