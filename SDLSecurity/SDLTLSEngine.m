@@ -355,6 +355,10 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 
     NSData *dataToSend = [self sdlsec_BIOReadDataFromServerWithError:error];
 
+    if (dataToSend.length <= 0) {
+        return nil;
+    }
+
     [self sdlsec_TLSHandshake];
 
     return dataToSend;
