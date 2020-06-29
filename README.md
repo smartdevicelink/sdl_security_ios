@@ -65,7 +65,7 @@ let encryptionConfig = SDLEncryptionConfiguration(securityManagers: [SDLSecurity
 
 #### Objective-C
 ```objc
-SDLEncryptionConfiguration *encryptionConfig = [[SDLEncryptionConfiguration alloc] initWithSecurityManagers:@[SDLSecurityManager.self] delegate:nil];
+SDLEncryptionConfiguration *encryptionConfig = [[SDLEncryptionConfiguration alloc] initWithSecurityManagers:@[SDLSecurityManager class] delegate:nil];
 ```
 
 ## Updating the OpenSSL Dependency
