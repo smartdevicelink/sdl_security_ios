@@ -17,8 +17,8 @@ NSString * _Nonnull const CertificateURL = @"https://www.debugURL.com";
 NSString * _Nonnull const CertificateURL = @"https://www.productionURL.com";
 #endif
 
-NSString * _Nonnull const SDLTLSIssuer = @"SDL";
-const char * _Nonnull SDLTLSCertPassword = "password";
+NSString * _Nonnull const SDLTLSIssuer = @"SDLTLSIssuer";
+const char * _Nonnull SDLTLSCertPassword = "SDLTLSCertPassword";
 NSString * _Nonnull const VendorName = @"SDL";
 
 NS_ASSUME_NONNULL_BEGIN
