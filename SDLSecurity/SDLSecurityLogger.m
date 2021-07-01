@@ -49,8 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     NSString *logString = [NSString stringWithFormat:@"%@ %@ %@ (SDL)SecurityLibrary (%@) – %@\n", [self.class.dateFormatter stringFromDate:timestamp], [self sdl_logCharacterForLevel:level], [self sdl_logNameForLevel:level], [SDLSecurityManager availableMakes], formatMessage];
 
-    const char *charLog = [logString UTF8String];
-    os_log_with_type(self.logClient, [self oslogLevelForLogLevel:level], logString);
+    os_log_with_type(self.logClient, [self oslogLevelForLogLevel:level], "%{public}@", logString);
 }
 
 - (os_log_type_t)oslogLevelForLogLevel:(LoggerLevel)level {
