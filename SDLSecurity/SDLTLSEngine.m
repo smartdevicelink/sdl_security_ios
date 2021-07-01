@@ -357,6 +357,10 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 
     [self sdlsec_TLSHandshake];
 
+    if (dataToSend.length <= 0) {
+        return nil;
+    }
+
     return dataToSend;
 }
 
