@@ -165,7 +165,7 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     NSDate *certExpiryDate = sdlsec_certificateGetExpiryDate(certX509);
     if ([[NSDate date] compare:certExpiryDate] != NSOrderedAscending) {
         sdlsec_cleanUpInitialization(certX509, NULL, p12, pbio, pkey);
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateExpired userInfo:@{NSLocalizedDescriptionKey: @"Certificate expired"}];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateExpired userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Certificate expired (%@)", certExpiryDate]}];
         return NO;
     }
     
@@ -173,7 +173,7 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     NSString *certIssuer = [NSString stringWithUTF8String:X509_NAME_oneline(X509_get_issuer_name(certX509), NULL, 0)];
     if (![certIssuer isEqualToString:SDLTLSIssuer]) {
         sdlsec_cleanUpInitialization(certX509, NULL, p12, pbio, pkey);
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: @"Certificate issuer does not match required issuer"}];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Certificate issuer (%@) does not match required issuer (%@)", certIssuer, SDLTLSIssuer]}];
         return NO;
     }
     
@@ -356,6 +356,10 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     NSData *dataToSend = [self sdlsec_getEncryptedDataFromSSLWithError:error];
 
     [self sdlsec_TLSHandshake];
+
+    if (dataToSend.length <= 0) {
+        return nil;
+    }
 
     return dataToSend;
 }
