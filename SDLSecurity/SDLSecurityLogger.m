@@ -8,11 +8,17 @@
 
 #import "SDLSecurityLogger.h"
 
-#import <asl.h>
+#import <OSLog/OSLog.h>
 
 #import "SDLSecurityManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@interface SDLSecurityLogger ()
+
+@property (strong, nonatomic) os_log_t logClient;
+
+@end
 
 @implementation SDLSecurityLogger
 
@@ -30,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super init];
     if (!self) { return nil; }
 
+    self.logClient = os_log_create("com.sdl.log", "Security");
+
     return self;
 }
 
@@ -42,9 +50,17 @@ NS_ASSUME_NONNULL_BEGIN
     NSString *logString = [NSString stringWithFormat:@"%@ %@ %@ (SDL)SecurityLibrary (%@) – %@\n", [self.class.dateFormatter stringFromDate:timestamp], [self sdl_logCharacterForLevel:level], [self sdl_logNameForLevel:level], [SDLSecurityManager availableMakes], formatMessage];
 
     const char *charLog = [logString UTF8String];
-    int result = asl_log_message(ASL_LEVEL_ERR, "%s", charLog);
-    if (result != 0) {
-        NSLog(@"Error logging to ASL log, logging to NSLog instead:\n%@", logString);
+    os_log_with_type(self.logClient, [self oslogLevelForLogLevel:level], logString);
+}
+
+- (os_log_type_t)oslogLevelForLogLevel:(LoggerLevel)level {
+    switch (level) {
+        case LoggerLevelDebug: return OS_LOG_TYPE_INFO;
+        case LoggerLevelWarning: return OS_LOG_TYPE_ERROR;
+        case LoggerLevelError: return OS_LOG_TYPE_FAULT;
+        default:
+            NSAssert(NO, @"The OFF and DEFAULT log levels are not valid to log with.");
+            return OS_LOG_TYPE_DEFAULT;
     }
 }
 
