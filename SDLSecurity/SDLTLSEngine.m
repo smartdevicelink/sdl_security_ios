@@ -77,7 +77,7 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     _appId = appId;
     _certificateManager = [[SDLCertificateManager alloc] initWithCertificateServerURL:CertificateURL];
 
-    [self.class sdlsec_OpenSSLInitialization];
+    [self.class sdlsec_openSSLInitialization];
 
     return self;
 }
@@ -138,7 +138,7 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     
     void *p12Buffer = (void *)data.bytes;
 
-    [self.class sdlsec_OpenSSLInitialization];
+    [self.class sdlsec_openSSLInitialization];
 
     sslContext = SSL_CTX_new(DTLS_server_method());
     SSL_CTX_set_verify(sslContext, SSL_VERIFY_NONE, NULL);
@@ -256,7 +256,7 @@ void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS
 }
 
 /// Initilizes OpenSSL's libssl library by loading the error codes and algorithms.
-+ (void)sdlsec_OpenSSLInitialization {
++ (void)sdlsec_openSSLInitialization {
     SSL_load_error_strings();
     ERR_load_BIO_strings();
     OpenSSL_add_all_algorithms();
@@ -347,13 +347,13 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 #pragma mark - Handshake
 
 - (nullable NSData *)runHandshakeWithClientData:(NSData *)data error:(NSError * _Nullable __autoreleasing *)error {
-    if ([self sdlsec_BIOWriteDataToServer:data withError:error] <= 0) {
+    if ([self sdlsec_writeToSSLEncryptedData:data withError:error] <= 0) {
         return nil;
     }
 
     [self sdlsec_TLSHandshake];
 
-    NSData *dataToSend = [self sdlsec_BIOReadDataFromServerWithError:error];
+    NSData *dataToSend = [self sdlsec_getEncryptedDataFromSSLWithError:error];
 
     [self sdlsec_TLSHandshake];
 
@@ -387,12 +387,12 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
         return nil;
     }
     
-    [self sdlsec_SSLWriteDataToServer:decryptedData withError:error];
+    [self sdlsec_writeToSSLServerWithUnencryptedData:decryptedData withError:error];
     if (*error != nil) {
         return nil;
     }
     
-    NSData *encryptedData = [self sdlsec_BIOReadDataFromServerWithError:error];
+    NSData *encryptedData = [self sdlsec_getEncryptedDataFromSSLWithError:error];
     if (*error != nil) {
         return nil;
     }
@@ -406,12 +406,12 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
         return nil;
     }
     
-    [self sdlsec_BIOWriteDataToServer:encryptedData withError:error];
+    [self sdlsec_writeToSSLEncryptedData:encryptedData withError:error];
     if (*error != nil) {
         return nil;
     }
     
-    NSData *data = [self sdlsec_SSLReadDataFromServerWithError:error];
+    NSData *data = [self sdlsec_getDecryptedDataFromSSLWithError:error];
     if (*error != nil) {
         return nil;
     }
@@ -422,10 +422,10 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 
 #pragma mark OpenSSL Encryption / Decryption
 
-/// Writes the unencrypted data to the OpenSSL server so it can be encrypted.
+/// Writes the unencrypted data to the OpenSSL server so it can be encrypted and returns the number of bytes successfully written.
 /// @param data The unencrypted data
 /// @param error The error will be set if the data can not be written successfully
-- (int)sdlsec_SSLWriteDataToServer:(NSData *)data withError:(NSError * __autoreleasing*)error {
+- (int)sdlsec_writeToSSLServerWithUnencryptedData:(NSData *)data withError:(NSError * __autoreleasing*)error {
     int length = (int)data.length;
     void *buffer = (void *)data.bytes;
     int retVal = SSL_write(sslConnection, buffer, length);
@@ -438,39 +438,37 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
     return retVal;
 }
 
-/// Reads the unencrypted data from the OpenSSL server.
+/// Retrieves the decrypted data from the OpenSSL server.
 /// @param error The error will be set if the data can not be read successfully
-- (nullable NSData *)sdlsec_SSLReadDataFromServerWithError:(NSError * __autoreleasing*)error {
-    NSData *returnData = nil;
-    
+- (nullable NSData *)sdlsec_getDecryptedDataFromSSLWithError:(NSError * __autoreleasing*)error {
+    NSMutableData *decryptedData = [NSMutableData data];
     int length = SDLTLSReadBufferSize;
     void *buffer = malloc(SDLTLSReadBufferSize);
-    int bufferLength = SSL_read(sslConnection, buffer, length);
+    int bufferLength = 0;
 
-    if (bufferLength > 0) {
-        returnData = [NSData dataWithBytes:buffer length:bufferLength];
+    while ((bufferLength = SSL_read(sslConnection, buffer, length)) >= 0) {
+        [decryptedData appendBytes:buffer length:bufferLength];
+
+        SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
+        if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
+            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot read decrypted data from the SSL server"}];
+        }
     }
-    free(buffer);
-    
-    SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
-    if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot read data from SSL server"}];
-    }
-    
-    return returnData;
+
+    return decryptedData;
 }
 
-/// Writes encrypted data to the OpenSSL server so it can be decrypted.
+/// Writes encrypted data to the OpenSSL server so it can be decrypted and returns the number of bytes successfully written.
 /// @param data Encrypted data
 /// @param error The error will be set if the data can not be written successfully
-- (int)sdlsec_BIOWriteDataToServer:(NSData *)data withError:(NSError * __autoreleasing*)error {
+- (int)sdlsec_writeToSSLEncryptedData:(NSData *)data withError:(NSError * __autoreleasing*)error {
     int length = (int)data.length;
     void *buffer = (void *)data.bytes;
     int retVal = BIO_write(readBIO, buffer, length);
 
     SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:retVal length:length isWrite:NO];
     if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot BIO write data to server"}];
+        *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot write encrypted data to server"}];
     }
 
     return retVal;
@@ -478,28 +476,28 @@ static NSDate *sdlsec_certificateGetExpiryDate(X509 *certificateX509) {
 
 /// Retrieves the encrypted data from the OpenSSL server.
 /// @param error The error will be set if the data can not be retrieved successfully
-- (nullable NSData *)sdlsec_BIOReadDataFromServerWithError:(NSError * __autoreleasing*)error {
-    NSMutableData *returnData = [NSMutableData data];
+- (nullable NSData *)sdlsec_getEncryptedDataFromSSLWithError:(NSError * __autoreleasing*)error {
+    NSMutableData *encryptedData = [NSMutableData data];
     int length = SDLTLSReadBufferSize;
     void *buffer = malloc(SDLTLSReadBufferSize);
     int bufferLength = 0;
 
     while ((bufferLength = BIO_read(writeBIO, buffer, length)) >= 0) {
-        [returnData appendBytes:buffer length:bufferLength];
+        [encryptedData appendBytes:buffer length:bufferLength];
 
         SDLTLSErrorCode errorCode = [self.class sdlsec_errorCodeFromSSL:sslConnection value:bufferLength length:length isWrite:NO];
         if ((errorCode != SDLTLSErrorCodeNone) && (*error != nil)) {
-            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot BIO read data from server"}];
+            *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: @"Cannot read encrypted data from server"}];
         }
     }
 
-    return returnData;
+    return encryptedData;
 }
 
 
 #pragma mark - Errors
 
-/// Examines the result code returned when attempting to read or write data from the server and returns a human readable version of the result code. If an error occured, an error is returned; if successful no error is returned.
+/// Examines the result code returned when attempting to read or write data from the server and returns a human readable version of the result code. If an error occured, an error is returned; if successful, no error is returned.
 /// @param ssl The DTLS/SSL connection
 /// @param value The value returned by the read or write action
 /// @param length The length of the data read or written
