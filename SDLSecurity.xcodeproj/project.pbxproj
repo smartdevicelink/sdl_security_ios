@@ -68,6 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4A84BBFA26987DB700FC7B6D /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
+		4A84BBFB26987DB700FC7B6D /* DEPENDENCIES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DEPENDENCIES.md; sourceTree = SOURCE_ROOT; };
 		5D40CA7D1C511C7200E6F987 /* SDLSecurity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDLSecurity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D40CA801C511C7200E6F987 /* SDLSecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLSecurity.h; sourceTree = "<group>"; };
 		5D40CA821C511C7200E6F987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -343,6 +345,8 @@
 		8842509B230D9C0000F83FD7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4A84BBFA26987DB700FC7B6D /* CHANGELOG.md */,
+				4A84BBFB26987DB700FC7B6D /* DEPENDENCIES.md */,
 				8842509C230D9C0000F83FD7 /* Info.plist */,
 			);
 			path = Resources;

@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.0.0
+### Breaking Changes
+* Updated to required iOS 10
+
+### Enhancements
+* Added class and method documentation (#11)
+* Debug and release builds can now have different certificate URLs (#24)
+* Data will now be read from the SSL server until all data is consumed (#41)
+
+### Bug Fixes
+* Fix dynamic framework builds (#40)
+* Fix parsing invalid JSON crashes (#47)
+* Fixed a crash when data is tried to be read when its empty (#53)
+* Changed from ASL logging to OSLog (#59)
+
 ## 1.0.0
 ### Enhancements
 * Updated the OpenSSL dependency to v1.1.1 (https://github.com/smartdevicelink/sdl_security_ios/issues/12).
