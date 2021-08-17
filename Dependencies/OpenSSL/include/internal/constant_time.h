@@ -1,14 +1,15 @@
 /*
- * Copyright 2014-2018 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright 2014-2021 The OpenSSL Project Authors. All Rights Reserved.
  *
- * Licensed under the OpenSSL license (the "License").  You may not use
+ * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
  * in the file LICENSE in the source distribution or at
  * https://www.openssl.org/source/license.html
  */
 
-#ifndef HEADER_CONSTANT_TIME_LOCL_H
-# define HEADER_CONSTANT_TIME_LOCL_H
+#ifndef OSSL_INTERNAL_CONSTANT_TIME_H
+# define OSSL_INTERNAL_CONSTANT_TIME_H
+# pragma once
 
 # include <stdlib.h>
 # include <string.h>
@@ -181,6 +182,11 @@ static ossl_inline uint32_t constant_time_is_zero_32(uint32_t a)
     return constant_time_msb_32(~a & (a - 1));
 }
 
+static ossl_inline uint64_t constant_time_is_zero_64(uint64_t a)
+{
+    return constant_time_msb_64(~a & (a - 1));
+}
+
 static ossl_inline unsigned int constant_time_eq(unsigned int a,
                                                  unsigned int b)
 {
@@ -213,18 +219,72 @@ static ossl_inline unsigned char constant_time_eq_int_8(int a, int b)
     return constant_time_eq_8((unsigned)(a), (unsigned)(b));
 }
 
+/*
+ * Returns the value unmodified, but avoids optimizations.
+ * The barriers prevent the compiler from narrowing down the
+ * possible value range of the mask and ~mask in the select
+ * statements, which avoids the recognition of the select
+ * and turning it into a conditional load or branch.
+ */
+static ossl_inline unsigned int value_barrier(unsigned int a)
+{
+#if !defined(OPENSSL_NO_ASM) && defined(__GNUC__)
+    unsigned int r;
+    __asm__("" : "=r"(r) : "0"(a));
+#else
+    volatile unsigned int r = a;
+#endif
+    return r;
+}
+
+/* Convenience method for uint32_t. */
+static ossl_inline uint32_t value_barrier_32(uint32_t a)
+{
+#if !defined(OPENSSL_NO_ASM) && defined(__GNUC__)
+    uint32_t r;
+    __asm__("" : "=r"(r) : "0"(a));
+#else
+    volatile uint32_t r = a;
+#endif
+    return r;
+}
+
+/* Convenience method for uint64_t. */
+static ossl_inline uint64_t value_barrier_64(uint64_t a)
+{
+#if !defined(OPENSSL_NO_ASM) && defined(__GNUC__)
+    uint64_t r;
+    __asm__("" : "=r"(r) : "0"(a));
+#else
+    volatile uint64_t r = a;
+#endif
+    return r;
+}
+
+/* Convenience method for size_t. */
+static ossl_inline size_t value_barrier_s(size_t a)
+{
+#if !defined(OPENSSL_NO_ASM) && defined(__GNUC__)
+    size_t r;
+    __asm__("" : "=r"(r) : "0"(a));
+#else
+    volatile size_t r = a;
+#endif
+    return r;
+}
+
 static ossl_inline unsigned int constant_time_select(unsigned int mask,
                                                      unsigned int a,
                                                      unsigned int b)
 {
-    return (mask & a) | (~mask & b);
+    return (value_barrier(mask) & a) | (value_barrier(~mask) & b);
 }
 
 static ossl_inline size_t constant_time_select_s(size_t mask,
                                                  size_t a,
                                                  size_t b)
 {
-    return (mask & a) | (~mask & b);
+    return (value_barrier_s(mask) & a) | (value_barrier_s(~mask) & b);
 }
 
 static ossl_inline unsigned char constant_time_select_8(unsigned char mask,
@@ -249,13 +309,13 @@ static ossl_inline int constant_time_select_int_s(size_t mask, int a, int b)
 static ossl_inline uint32_t constant_time_select_32(uint32_t mask, uint32_t a,
                                                     uint32_t b)
 {
-    return (mask & a) | (~mask & b);
+    return (value_barrier_32(mask) & a) | (value_barrier_32(~mask) & b);
 }
 
 static ossl_inline uint64_t constant_time_select_64(uint64_t mask, uint64_t a,
                                                     uint64_t b)
 {
-    return (mask & a) | (~mask & b);
+    return (value_barrier_64(mask) & a) | (value_barrier_64(~mask) & b);
 }
 
 /*
@@ -299,6 +359,34 @@ static ossl_inline void constant_time_cond_swap_64(uint64_t mask, uint64_t *a,
 }
 
 /*
+ * mask must be 0xFF or 0x00.
+ * "constant time" is per len.
+ *
+ * if (mask) {
+ *     unsigned char tmp[len];
+ *
+ *     memcpy(tmp, a, len);
+ *     memcpy(a, b);
+ *     memcpy(b, tmp);
+ * }
+ */
+static ossl_inline void constant_time_cond_swap_buff(unsigned char mask,
+                                                     unsigned char *a,
+                                                     unsigned char *b,
+                                                     size_t len)
+{
+    size_t i;
+    unsigned char tmp;
+
+    for (i = 0; i < len; i++) {
+        tmp = a[i] ^ b[i];
+        tmp &= mask;
+        a[i] ^= tmp;
+        b[i] ^= tmp;
+    }
+}
+
+/*
  * table is a two dimensional array of bytes. Each row has rowsize elements.
  * Copies row number idx into out. rowsize and numrows are not considered
  * private.
@@ -330,4 +418,4 @@ static ossl_inline void constant_time_lookup(void *out,
  */
 void err_clear_last_constant_time(int clear);
 
-#endif                          /* HEADER_CONSTANT_TIME_LOCL_H */
+#endif                          /* OSSL_INTERNAL_CONSTANT_TIME_H */
