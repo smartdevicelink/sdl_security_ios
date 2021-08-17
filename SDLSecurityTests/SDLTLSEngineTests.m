@@ -53,8 +53,8 @@ static NSString *const TestAppId = @"584421907";
     NSError *error = nil;
     BOOL success = [self.tlsEngine initializeTLSWithCertificateData:p12Data error:&error];
     
-    XCTAssertTrue(success);
-    XCTAssertNil(error);
+    XCTAssertFalse(success);
+    XCTAssertNotNil(error);
 }
 
 //- (void)testPerformanceExample {
