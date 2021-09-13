@@ -47,15 +47,11 @@ Once the security library has been configured by the OEM, it is used to generate
 ### Generating the Static Security Library
 1. In the scheme menu of Xcode, set the active scheme to **SDLSecurityStatic**.
 1. Build and run the **SDLSecurityStatic** scheme (**Product > Build For > Running**). 
-1. In the project navigator you will find the **libSDLSecurityStatic.a** build under **SDLSecurity > Products**.
-1. Right click on the **libSDLSecurityStatic.a** build and select **Show in Finder**. This will take you to the derived data of the project which has the three builds listed below:
-    * *Debug-iphoneos* - will only work on an iPhone 
-    * *Debug-iphonesimulator* - will only work on a simulator
-    * *Debug-universal* - will work on both the iPhone and simulator
-1. There are also two header files in the **include** folder, **SDLSecurityConstants.h** and **SDLSecurityManager.h** that must be included along with **libSDLSecurityStatic.a** archive build.
-    
+1. Locate the **SDLSecurityStatic.xcframework** file in your project directory through finder. The .xcframework file does contain Headers which could be linked in your project's build settings (**Build Settings > Header Search Paths**).
+1. Alternatively you can locate the header files needed manually, right click and select **Show in Finder** for the following header files **SDLSecurityConstants.h** and **SDLSecurityManager.h**.
+
 ### Adding the Static Security Library to a SDL App
-1. In Xcode, drag and drop the following 3 files into your project: **libSDLSecurityStatic.a**, **SDLSecurityConstants.h** and **SDLSecurityManager.h** (or their equivalents after OEM naming modifications are made). Make sure **libSDLSecurityStatic.a** has been added to the project's target membership.  
+1. In Xcode, drag and drop the following 3 files into your project: **SDLSecurityStatic.xcframework**, **SDLSecurityConstants.h** and **SDLSecurityManager.h** (or their equivalents after OEM naming modifications are made). Make sure **SDLSecurityStatic.xcframework.a** is not embedded by checking the **General** tab of your project settings.  
 1. Import **SDLSecurityManager.h** into the file where the the `SDLConfiguration`'s `SDLEncryptionConfiguration` or `SDLStreamingMediaConfiguration` is being set. If you have a Swift project, this will require adding a bridging header to the project.
 
     #### Swift
