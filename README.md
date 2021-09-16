@@ -47,11 +47,11 @@ Once the security library has been configured by the OEM, it is used to generate
 ### Generating the Static Security Library
 1. In the scheme menu of Xcode, set the active scheme to **SDLSecurityStatic**.
 1. Build and run the **SDLSecurityStatic** scheme (**Product > Build For > Running**). 
-1. Locate the **SDLSecurityStatic.xcframework** file in your project directory through finder. The .xcframework file does contain Headers which could be linked in your project's build settings (**Build Settings > Header Search Paths**).
-1. Alternatively you can locate the header files needed manually, right click and select **Show in Finder** for the following header files **SDLSecurityConstants.h** and **SDLSecurityManager.h**.
+1. Locate the **SDLSecurityStatic.xcframework** file in the root directory of the project with Finder. The `.xcframework` file contains Headers. For Swift apps, the headers will need to be imported in the bridging header for the app.
+1. Alternatively you can locate the header files needed manually, right click and select **Show in Finder** for the following header files **SDLSecurityConstants.h** and **SDLSecurityManager.h**. They will need to be dragged into the app project. For Swift apps, the headers will need to be imported in the bridging header for the app.
 
 ### Adding the Static Security Library to a SDL App
-1. In Xcode, drag and drop the following 3 files into your project: **SDLSecurityStatic.xcframework**, **SDLSecurityConstants.h** and **SDLSecurityManager.h** (or their equivalents after OEM naming modifications are made). Make sure **SDLSecurityStatic.xcframework.a** is not embedded by checking the **General** tab of your project settings.  
+1. In Xcode, drag and drop the following file into your project: **SDLSecurityStatic.xcframework** (or its equivalent after OEM naming modifications are made).
 1. Import **SDLSecurityManager.h** into the file where the the `SDLConfiguration`'s `SDLEncryptionConfiguration` or `SDLStreamingMediaConfiguration` is being set. If you have a Swift project, this will require adding a bridging header to the project.
 
     #### Swift
