@@ -47,8 +47,7 @@ Once the security library has been configured by the OEM, it is used to generate
 ### Generating the Static Security Library
 1. In the scheme menu of Xcode, set the active scheme to **SDLSecurityStatic**.
 1. Build and run the **SDLSecurityStatic** scheme (**Product > Build For > Running**). 
-1. Locate the **SDLSecurityStatic.xcframework** file in the root directory of the project with Finder. The `.xcframework` file contains Headers. For Swift apps, the headers will need to be imported in the bridging header for the app.
-1. Alternatively you can locate the header files needed manually, right click and select **Show in Finder** for the following header files **SDLSecurityConstants.h** and **SDLSecurityManager.h**. They will need to be dragged into the app project. For Swift apps, the headers will need to be imported in the bridging header for the app.
+1. Locate the **SDLSecurityStatic.xcframework** file in the root directory of the project with Finder. The `.xcframework` folder contains the static library builds and header files in a structure that Xcode 12+ can understand.
 
 ### Adding the Static Security Library to a SDL App
 1. In Xcode, drag and drop the following file into your project: **SDLSecurityStatic.xcframework** (or its equivalent after OEM naming modifications are made).
