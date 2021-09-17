@@ -50,7 +50,7 @@ Once the security library has been configured by the OEM, it is used to generate
 1. Locate the **SDLSecurityStatic.xcframework** file in the root directory of the project with Finder. The `.xcframework` folder contains the static library builds and header files in a structure that Xcode 12+ can understand.
 
 ### Adding the Static Security Library to a SDL App
-1. In Xcode, drag and drop the following file into your project: **SDLSecurityStatic.xcframework** (or its equivalent after OEM naming modifications are made).
+1. Drag the **SDLSecurityStatic.xcframework** (or its equivalent after OEM naming modifications are made) file to the app project in Xcode. The `.xcframework` file contains the static library and header files. For Swift apps, the headers will need to be imported in the bridging header for the app.
 1. Import **SDLSecurityManager.h** into the file where the the `SDLConfiguration`'s `SDLEncryptionConfiguration` or `SDLStreamingMediaConfiguration` is being set. If you have a Swift project, this will require adding a bridging header to the project.
 
     #### Swift
