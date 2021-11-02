@@ -41,7 +41,7 @@ static NSString *const TestAppId = @"000000000";
     XCTestExpectation *expectation = [self expectationWithDescription:@"Certificate Expectation"];
     
     [self.certManager retrieveNewCertificateWithAppId:TestAppId completionHandler:^(BOOL success, NSError * _Nullable error) {
-        XCTAssertTrue(success);
+        XCTAssertFalse(success);
         
         if (!success) {
             NSLog(@"TEST Error retrieving certificate: %@", error);
