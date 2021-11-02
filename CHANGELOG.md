@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+### Bug Fixes
+* Fix Static framework builds (#56)
+
 ## 2.0.0
 ### Breaking Changes
 * Updated to required iOS 10
