@@ -945,7 +945,7 @@
 		5D40CA741C511C7200E6F987 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = livio;
 				TargetAttributes = {
 					5D40CA7C1C511C7200E6F987 = {
