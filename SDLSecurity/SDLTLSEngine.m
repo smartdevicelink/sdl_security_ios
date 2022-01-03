@@ -192,7 +192,7 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
         return NO;
     }
     
-    success = SSL_CTX_use_RSAPrivateKey(sslContext, rsa);
+    success = SSL_CTX_use_PrivateKey(sslContext, pkey);
     if (!success) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Setting up SSL context failed with the private key"}];
@@ -258,7 +258,6 @@ void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS
 /// Initilizes OpenSSL's libssl library by loading the error codes and algorithms.
 + (void)sdlsec_openSSLInitialization {
     SSL_load_error_strings();
-    ERR_load_BIO_strings();
     OpenSSL_add_all_algorithms();
     SSL_library_init();
 }
