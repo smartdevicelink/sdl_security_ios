@@ -176,18 +176,10 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
         return NO;
     }
 
+    // Check if RSA key/public key is retrieved
     int pkeyBaseId;
-    pkeyBaseId = EVP_PKEY_get_base_id(pkey);
-    if (pkeyBaseId == EVP_PKEY_RSA) {
-        NSLog(@"pkey base id: %i", pkeyBaseId);
-    }
-    if (pkeyBaseId == EVP_PKEY_NONE) {
-        NSLog(@"error, baseId not found");
-    }
-//    evp_pkey_get_param
-//    ossl_param_bld_push
-//    rsa = EVP_PKEY_get1_RSA(pkey);
     size_t publicKeySize;
+    pkeyBaseId = EVP_PKEY_get_base_id(pkey);
     publicKeySize = EVP_PKEY_get1_encoded_public_key(pkey, 0);
     if (publicKeySize == 0 || pkeyBaseId == EVP_PKEY_NONE) {
         sdlsec_cleanUpInitialization(certX509, p12, pbio, pkey);
