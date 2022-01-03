@@ -132,7 +132,6 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     PKCS12 *p12 = NULL;
     EVP_PKEY *pkey = NULL;
     X509 *certX509 = NULL;
-    RSA *rsa = NULL;
     BIO *pbio = NULL;
     BOOL success = NO;
     
@@ -148,14 +147,14 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     pbio = BIO_new_mem_buf(p12Buffer, (int)data.length);
     p12 = d2i_PKCS12_bio(pbio, NULL);
     if (p12 == NULL) {
-        sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+        sdlsec_cleanUpInitialization(certX509, NULL, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"TLS certificate failed to load"}];
         return NO;
     }
 
     success = PKCS12_parse(p12, SDLTLSCertPassword, &pkey, &certX509, NULL);
     if (certX509 == NULL || pkey == NULL) {
-        sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+        sdlsec_cleanUpInitialization(certX509, NULL, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"TLS password does not match"}];
         return NO;
     }
@@ -176,10 +175,15 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Certificate issuer (%@) does not match required issuer (%@)", certIssuer, SDLTLSIssuer]}];
         return NO;
     }
-    
-    rsa = EVP_PKEY_get1_RSA(pkey);
-    if (rsa == NULL) {
-        sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+
+    // Check if RSA key/public key is retrieved
+    int pkeyBaseId;
+    size_t publicKeySize;
+    unsigned char *pubkey;
+    pkeyBaseId = EVP_PKEY_get_base_id(pkey);
+    publicKeySize = EVP_PKEY_get1_encoded_public_key(pkey, &pubkey);
+    if ((publicKeySize == 0 || pkeyBaseId == EVP_PKEY_NONE) && pubkey == NULL) {
+        sdlsec_cleanUpInitialization(certX509, pubkey, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Retrieving RSA token failed"}];
         return NO;
     }
@@ -187,35 +191,35 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     // Set up our SSL Context with the certificate and key
     success = SSL_CTX_use_certificate(sslContext, certX509);
     if (!success) {
-        sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+        sdlsec_cleanUpInitialization(certX509, pubkey, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Setting up SSL context failed"}];
         return NO;
     }
     
-    success = SSL_CTX_use_RSAPrivateKey(sslContext, rsa);
+    success = SSL_CTX_use_PrivateKey(sslContext, pkey);
     if (!success) {
-        sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+        sdlsec_cleanUpInitialization(certX509, pubkey, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Setting up SSL context failed with the private key"}];
         return NO;
     }
     
     success = SSL_CTX_check_private_key(sslContext);
     if (!success) {
-        sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+        sdlsec_cleanUpInitialization(certX509, pubkey, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"SSL Private key check failed"}];
         return NO;
     }
     
     success = SSL_CTX_set_cipher_list(sslContext, "ALL");
     if (!success) {
-        sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+        sdlsec_cleanUpInitialization(certX509, pubkey, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Setting up SSL context cipher list failed"}];
         return NO;
     }
     
     sslConnection = SSL_new(sslContext);
     if (sslConnection == NULL) {
-        sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+        sdlsec_cleanUpInitialization(certX509, pubkey, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Creating SSL connection object failed"}];
         return NO;
     }
@@ -225,7 +229,7 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
     BIO_set_mem_eof_return(readBIO, -1);
     SSL_set_bio(sslConnection, readBIO, writeBIO);
     SSL_set_accept_state(sslConnection);
-    sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+    sdlsec_cleanUpInitialization(certX509, pubkey, p12, pbio, pkey);
     
     self.state = SDLTLSEngineStateInitialized;
     return YES;
@@ -237,12 +241,12 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
 /// @param p12 The PFX file
 /// @param pbio Memory BIO for the PFX file
 /// @param pkey The private key
-void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS12 *_Nullable p12, BIO *_Nullable pbio, EVP_PKEY *_Nullable pkey) {
+void sdlsec_cleanUpInitialization(X509 *_Nullable cert, unsigned char *_Nullable pubkey, PKCS12 *_Nullable p12, BIO *_Nullable pbio, EVP_PKEY *_Nullable pkey) {
     if (cert != NULL) {
         X509_free(cert);
     }
-    if (rsa != NULL) {
-        RSA_free(rsa);
+    if (pubkey != NULL) {
+        OPENSSL_free(pubkey);
     }
     if (p12 != NULL) {
         PKCS12_free(p12);
@@ -258,7 +262,6 @@ void sdlsec_cleanUpInitialization(X509 *_Nullable cert, RSA *_Nullable rsa, PKCS
 /// Initilizes OpenSSL's libssl library by loading the error codes and algorithms.
 + (void)sdlsec_openSSLInitialization {
     SSL_load_error_strings();
-    ERR_load_BIO_strings();
     OpenSSL_add_all_algorithms();
     SSL_library_init();
 }
