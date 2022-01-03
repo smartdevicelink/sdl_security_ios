@@ -175,10 +175,22 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeCertificateInvalid userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Certificate issuer (%@) does not match required issuer (%@)", certIssuer, SDLTLSIssuer]}];
         return NO;
     }
-    
-    if (rsa == NULL) {
-        sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
-    PEM_read_bio_RSAPublicKey(pbio, &rsa, 0, NULL);
+
+    int pkeyBaseId;
+    pkeyBaseId = EVP_PKEY_get_base_id(pkey);
+    if (pkeyBaseId == EVP_PKEY_RSA) {
+        NSLog(@"pkey base id: %i", pkeyBaseId);
+    }
+    if (pkeyBaseId == EVP_PKEY_NONE) {
+        NSLog(@"error, baseId not found");
+    }
+//    evp_pkey_get_param
+//    ossl_param_bld_push
+//    rsa = EVP_PKEY_get1_RSA(pkey);
+    size_t publicKeySize;
+    publicKeySize = EVP_PKEY_get1_encoded_public_key(pkey, 0);
+    if (publicKeySize == 0 || pkeyBaseId == EVP_PKEY_NONE) {
+        sdlsec_cleanUpInitialization(certX509, p12, pbio, pkey);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Retrieving RSA token failed"}];
         return NO;
     }
