@@ -176,9 +176,9 @@ unencrypted bytes -> SSL_write(sslConnection) -> |*****| -> BIO_read(writeBIO) -
         return NO;
     }
     
-    rsa = EVP_PKEY_get1_RSA(pkey);
     if (rsa == NULL) {
         sdlsec_cleanUpInitialization(certX509, rsa, p12, pbio, pkey);
+    PEM_read_bio_RSAPublicKey(pbio, &rsa, 0, NULL);
         *error = [NSError errorWithDomain:SDLSecurityErrorDomain code:SDLTLSErrorCodeInitializationFailure userInfo:@{NSLocalizedDescriptionKey: @"Retrieving RSA token failed"}];
         return NO;
     }
