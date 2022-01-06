@@ -43,7 +43,6 @@
 		C904F1A126CFEF0300E073DA /* libcrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C904F19F26CFEF0300E073DA /* libcrypto.xcframework */; };
 		C904F1A326CFEF0B00E073DA /* libssl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C904F1A226CFEF0B00E073DA /* libssl.xcframework */; };
 		C904F1A426CFEF0B00E073DA /* libssl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C904F1A226CFEF0B00E073DA /* libssl.xcframework */; };
-		C9BA18782784D27B00CCC7A7 /* include in Resources */ = {isa = PBXBuildFile; fileRef = C9BA18772784D27B00CCC7A7 /* include */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +97,7 @@
 		88EDC83C2333C6B600542B53 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C904F19F26CFEF0300E073DA /* libcrypto.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libcrypto.xcframework; sourceTree = "<group>"; };
 		C904F1A226CFEF0B00E073DA /* libssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libssl.xcframework; sourceTree = "<group>"; };
-		C9BA18772784D27B00CCC7A7 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		C9BA187E27879C2800CCC7A7 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,7 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				88EDC83C2333C6B600542B53 /* LICENSE */,
-				C9BA18772784D27B00CCC7A7 /* include */,
+				C9BA187E27879C2800CCC7A7 /* include */,
 				C904F19F26CFEF0300E073DA /* libcrypto.xcframework */,
 				C904F1A226CFEF0B00E073DA /* libssl.xcframework */,
 				8897ED0123353CED00C1F4A3 /* missing_openSSL_functions.m */,
@@ -383,7 +382,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88EDC8C22333C6B600542B53 /* LICENSE in Resources */,
-				C9BA18782784D27B00CCC7A7 /* include in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
