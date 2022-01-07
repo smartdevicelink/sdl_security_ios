@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5DF916F11C5A6C2B009C7B55"
-               BuildableName = "libSDLSecurityStatic.a"
-               BlueprintName = "SDLSecurityStatic"
+               BlueprintIdentifier = "5D40CA7C1C511C7200E6F987"
+               BuildableName = "SDLSecurity.framework"
+               BlueprintName = "SDLSecurity"
                ReferencedContainer = "container:SDLSecurity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,15 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5DF916F11C5A6C2B009C7B55"
-            BuildableName = "libSDLSecurityStatic.a"
-            BlueprintName = "SDLSecurityStatic"
-            ReferencedContainer = "container:SDLSecurity.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -59,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5DF916F11C5A6C2B009C7B55"
-            BuildableName = "libSDLSecurityStatic.a"
-            BlueprintName = "SDLSecurityStatic"
+            BlueprintIdentifier = "5D40CA7C1C511C7200E6F987"
+            BuildableName = "SDLSecurity.framework"
+            BlueprintName = "SDLSecurity"
             ReferencedContainer = "container:SDLSecurity.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
