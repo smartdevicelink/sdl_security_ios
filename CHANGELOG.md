@@ -1,4 +1,7 @@
 # Changelog
+## 2.1.0
+### Bug Fixes
+* Update OpenSSL to v1.1.1L (#68)
 
 ## 2.0.1
 ### Bug Fixes
